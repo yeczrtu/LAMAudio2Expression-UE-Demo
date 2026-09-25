@@ -23,7 +23,7 @@
 
 ## 利用者向け配布を追加する場合
 
-変換済みモデルが必要な利用者向けには、バージョン固定のGitHub Release添付ファイル、または専用Hugging Faceモデルリポジトリに分離する方法を推奨します。ソースのタグ、UE版、モデル版、SHA-256、Apache-2.0本文、変更説明、検証結果をセットで配布します。今回、変換済みモデルの再配布やRelease作成は行っていません。
+変換済みモデルが必要な利用者向けには、バージョン固定のGitHub Release添付ファイル、または専用Hugging Faceモデルリポジトリに分離する方法を推奨します。ソースのタグ、UE版、モデル版、SHA-256、Apache-2.0本文、変更説明、検証結果をセットで配布します。[v0.2.0 Release](https://github.com/yeczrtu/LAMAudio2Expression-UE-Demo/releases/tag/v0.2.0) にはモデルを含む実行版と編集用プロジェクトを配布します。プラグイン単体のモデル入りZIPは [プラグインRelease](https://github.com/yeczrtu/LAMAudio2Expression-UE/releases/tag/v0.2.0) に置きます。SHA256SUMSとrelease-manifest.jsonを各Releaseに添付します。
 
 Git LFSも選択肢ですが、毎回のcloneでモデルを取得する必要や容量・転送量の管理が生じます。このプロジェクトでは公式配布先を参照する方式を既定にします。通常のGitHub Gitでは100 MiB超のファイルがブロックされるため、約384 MiBのモデルuassetを直接コミットしません。[GitHubの大きいファイルの説明](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github)
 

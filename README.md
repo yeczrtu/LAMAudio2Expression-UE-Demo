@@ -4,9 +4,20 @@ Windows x64 用の音声表情プラグインを試すデモです。SoundWave �
 
 このリポジトリはデモ・検証用UEプロジェクトです。[プラグイン本体](https://github.com/yeczrtu/LAMAudio2Expression-UE) は独立したリポジトリで、`Plugins/LAMAudio2Expression` からサブモジュールとして参照します。顔・音声・操作UIとそのライセンス表記はデモ側で管理します。
 
+## モデル入りダウンロード
+
+[v0.2.0 Release](https://github.com/yeczrtu/LAMAudio2Expression-UE-Demo/releases/tag/v0.2.0) から選んでください。
+
+- **Win64-Demo.zip**: モデル・顔・音声を含む実行版。展開して `LAMDemo.exe` を起動します。UEエディタ、Visual Studio、Pythonは不要です。ランタイム不足の表示が出た場合は同梱 `Engine/Extras/Redist/en-us/vc_redist.x64.exe` を実行してください。
+- **UE5.8.2-Project-Model.zip**: モデルとビルド済みプラグイン・デモモジュールを含む編集用プロジェクト。UE 5.8.2 / Windowsで `LAMDemo.uproject` を開きます。setupやモデル変換は不要です。C++を変更して再ビルドする場合はVisual Studio 2022 C++が必要です。
+
+どちらも展開先は短いパス（例 `C:\LAMDemo`）を推奨します。ZIP内から直接起動せず、フォルダー全体を展開してください。プラグインのみ必要な場合は [プラグインRelease](https://github.com/yeczrtu/LAMAudio2Expression-UE/releases/tag/v0.2.0) を使用します。
+
+GitHubの自動生成 **Source code** ZIPにはモデルとサブモジュールの実体を含みません。上記の添付ZIPを選んでください。
+
 ## 新規cloneからの準備
 
-GitHubにはニューラルモデルを含めていません。顔デモ用のメッシュ・音声・マップはこのプロジェクトの `Content/LAMFaceDemo` に同梱しています。UE 5.8.2、Visual Studio 2022 C++、Python 3.10、Gitを用意して次を実行してください。
+Git履歴にはニューラルモデルを含めていません（モデル入りReleaseは上記）。顔デモ用のメッシュ・音声・マップはこのプロジェクトの `Content/LAMFaceDemo` に同梱しています。UE 5.8.2、Visual Studio 2022 C++、Python 3.10、Gitを用意して次を実行してください。
 
 ```powershell
 git clone --recurse-submodules https://github.com/yeczrtu/LAMAudio2Expression-UE-Demo.git

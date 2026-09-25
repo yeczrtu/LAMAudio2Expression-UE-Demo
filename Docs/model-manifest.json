@@ -30,5 +30,18 @@
       "case": "style11",
       "max_abs_error": 4.26173210144043e-06
     }
-  ]
+  ],
+  "weights_repository": "3DAIGC/LAM_audio2exp",
+  "weights_revision": "0fe5f4dbb283ec7d9c01688681e6e4b6ac314858",
+  "weights_license": "Apache-2.0",
+  "checkpoint_sha256": "0877f419b1b7b6856479b743b71625ad478f97434404e91288f9f0d6d516b97a",
+  "unreal_asset": {
+    "path": "/LAMAudio2Expression/Models/LAM_A2E",
+    "sha256": "8d83b806be13ec7dcae82c848d165ebcf9e2422f50320b8af4cf12f34590d2fb",
+    "engine": "5.8.2",
+    "runtimes": [
+      "NNERuntimeORTDml",
+      "NNERuntimeORTCpu"
+    ]
+  }
 }
