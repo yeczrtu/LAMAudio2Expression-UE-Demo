@@ -1,51 +1,8 @@
 [
   {
-    "asset": "/Game/LAMFaceDemo/Audio/F1_anger_regular_31",
-    "dependencies": []
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Audio/F1_disgust_regular_38",
-    "dependencies": []
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Audio/F1_fear_regular_23",
-    "dependencies": []
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Audio/F1_happy_regular_38",
-    "dependencies": []
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Audio/F1_sad_regular_10",
-    "dependencies": []
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Audio/F1_surprise_regular_11",
-    "dependencies": []
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Blueprints/ABP_Face52",
-    "dependencies": [
-      "/Script/AnimGraph",
-      "/Script/AnimGraphRuntime",
-      "/Script/LAMAudio2Expression",
-      "/Script/LAMAudio2ExpressionEditor",
-      "/Game/LAMFaceDemo/Character/Face52",
-      "/Game/LAMFaceDemo/Character/Face52_Skeleton"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Blueprints/BP_AudioToFace",
-    "dependencies": [
-      "/Script/LAMAudio2Expression",
-      "/Game/LAMFaceDemo/Audio/F1_surprise_regular_11",
-      "/Game/LAMFaceDemo/Character/Face52",
-      "/Game/LAMFaceDemo/Blueprints/ABP_Face52"
-    ]
-  },
-  {
     "asset": "/Game/LAMFaceDemo/Blueprints/BP_FaceDemo",
     "dependencies": [
+      "/Script/InputCore",
       "/Script/LAMAudio2Expression",
       "/Game/LAMFaceDemo/Audio/F1_anger_regular_31",
       "/Game/LAMFaceDemo/Audio/F1_disgust_regular_38",
@@ -53,8 +10,10 @@
       "/Game/LAMFaceDemo/Audio/F1_happy_regular_38",
       "/Game/LAMFaceDemo/Audio/F1_sad_regular_10",
       "/Game/LAMFaceDemo/Audio/F1_surprise_regular_11",
-      "/Game/LAMFaceDemo/Character/Face52",
-      "/Game/LAMFaceDemo/Blueprints/ABP_Face52"
+      "/Game/LAMFaceDemo/Audio/SM_Alternate",
+      "/Game/LAMFaceDemo/Audio/SM_Dialogue",
+      "/Game/LAMFaceDemo/Blueprints/ABP_Face52",
+      "/Game/LAMFaceDemo/Character/Face52"
     ]
   },
   {
@@ -79,159 +38,9 @@
     ]
   },
   {
-    "asset": "/Game/LAMFaceDemo/Character/Face52_Skeleton",
-    "dependencies": [
-      "/Game/LAMFaceDemo/Character/Face52"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_Body_00_SKIN",
-    "dependencies": [
-      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_10"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_EyeHighlight_00_EYE",
-    "dependencies": [
-      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_03"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_EyeIris_00_EYE",
-    "dependencies": [
-      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_02"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_EyeWhite_00_EYE",
-    "dependencies": [
-      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_06"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_FaceBrow_00_FACE",
-    "dependencies": [
-      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_07"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_FaceEyelash_00_FACE",
-    "dependencies": [
-      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_08"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_FaceEyeline_00_FACE",
-    "dependencies": [
-      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_09"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_FaceMouth_00_FACE",
-    "dependencies": [
-      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_00"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_Face_00_SKIN",
-    "dependencies": [
-      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_04"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_HairBack_00_HAIR",
-    "dependencies": [
-      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_12"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_Hair_00_HAIR",
-    "dependencies": [
-      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_17"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_001_01_Bottoms_01_CLOTH",
-    "dependencies": [
-      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_14"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_004_01_Shoes_01_CLOTH",
-    "dependencies": [
-      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_16"
-    ]
-  },
-  {
     "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_004_01_Tops_01_CLOTH",
     "dependencies": [
       "/Game/LAMFaceDemo/Character/Textures/T_VRoid_15"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_00",
-    "dependencies": [
-      "/Script/InterchangeEngine"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_02",
-    "dependencies": [
-      "/Script/InterchangeEngine"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_03",
-    "dependencies": [
-      "/Script/InterchangeEngine"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_04",
-    "dependencies": [
-      "/Script/InterchangeEngine"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_06",
-    "dependencies": [
-      "/Script/InterchangeEngine"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_07",
-    "dependencies": [
-      "/Script/InterchangeEngine"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_08",
-    "dependencies": [
-      "/Script/InterchangeEngine"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_09",
-    "dependencies": [
-      "/Script/InterchangeEngine"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_10",
-    "dependencies": [
-      "/Script/InterchangeEngine"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_12",
-    "dependencies": [
-      "/Script/InterchangeEngine"
-    ]
-  },
-  {
-    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_14",
-    "dependencies": [
-      "/Script/InterchangeEngine"
     ]
   },
   {
@@ -241,9 +50,33 @@
     ]
   },
   {
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_004_01_Shoes_01_CLOTH",
+    "dependencies": [
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_16"
+    ]
+  },
+  {
     "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_16",
     "dependencies": [
       "/Script/InterchangeEngine"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_001_01_Bottoms_01_CLOTH",
+    "dependencies": [
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_14"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_14",
+    "dependencies": [
+      "/Script/InterchangeEngine"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_Hair_00_HAIR",
+    "dependencies": [
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_17"
     ]
   },
   {
@@ -253,14 +86,205 @@
     ]
   },
   {
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_HairBack_00_HAIR",
+    "dependencies": [
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_12"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_12",
+    "dependencies": [
+      "/Script/InterchangeEngine"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_FaceMouth_00_FACE",
+    "dependencies": [
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_00"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_00",
+    "dependencies": [
+      "/Script/InterchangeEngine"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_FaceEyeline_00_FACE",
+    "dependencies": [
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_09"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_09",
+    "dependencies": [
+      "/Script/InterchangeEngine"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_FaceEyelash_00_FACE",
+    "dependencies": [
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_08"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_08",
+    "dependencies": [
+      "/Script/InterchangeEngine"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_FaceBrow_00_FACE",
+    "dependencies": [
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_07"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_07",
+    "dependencies": [
+      "/Script/InterchangeEngine"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_Face_00_SKIN",
+    "dependencies": [
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_04"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_04",
+    "dependencies": [
+      "/Script/InterchangeEngine"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_EyeWhite_00_EYE",
+    "dependencies": [
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_06"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_06",
+    "dependencies": [
+      "/Script/InterchangeEngine"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_EyeIris_00_EYE",
+    "dependencies": [
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_02"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_02",
+    "dependencies": [
+      "/Script/InterchangeEngine"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_EyeHighlight_00_EYE",
+    "dependencies": [
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_03"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_03",
+    "dependencies": [
+      "/Script/InterchangeEngine"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_Body_00_SKIN",
+    "dependencies": [
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_10"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_10",
+    "dependencies": [
+      "/Script/InterchangeEngine"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Blueprints/ABP_Face52",
+    "dependencies": [
+      "/Script/AnimGraph",
+      "/Script/AnimGraphRuntime",
+      "/Script/LAMAudio2Expression",
+      "/Script/LAMAudio2ExpressionEditor",
+      "/Game/LAMFaceDemo/Character/Face52_Skeleton",
+      "/Game/LAMFaceDemo/Character/Face52"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Character/Face52_Skeleton",
+    "dependencies": [
+      "/Game/LAMFaceDemo/Character/Face52"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Audio/SM_Dialogue",
+    "dependencies": []
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Audio/SM_Alternate",
+    "dependencies": []
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Audio/F1_surprise_regular_11",
+    "dependencies": []
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Audio/F1_sad_regular_10",
+    "dependencies": []
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Audio/F1_happy_regular_38",
+    "dependencies": []
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Audio/F1_fear_regular_23",
+    "dependencies": []
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Audio/F1_disgust_regular_38",
+    "dependencies": []
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Audio/F1_anger_regular_31",
+    "dependencies": []
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Blueprints/BP_FaceDemoHUD",
+    "dependencies": [
+      "/Script/LAMAudio2Expression",
+      "/Game/LAMFaceDemo/Blueprints/BP_FaceDemo"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Blueprints/BP_FaceDemoGameMode",
+    "dependencies": [
+      "/Game/LAMFaceDemo/Blueprints/BP_FaceDemoHUD"
+    ]
+  },
+  {
     "asset": "/Game/LAMFaceDemo/Maps/LAM_FaceDemo",
     "dependencies": [
       "/Script/NavigationSystem",
-      "/Script/LAMDemo",
       "/Script/LAMAudio2Expression",
       "/Engine/EngineMaterials/WorldGridMaterial",
       "/Engine/EditorResources/LightIcons/S_LightError",
-      "/Game/LAMFaceDemo/Blueprints/BP_FaceDemo"
+      "/Game/LAMFaceDemo/Blueprints/BP_FaceDemo",
+      "/Game/LAMFaceDemo/Blueprints/BP_FaceDemoGameMode"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Blueprints/BP_AudioToFace",
+    "dependencies": [
+      "/Script/LAMAudio2Expression",
+      "/Game/LAMFaceDemo/Audio/F1_surprise_regular_11",
+      "/Game/LAMFaceDemo/Blueprints/ABP_Face52",
+      "/Game/LAMFaceDemo/Character/Face52"
     ]
   }
 ]

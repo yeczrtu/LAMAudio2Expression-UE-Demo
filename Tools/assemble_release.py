@@ -96,7 +96,7 @@ def main():
     for folder in ['Content/Audio', 'Content/Examples']:
         project_entries.extend((p, 'LAMAudio2Expression-Demo/'+folder+'/'+n) for p,n in files(project/folder))
     project_entries.append((project/'Content/LAMDemo.umap', 'LAMAudio2Expression-Demo/Content/LAMDemo.umap'))
-    for name in ['UnrealEditor-LAMDemo.dll', 'UnrealEditor.modules']:
+    for name in ['UnrealEditor-LAMDemo.dll', 'UnrealEditor-LAMDemoEditor.dll', 'UnrealEditor.modules']:
         project_entries.append((project/'Binaries/Win64'/name, 'LAMAudio2Expression-Demo/Binaries/Win64/'+name))
     project_entries.extend((p,'LAMAudio2Expression-Demo/Plugins/LAMAudio2Expression/'+n) for n,p in plugin_entries.items())
     project_zip = args.output/f'LAMAudio2Expression-{version}-UE5.8.2-Project-Model.zip'

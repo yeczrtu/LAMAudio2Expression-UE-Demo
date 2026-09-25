@@ -2,6 +2,25 @@
 
 環境：Windows x64、UE 5.8.2 (`D:\Unreal\UE_5.8`)、Visual Studio 2022 / MSVC 14.44、Core i7-12700、RTX 3070、メモリ64 GB。以下はこの環境での実行結果です。
 
+## Blueprint版の顔デモ（2026-09-25）
+
+現在のソース版の `BP_FaceDemo`／`BP_FaceDemoHUD`／`BP_FaceDemoGameMode` は標準のActor／HUD／GameModeBaseを親とします。デモの解析・再生制御・画面表示はBPノードで実装しています。旧C++デモクラスへの参照はなく、44アセットの依存関係に `/Script/LAMDemo` と `/Script/LAMDemoEditor` がないことを確認しました。
+
+| 検証 | 結果 |
+|---|---|
+| 3つのBPのコンパイル | エラー0、警告0。360ノード、実際の非同期解析ノード1件、C++デモ関数呼び出し0件 |
+| Directional Light | マップと各実行環境で1つ |
+| EditorのStandalone | 6音声すべて成功 |
+| Win64 Development | Cook・パッケージ成功、6音声すべて成功 |
+| Win64 Shipping | Cook・パッケージ成功、6音声すべて成功 |
+| 操作経路 | BPで作成したHUDの当たり判定に座標を渡し、クリックイベント→音声選択→解析→再生→AnimGraphのjawOpen出力を確認 |
+| 再生制御 | 一時停止・再開、ミュート、音量、Submix、推論間隔切り替え、フェード停止、リプレイ、自然終了のBPイベントが成功 |
+| 既存テストへの遷移 | Developmentの再生制御・ルーティング・Concurrency・ゲーム停止の回帰テスト成功 |
+
+マウスカーソルとクリックイベントがBPで有効化されることも検証しています。キーボードの実機入力とマイクの実機入力は今回の自動検証には含めていません。操作テストの実測秒数には初期化や他のビルドとの競合も含まれ、性能比較用ではありません。
+
+[18件の実行結果](Validation/blueprint-demo-results.json)・[アセットの依存関係](Validation/face-demo-dependencies.json)を保存しています。以下のモデル・プラグイン検証には以前の版での結果も含まれます。公開済みv0.2.0のZIPはBP化以前の版です。
+
 ## モデル一致
 
 固定窓、FP32、opset17、後処理前の3,328値をPyTorch基準値と比較しました。

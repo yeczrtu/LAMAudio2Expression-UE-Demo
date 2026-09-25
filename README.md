@@ -57,7 +57,9 @@ GitHubの「Source code (zip / tar.gz)」にはモデルとプラグインの実
 2. **UE 5.8.2** で `LAMDemo.uproject` を開きます。
 3. `/Game/LAMFaceDemo/Maps/LAM_FaceDemo` を開き、Playを押します。
 
-Blueprintの接続例は `Content/LAMFaceDemo/Blueprints` にあります。C++コードを変更して再ビルドする場合は、Visual Studio 2022のC++開発環境が必要です。[アセット構成と接続例](Docs/FACE_DEMO.md)
+Blueprintの接続例は `Content/LAMFaceDemo/Blueprints` にあります。現在のソース版は、音声選択・解析・再生・画面表示をBPノードで実装しています。まず `BP_FaceDemo` の `02_Analyze_And_Play` を開くと、実際のデモで使う接続を確認できます。Directional Lightは1つです。[アセット構成とBPの読み方](Docs/FACE_DEMO.md)
+
+公開済みのv0.2.0 ZIPと紹介動画は、このBP化以前の版です。BP化したデモは現在のソース版に含まれます。C++のプラグインや自動テストを再ビルドする場合は、Visual Studio 2022のC++開発環境が必要です。
 
 ## 自分のキャラクターで使う
 

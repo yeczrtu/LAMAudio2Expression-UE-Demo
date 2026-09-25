@@ -1,0 +1,135 @@
+{
+  "date": "2026-09-25",
+  "engine": "UE 5.8.2 Win64",
+  "assetCount": 44,
+  "directionalLights": 1,
+  "blueprintParents": {
+    "BP_FaceDemo": "/Script/Engine.Actor",
+    "BP_FaceDemoHUD": "/Script/Engine.HUD",
+    "BP_FaceDemoGameMode": "/Script/Engine.GameModeBase"
+  },
+  "compiledNodes": 360,
+  "asyncNodes": 1,
+  "nativeDemoCalls": 0,
+  "projectNativeAssetDependencies": [],
+  "graphCompileErrors": 0,
+  "graphCompileWarnings": 0,
+  "inputValidation": "Mouse cursor and click events enabled; coordinates inside BP-created HUD hitboxes dispatch the click events. Keyboard hardware and physical microphone not exercised.",
+  "runs": {
+    "EditorStandalone": [
+      {
+        "Sample": 0,
+        "ExitCode": 0,
+        "WallSeconds": 17.292,
+        "Result": "PASS sample=0 BP HUD and async playback, pause/resume, mute, volume, submix, intervals, fade, replay, completion event; jaw_peak=0.2770; DirectionalLights=1"
+      },
+      {
+        "Sample": 1,
+        "ExitCode": 0,
+        "WallSeconds": 17.096,
+        "Result": "PASS sample=1 Blueprint HUD click -> async -> playback -> AnimGraph, jaw_peak=0.2373, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 2,
+        "ExitCode": 0,
+        "WallSeconds": 19.057,
+        "Result": "PASS sample=2 Blueprint HUD click -> async -> playback -> AnimGraph, jaw_peak=0.2118, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 3,
+        "ExitCode": 0,
+        "WallSeconds": 18.592,
+        "Result": "PASS sample=3 Blueprint HUD click -> async -> playback -> AnimGraph, jaw_peak=0.2971, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 4,
+        "ExitCode": 0,
+        "WallSeconds": 15.615,
+        "Result": "PASS sample=4 Blueprint HUD click -> async -> playback -> AnimGraph, jaw_peak=0.1759, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 5,
+        "ExitCode": 0,
+        "WallSeconds": 22.308,
+        "Result": "PASS sample=5 Blueprint HUD click -> async -> playback -> AnimGraph, jaw_peak=0.3320, DirectionalLights=1, backend=DirectML"
+      }
+    ],
+    "Development": [
+      {
+        "Sample": 0,
+        "ExitCode": 0,
+        "WallSeconds": 15.375,
+        "Result": "PASS sample=0 BP HUD and async playback, pause/resume, mute, volume, submix, intervals, fade, replay, completion event; jaw_peak=0.2770; DirectionalLights=1"
+      },
+      {
+        "Sample": 1,
+        "ExitCode": 0,
+        "WallSeconds": 14.011,
+        "Result": "PASS sample=1 Blueprint HUD click -> async -> playback -> AnimGraph, jaw_peak=0.2367, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 2,
+        "ExitCode": 0,
+        "WallSeconds": 9.856,
+        "Result": "PASS sample=2 Blueprint HUD click -> async -> playback -> AnimGraph, jaw_peak=0.2065, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 3,
+        "ExitCode": 0,
+        "WallSeconds": 9.089,
+        "Result": "PASS sample=3 Blueprint HUD click -> async -> playback -> AnimGraph, jaw_peak=0.2972, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 4,
+        "ExitCode": 0,
+        "WallSeconds": 9.107,
+        "Result": "PASS sample=4 Blueprint HUD click -> async -> playback -> AnimGraph, jaw_peak=0.1755, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 5,
+        "ExitCode": 0,
+        "WallSeconds": 9.114,
+        "Result": "PASS sample=5 Blueprint HUD click -> async -> playback -> AnimGraph, jaw_peak=0.3319, DirectionalLights=1, backend=DirectML"
+      }
+    ],
+    "Shipping": [
+      {
+        "Sample": 0,
+        "ExitCode": 0,
+        "WallSeconds": 10.182,
+        "Result": "PASS sample=0 BP HUD and async playback, pause/resume, mute, volume, submix, intervals, fade, replay, completion event; jaw_peak=0.2770; DirectionalLights=1"
+      },
+      {
+        "Sample": 1,
+        "ExitCode": 0,
+        "WallSeconds": 8.559,
+        "Result": "PASS sample=1 Blueprint HUD click -> async -> playback -> AnimGraph, jaw_peak=0.2374, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 2,
+        "ExitCode": 0,
+        "WallSeconds": 7.602,
+        "Result": "PASS sample=2 Blueprint HUD click -> async -> playback -> AnimGraph, jaw_peak=0.2115, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 3,
+        "ExitCode": 0,
+        "WallSeconds": 7.892,
+        "Result": "PASS sample=3 Blueprint HUD click -> async -> playback -> AnimGraph, jaw_peak=0.2973, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 4,
+        "ExitCode": 0,
+        "WallSeconds": 7.699,
+        "Result": "PASS sample=4 Blueprint HUD click -> async -> playback -> AnimGraph, jaw_peak=0.1759, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 5,
+        "ExitCode": 0,
+        "WallSeconds": 7.783,
+        "Result": "PASS sample=5 Blueprint HUD click -> async -> playback -> AnimGraph, jaw_peak=0.3324, DirectionalLights=1, backend=DirectML"
+      }
+    ]
+  },
+  "legacyPlaybackRegression": "PASS routing, mute, pause, seek, fades, completion, replacement/reentrancy, 3D, explicit/inline concurrency, world pause; started=11 ended=12\ninitial submix peaks: 0.145137 0.072568 0.036284"
+}

@@ -95,39 +95,14 @@ for wave in waves:
     wave.set_editor_property('loading_behavior', unreal.SoundWaveLoadingBehavior.LOAD_ON_DEMAND)
     unreal.EditorAssetLibrary.save_loaded_asset(wave)
 
-factory = unreal.BlueprintFactory()
-factory.set_editor_property('parent_class', unreal.LAMDemoPreview)
-bp_path = target + '/Blueprints/BP_FaceDemo'
-bp = unreal.load_asset(bp_path) if unreal.EditorAssetLibrary.does_asset_exist(bp_path) else assets.create_asset(
-    'BP_FaceDemo', target + '/Blueprints', unreal.Blueprint, factory)
-cdo = unreal.get_default_object(bp.generated_class())
-cdo.set_editor_property('samples', waves)
-cdo.set_editor_property('sample_labels', ['Anger', 'Disgust', 'Fear', 'Happiness', 'Sadness', 'Surprise'])
-face = cdo.get_editor_property('face')
-face.set_skeletal_mesh_asset(mesh)
-face.set_anim_instance_class(unreal.load_asset(target + '/Blueprints/ABP_Face52').generated_class())
-unreal.BlueprintEditorLibrary.compile_blueprint(bp)
-unreal.EditorAssetLibrary.save_loaded_asset(bp, only_if_is_dirty=False)
-
+# The runtime demo is authored as standard Blueprint graphs, not a native preview actor.
 level = unreal.get_editor_subsystem(unreal.LevelEditorSubsystem)
-if not level.new_level(target + '/Maps/LAM_FaceDemo'):
-    raise RuntimeError('Could not create demo level')
+if not unreal.EditorAssetLibrary.does_asset_exist(target + '/Maps/LAM_FaceDemo'):
+    assert level.new_level(target + '/Maps/LAM_FaceDemo')
+    level.save_current_level()
+import runpy
+runpy.run_path(str(root / 'Tools/rebuild_blueprint_demo.py'), run_name='__main__')
 actors = unreal.get_editor_subsystem(unreal.EditorActorSubsystem)
-demo = actors.spawn_actor_from_class(bp.generated_class(), unreal.Vector(0, 0, 0))
-demo.set_actor_label('LAM Face Demo - choose voice 1-6')
-world = unreal.get_editor_subsystem(unreal.UnrealEditorSubsystem).get_editor_world()
-world.get_world_settings().set_editor_property('default_game_mode', unreal.LAMDemoPreviewGameMode)
-for name, rotation, intensity, color in [
-    ('Key', unreal.Rotator(pitch=-20, yaw=-55, roll=0), 2.0, unreal.LinearColor(1, .92, .85)),
-    ('Fill', unreal.Rotator(pitch=-15, yaw=-140, roll=0), 1.0, unreal.LinearColor(.65, .8, 1)),
-    ('Rim', unreal.Rotator(pitch=-35, yaw=90, roll=0), 2.0, unreal.LinearColor(.7, 1, .95)),
-]:
-    light = actors.spawn_actor_from_class(unreal.DirectionalLight, unreal.Vector(0, 0, 180), rotation)
-    light.set_actor_label(name)
-    component = light.get_component_by_class(unreal.DirectionalLightComponent)
-    component.set_mobility(unreal.ComponentMobility.MOVABLE)
-    component.set_intensity(intensity)
-    component.set_light_color(color)
 post = actors.spawn_actor_from_class(unreal.PostProcessVolume, unreal.Vector())
 post.set_editor_property('unbound', True)
 settings = post.get_editor_property('settings')

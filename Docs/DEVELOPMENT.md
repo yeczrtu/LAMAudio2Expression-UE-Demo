@@ -28,6 +28,9 @@ cd LAMAudio2Expression-UE-Demo
 ./Tools/test_playback_controls.ps1 -Configuration Editor
 ./Tools/test_playback_controls.ps1 -Configuration Development
 ./Tools/test_playback_controls.ps1 -Configuration Shipping
+./Tools/test_face_demo.ps1 -Configuration Editor -OutputDirectory Artifacts/BPChecks-Editor
+./Tools/test_face_demo.ps1 -Configuration Development -OutputDirectory Artifacts/BPChecks-Development
+./Tools/test_face_demo.ps1 -Configuration Shipping -OutputDirectory Artifacts/BPChecks-Shipping
 ```
 
 setup は専用の `.work/venv` を使用し、固定リビジョンの上流コードとチェックポイントから ONNX を生成・検証して UE アセットに取り込みます。Python、PyTorch、ネットワークは開発時だけ必要です。配布するアプリには不要です。
