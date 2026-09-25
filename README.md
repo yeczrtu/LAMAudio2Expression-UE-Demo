@@ -4,9 +4,12 @@
 
 ARKit対応のキャラクターと日本語音声6件を使い、音声に合わせて生成された表情を確認できます。学習済みモデルを含むWindows実行版を用意しているので、UEエディタなしでも試せます。
 
-[![音声から生成した表情のデモ動画](Docs/demo-preview.png)](https://raw.githubusercontent.com/yeczrtu/LAMAudio2Expression-UE-Demo/master/Docs/LAM_A2E_Demo.mp4)
+## デモ動画
 
-**[▶ デモ動画をダウンロード（MP4）](https://raw.githubusercontent.com/yeczrtu/LAMAudio2Expression-UE-Demo/master/Docs/LAM_A2E_Demo.mp4)** — 1分24秒・約2.7 MiB・音声あり。6種類の音声を順番に再生した様子です。
+https://github.com/user-attachments/assets/e93530a4-197d-4a56-860c-0890da1002e7
+
+1分24秒・音声あり。6種類の音声を順番に再生した様子です。プレイヤーの再生ボタンから、このページ内で視聴できます。
+
 動画・音声・デモ演出：CC BY-SA 4.0。キャラクター：hinzka / VRoid、音声：JVNV / litagin。[出典・利用条件](Docs/VIDEO.md)
 
 ## ダウンロード
