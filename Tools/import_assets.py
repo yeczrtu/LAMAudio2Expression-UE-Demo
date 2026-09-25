@@ -1,5 +1,6 @@
 """Run with UnrealEditor-Cmd LAMDemo.uproject -run=pythonscript -script=..."""
 import pathlib
+import runpy
 import unreal
 root=pathlib.Path(unreal.Paths.project_dir()).resolve()
 tasks=[]
@@ -16,6 +17,7 @@ for f in sorted((root/'.work/fixtures').glob('*.wav')):
     wave.set_editor_property('sound_asset_compression_type',unreal.SoundAssetCompressionType.BINK_AUDIO)
     wave.set_editor_property('loading_behavior',unreal.SoundWaveLoadingBehavior.FORCE_INLINE if f.stem.endswith('inline') else unreal.SoundWaveLoadingBehavior.LOAD_ON_DEMAND)
     unreal.EditorAssetLibrary.save_loaded_asset(wave)
+runpy.run_path(str(root/'Tools/build_playback_test_assets.py'))
 level=unreal.get_editor_subsystem(unreal.LevelEditorSubsystem)
 level.new_level('/Game/LAMDemo')
 actors=unreal.get_editor_subsystem(unreal.EditorActorSubsystem)

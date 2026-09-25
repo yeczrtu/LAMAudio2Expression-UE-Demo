@@ -83,7 +83,7 @@ Data Asset の `LAMCurveProfile` で名前変換、無効化、倍率、オフ�
 
 外部の音声ストリームは `Start PCM Stream` の後、ゲームスレッドから `Push PCM Audio(InterleavedPCM, SampleRate, Channels)` で渡せます。値域は -1～1 の float、mono/stereo、1コール最大2秒です。サンプルレートを変えるときはストリームを再開始してください。終了には `Stop Microphone` を使用します。
 
-更新間隔は約333 ms、提示遅延は既定750 msです。`Inference P95 Milliseconds` と `OnStatus` で実行性能を確認できます。ライブ入力は初回モデルのロード時間を要するため、必要なら先に SoundWave を解析してアセットをロードしてください。音声解析ジョブとライブ推論は同じワーカーを使用するので、ライブ入力中の大量の解析は避けてください。
+更新間隔は約33.3〜1000 ms（既定333.3 ms）で、実行中も `Set Live Inference Interval` から変更できます。提示遅延は既定750 msを下限に最大2秒まで自動調整します。`Get Live Metrics` と `On Live State Changed` で実行性能を確認できます。ライブ入力は初回モデルのロード時間を要するため、必要なら先に SoundWave を解析してアセットをロードしてください。音声解析ジョブとライブ推論は同じワーカーを使用するので、ライブ入力中の大量の解析は避けてください。
 
 ## 再生成・テスト
 
@@ -94,6 +94,9 @@ Data Asset の `LAMCurveProfile` で名前変換、無効化、倍率、オフ�
 ./Tools/package.ps1 -Configuration Shipping
 ./Tools/smoke.ps1 -Configuration Development
 ./Tools/smoke.ps1 -Configuration Shipping
+./Tools/test_playback_controls.ps1 -Configuration Editor
+./Tools/test_playback_controls.ps1 -Configuration Development
+./Tools/test_playback_controls.ps1 -Configuration Shipping
 ```
 
 setup は専用の `.work/venv` を使用し、固定リビジョンの上流コードとチェックポイントから ONNX を生成・検証して UE アセットに取り込みます。Python、PyTorch、ネットワークは開発時だけ必要です。配布するアプリには不要です。
@@ -111,3 +114,11 @@ setup は専用の `.work/venv` を使用し、固定リビジョンの上流コ
 独自部分は [MIT](LICENSE) です。プラグインの上流由来3ファイルと学習済みモデルには Apache-2.0 が適用されます。[第三者表記](THIRD_PARTY_NOTICES.md) と [モデル運用方針](Docs/MODEL_MANAGEMENT.md) を参照してください。Unreal Engine本体と利用者が追加したキャラクターは本ライセンスの対象外です。
 
 顔デモの音声と同期映像表現はCC BY-SA 4.0です。モデルの作者許諾と併せて [デモの出典](Resources/Demo/README.md) をデモ配布時に保持してください。
+
+## 再生制御のデモ
+
+Face Demoでは V:ミュート、-/+:音量、O:主出力サブミックス切替、F:フェード停止、M:マイク開始/停止、I:ライブ間隔（100/333/1000 ms）を操作できます。右のパネルに間隔・実効遅延・推論P95・状態を表示します。
+
+[再生制御とライブAPI](https://github.com/yeczrtu/LAMAudio2Expression-UE/blob/main/Docs/PLAYBACK_AND_LIVE.md) を参照してください。主出力・追加センド・終了理由・3D・ゲーム停止・ライブ変更のテストは `Tools/test_playback_controls.ps1` で実行できます。
+
+追加テスト用の `inline_concurrency` SoundWaveは `Tools/build_playback_test_assets.py` で生成します。通常はsetupに含まれるため個別実行は不要です。テスト用音声は合成波形で、プラグインのContentには追加しません。

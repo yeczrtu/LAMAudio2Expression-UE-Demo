@@ -1,0 +1,32 @@
+[
+  {
+    "Case": "PlaybackControls",
+    "ExitCode": 0,
+    "WallSeconds": 9.769,
+    "Result": "PASS routing, mute, pause, seek, fades, completion, replacement/reentrancy, 3D, explicit/inline concurrency, world pause; started=11 ended=12\ninitial submix peaks: 0.145137 0.072568 0.036284"
+  },
+  {
+    "Case": "LiveIntervals48k",
+    "ExitCode": 0,
+    "WallSeconds": 24.785,
+    "Result": "PASS live interval changes rate=48000 channels=1 valid_ticks=942\nhop_ms=333.333 inference_p95=13.899 latency_p95=1173.358 delay=1540.025 dropped=6 backend=DirectML\nhop_ms=100.000 inference_p95=35.564 latency_p95=37.222 delay=1540.025 dropped=6 backend=DirectML\nhop_ms=1000.000 inference_p95=43.669 latency_p95=44.030 delay=1540.025 dropped=6 backend=DirectML\nhop_ms=33.333 inference_p95=18.923 latency_p95=18.994 delay=1540.025 dropped=25 backend=DirectML\nhop_ms=500.000 inference_p95=18.633 latency_p95=18.745 delay=1540.025 dropped=25 backend=DirectML\nhop_ms=333.333 inference_p95=19.059 latency_p95=19.130 delay=1540.025 dropped=25 backend=DirectML"
+  },
+  {
+    "Case": "LiveIntervals44kStereo",
+    "ExitCode": 0,
+    "WallSeconds": 24.444,
+    "Result": "PASS live interval changes rate=44100 channels=2 valid_ticks=951\nhop_ms=333.333 inference_p95=37.118 latency_p95=1212.060 delay=1578.727 dropped=6 backend=DirectML\nhop_ms=100.000 inference_p95=37.118 latency_p95=41.415 delay=1578.727 dropped=6 backend=DirectML\nhop_ms=1000.000 inference_p95=37.118 latency_p95=41.415 delay=1578.727 dropped=6 backend=DirectML\nhop_ms=33.333 inference_p95=13.818 latency_p95=13.924 delay=1578.727 dropped=22 backend=DirectML\nhop_ms=500.000 inference_p95=18.934 latency_p95=19.004 delay=1578.727 dropped=22 backend=DirectML\nhop_ms=333.333 inference_p95=43.385 latency_p95=43.459 delay=1578.727 dropped=22 backend=DirectML"
+  },
+  {
+    "Case": "LiveIntervals16kCPU",
+    "ExitCode": 0,
+    "WallSeconds": 23.487,
+    "Result": "PASS live interval changes rate=16000 channels=1 valid_ticks=519\nhop_ms=333.333 inference_p95=0.000 latency_p95=0.000 delay=750.000 dropped=0 backend=\nhop_ms=100.000 inference_p95=313.868 latency_p95=313.948 delay=750.000 dropped=56 backend=CPU\nhop_ms=1000.000 inference_p95=313.868 latency_p95=313.948 delay=1347.282 dropped=56 backend=CPU\nhop_ms=33.333 inference_p95=313.190 latency_p95=313.262 delay=1347.282 dropped=168 backend=CPU\nhop_ms=500.000 inference_p95=313.190 latency_p95=313.262 delay=1347.282 dropped=168 backend=CPU\nhop_ms=333.333 inference_p95=301.528 latency_p95=301.604 delay=1347.282 dropped=168 backend=CPU"
+  },
+  {
+    "Case": "LiveQueueContentionCPU",
+    "ExitCode": 0,
+    "WallSeconds": 23.535,
+    "Result": "PASS live interval changes rate=16000 channels=1 valid_ticks=505\nhop_ms=333.333 inference_p95=0.000 latency_p95=0.000 delay=750.000 dropped=0 backend=\nhop_ms=100.000 inference_p95=0.000 latency_p95=0.000 delay=750.000 dropped=33 backend=\nhop_ms=1000.000 inference_p95=263.530 latency_p95=263.612 delay=1296.945 dropped=37 backend=CPU\nhop_ms=33.333 inference_p95=298.009 latency_p95=298.083 delay=1296.945 dropped=152 backend=CPU\nhop_ms=500.000 inference_p95=295.636 latency_p95=295.710 delay=1296.945 dropped=152 backend=CPU\nhop_ms=333.333 inference_p95=295.636 latency_p95=295.710 delay=1296.945 dropped=152 backend=CPU"
+  }
+]

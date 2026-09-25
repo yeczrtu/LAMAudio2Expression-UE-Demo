@@ -21,6 +21,7 @@
 #include "AnimNode_LAMARKit.h"
 #include "Animation/AnimClassInterface.h"
 #include "UObject/UnrealType.h"
+#include "LAMPlaybackTestActor.h"
 ALAMDemoActor::ALAMDemoActor()
 {
     PrimaryActorTick.bCanEverTick = true;
@@ -33,6 +34,23 @@ ALAMDemoGameMode::ALAMDemoGameMode()
 {
     HUDClass = ALAMDemoHUD::StaticClass();
     DefaultPawnClass = ASpectatorPawn::StaticClass();
+}
+void ALAMDemoGameMode::BeginPlay()
+{
+    Super::BeginPlay();
+    if (FParse::Param(FCommandLine::Get(), TEXT("LAMPlaybackTest")) || FParse::Param(FCommandLine::Get(), TEXT("LAMLiveIntervalTest")))
+        GetWorld()->SpawnActor<ALAMPlaybackTestActor>();
+    else if (FParse::Param(FCommandLine::Get(), TEXT("LAMTest")))
+    {
+        bool Found = false;
+        for (TActorIterator<ALAMDemoActor> It(GetWorld()); It; ++It) Found = true;
+        if (!Found)
+        {
+            auto* Test = GetWorld()->SpawnActorDeferred<ALAMDemoActor>(ALAMDemoActor::StaticClass(), FTransform::Identity);
+            Test->Sound = LoadObject<USoundWave>(nullptr, TEXT("/Game/Audio/speech_stream.speech_stream"));
+            Test->FinishSpawning(FTransform::Identity);
+        }
+    }
 }
 void ALAMDemoActor::BeginPlay()
 {

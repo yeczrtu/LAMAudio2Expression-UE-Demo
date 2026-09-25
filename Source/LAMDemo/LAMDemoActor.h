@@ -49,4 +49,5 @@ class ALAMDemoGameMode : public AGameModeBase
     GENERATED_BODY()
   public:
     ALAMDemoGameMode();
+    void BeginPlay() override;
 };

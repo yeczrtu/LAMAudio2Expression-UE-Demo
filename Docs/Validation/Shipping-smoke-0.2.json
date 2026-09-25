@@ -1,0 +1,72 @@
+[
+  {
+    "Case": "PlaybackGPU",
+    "ExitCode": 0,
+    "WallSeconds": 7.214,
+    "PeakWorkingSetMiB": 1779.5,
+    "Result": "PASS Analyze, playback, pause, seek, stop completed"
+  },
+  {
+    "Case": "PlaybackCPU",
+    "ExitCode": 0,
+    "WallSeconds": 10.386,
+    "PeakWorkingSetMiB": 1757.3,
+    "Result": "PASS Analyze, playback, pause, seek, stop completed"
+  },
+  {
+    "Case": "Blueprint",
+    "ExitCode": 0,
+    "WallSeconds": 6.201,
+    "PeakWorkingSetMiB": 1758.7,
+    "Result": "PASS Blueprint async + AnimGraph source, remap, scale, offset, mask, alpha, stop fade"
+  },
+  {
+    "Case": "LivePCM",
+    "ExitCode": 0,
+    "WallSeconds": 19.212,
+    "PeakWorkingSetMiB": 1779.0,
+    "Result": "PASS PCM live input p95=101.09 ms valid=1"
+  },
+  {
+    "Case": "short_inline",
+    "ExitCode": 0,
+    "WallSeconds": 6.158,
+    "PeakWorkingSetMiB": 1768.1,
+    "Result": "PASS DirectML samples=1280 frames=3 inference_seconds=1.447 total_seconds=4.520"
+  },
+  {
+    "Case": "one_inline",
+    "ExitCode": 0,
+    "WallSeconds": 6.412,
+    "PeakWorkingSetMiB": 1775.5,
+    "Result": "PASS DirectML samples=16000 frames=30 inference_seconds=1.411 total_seconds=4.875"
+  },
+  {
+    "Case": "fraction_stream",
+    "ExitCode": 0,
+    "WallSeconds": 7.134,
+    "PeakWorkingSetMiB": 1778.4,
+    "Result": "PASS DirectML samples=34193 frames=65 inference_seconds=1.671 total_seconds=5.247"
+  },
+  {
+    "Case": "speech_stream",
+    "ExitCode": 0,
+    "WallSeconds": 6.097,
+    "PeakWorkingSetMiB": 1804.0,
+    "Result": "PASS DirectML samples=96000 frames=180 inference_seconds=1.532 total_seconds=4.760"
+  },
+  {
+    "Case": "silence_inline",
+    "ExitCode": 0,
+    "WallSeconds": 6.161,
+    "PeakWorkingSetMiB": 1798.9,
+    "Result": "PASS DirectML samples=16000 frames=30 inference_seconds=1.408 total_seconds=4.545"
+  },
+  {
+    "Case": "long_stream",
+    "ExitCode": 0,
+    "WallSeconds": 14.046,
+    "PeakWorkingSetMiB": 1757.4,
+    "Result": "PASS DirectML samples=4800000 frames=9000 inference_seconds=3.867 total_seconds=12.252"
+  }
+]

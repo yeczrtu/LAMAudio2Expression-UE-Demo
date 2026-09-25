@@ -10,6 +10,9 @@
 #include "EngineUtils.h"
 #include "GameFramework/PlayerController.h"
 #include "Sound/SoundWave.h"
+#include "Sound/SoundSubmix.h"
+#include "AudioDevice.h"
+#include "Kismet/GameplayStatics.h"
 #include "Misc/CommandLine.h"
 #include "Misc/Parse.h"
 #include "Misc/FileHelper.h"
@@ -38,10 +41,34 @@ ALAMDemoPreviewGameMode::ALAMDemoPreviewGameMode()
     HUDClass = ALAMDemoPreviewHUD::StaticClass();
     DefaultPawnClass = nullptr;
 }
+void ALAMDemoPreviewGameMode::BeginPlay()
+{
+    Super::BeginPlay();
+    // Installed Shipping engines may ignore a positional command-line map override.
+    // Explicit test flags still reach the harness without changing engine build settings.
+    if (FParse::Param(FCommandLine::Get(), TEXT("LAMTest")) ||
+        FParse::Param(FCommandLine::Get(), TEXT("LAMPlaybackTest")) ||
+        FParse::Param(FCommandLine::Get(), TEXT("LAMLiveIntervalTest")))
+        UGameplayStatics::OpenLevel(this, TEXT("/Game/LAMDemo"));
+}
 void ALAMDemoPreview::BeginPlay()
 {
     Super::BeginPlay();
+    if (FParse::Param(FCommandLine::Get(), TEXT("LAMTest")) ||
+        FParse::Param(FCommandLine::Get(), TEXT("LAMPlaybackTest")) ||
+        FParse::Param(FCommandLine::Get(), TEXT("LAMLiveIntervalTest"))) return;
+    Face->SetTickableWhenPaused(true);
     Started = FPlatformTime::Seconds();
+    Expression->OnPlaybackEnded.AddDynamic(this, &ALAMDemoPreview::PlaybackEnded);
+    if (OutputSubmixes.IsEmpty())
+    {
+        bOwnsOutputSubmixes = true;
+        for (FName Name : {FName(TEXT("Dialogue")), FName(TEXT("Alternate"))})
+            OutputSubmixes.Add(NewObject<USoundSubmix>(GetTransientPackage(), MakeUniqueObjectName(GetTransientPackage(), USoundSubmix::StaticClass(), Name)));
+        if (auto Device = GetWorld()->GetAudioDevice(); Device.IsValid())
+            for (auto Mix : OutputSubmixes) Device->RegisterSoundSubmix(Mix, true);
+    }
+    Expression->SetOutputSubmix(OutputSubmixes[0]);
     Face->AddTickPrerequisiteComponent(Expression);
     AddTickPrerequisiteComponent(Face);
     if (auto *PC = GetWorld()->GetFirstPlayerController())
@@ -57,6 +84,13 @@ void ALAMDemoPreview::BeginPlay()
     int Index = 0;
     FParse::Value(FCommandLine::Get(), TEXT("LAMDemoSample="), Index);
     SelectSample(Index);
+}
+void ALAMDemoPreview::EndPlay(const EEndPlayReason::Type Reason)
+{
+    if (bOwnsOutputSubmixes)
+        if (auto Device = GetWorld()->GetAudioDevice(); Device.IsValid())
+            for (auto Mix : OutputSubmixes) Device->UnregisterSoundSubmix(Mix, true);
+    Super::EndPlay(Reason);
 }
 void ALAMDemoPreview::SelectSample(int32 Index)
 {
@@ -83,6 +117,7 @@ void ALAMDemoPreview::SelectSample(int32 Index)
 void ALAMDemoPreview::Completed(ULAMExpressionClip *Clip, float, FString)
 {
     bAnalyzing = false;
+    LastClip = Clip;
     Progress = 1;
     if (!Expression->PlayExpressionClip(Clip))
     {
@@ -107,6 +142,13 @@ void ALAMDemoPreview::TogglePlayback()
 {
     if (bAnalyzing)
         return;
+    const auto LiveState = Expression->GetLiveMetrics().State;
+    if (LiveState != ELAMLiveState::Stopped && LiveState != ELAMLiveState::Failed)
+    {
+        Expression->StopMicrophone();
+        bPaused = false;
+        return;
+    }
     if (bPaused)
     {
         Expression->Resume();
@@ -124,11 +166,39 @@ void ALAMDemoPreview::Replay()
 {
     if (bAnalyzing)
         return;
-    if (Expression->CurrentClip)
+    if (LastClip)
     {
-        Expression->PlayExpressionClip(Expression->CurrentClip);
+        Expression->PlayExpressionClip(LastClip);
         bPaused = false;
     }
+}
+void ALAMDemoPreview::ToggleMute() { Expression->SetMuted(!Expression->PlaybackSettings.bMuted); }
+void ALAMDemoPreview::CycleOutput()
+{
+    if (OutputSubmixes.IsEmpty()) return;
+    OutputIndex = (OutputIndex + 1) % OutputSubmixes.Num();
+    Expression->SetOutputSubmix(OutputSubmixes[OutputIndex]);
+}
+void ALAMDemoPreview::ToggleMicrophone()
+{
+    const auto State = Expression->GetLiveMetrics().State;
+    if (State != ELAMLiveState::Stopped && State != ELAMLiveState::Failed)
+        Expression->StopMicrophone();
+    else
+    {
+        if (!Expression->StartMicrophone({})) Status = TEXT("Microphone could not start. Check the device and Windows microphone access.");
+        bPaused = false;
+    }
+}
+void ALAMDemoPreview::ChangeLiveInterval()
+{
+    const float Current = Expression->GetLiveInferenceInterval();
+    Expression->SetLiveInferenceInterval(Current < 200 ? 1000.f/3 : Current < 400 ? 1000 : 100);
+}
+void ALAMDemoPreview::PlaybackEnded(FLAMPlaybackInfo Info, ELAMPlaybackEndReason Reason)
+{
+    bPaused = false;
+    Status = FString::Printf(TEXT("Playback %lld: %s"), Info.PlaybackId, *StaticEnum<ELAMPlaybackEndReason>()->GetNameStringByValue(int64(Reason)));
 }
 void ALAMDemoPreview::Report(bool Success, const FString &Detail)
 {
@@ -145,6 +215,16 @@ void ALAMDemoPreview::Report(bool Success, const FString &Detail)
 void ALAMDemoPreview::Tick(float Delta)
 {
     Super::Tick(Delta);
+    if (auto* PC = GetWorld()->GetFirstPlayerController())
+    {
+        if (PC->WasInputKeyJustPressed(FKey(TEXT("V")))) ToggleMute();
+        if (PC->WasInputKeyJustPressed(FKey(TEXT("O")))) CycleOutput();
+        if (PC->WasInputKeyJustPressed(FKey(TEXT("M")))) ToggleMicrophone();
+        if (PC->WasInputKeyJustPressed(FKey(TEXT("I")))) ChangeLiveInterval();
+        if (PC->WasInputKeyJustPressed(FKey(TEXT("F")))) Expression->FadeOutAndStop(.3f);
+        if (PC->WasInputKeyJustPressed(FKey(TEXT("Hyphen")))) Expression->SetVolume(FMath::Max(0.f, Expression->PlaybackSettings.Volume-.1f));
+        if (PC->WasInputKeyJustPressed(FKey(TEXT("Equals")))) Expression->SetVolume(FMath::Min(2.f, Expression->PlaybackSettings.Volume+.1f));
+    }
     const double Now = FPlatformTime::Seconds();
     if (bTest && !bReported)
     {
@@ -222,15 +302,30 @@ void ALAMDemoPreviewHUD::DrawHUD()
     DrawText(TEXT("R: replay    1-6: select"), Ink, 40 * S, 492 * S, nullptr, .85f * S);
     const auto Frame = Demo->Expression->GetCurrentExpressionFrame();
     const float Duration = Demo->Expression->CurrentClip ? Demo->Expression->CurrentClip->Duration : 0;
-    DrawText(FString::Printf(TEXT("%.2f / %.2f seconds"), Frame.TimeSeconds, Duration), Ink, 40 * S, 528 * S, nullptr,
+    const auto LiveState = Demo->Expression->GetLiveMetrics().State;
+    const bool LiveActive = LiveState != ELAMLiveState::Stopped && LiveState != ELAMLiveState::Failed;
+    DrawText(LiveActive ? FString::Printf(TEXT("Live input %.2f seconds"), Frame.TimeSeconds) : FString::Printf(TEXT("%.2f / %.2f seconds"), Frame.TimeSeconds, Duration), Ink, 40 * S, 528 * S, nullptr,
              .9f * S);
     DrawRect(FLinearColor(.08f, .12f, .16f), 40 * S, 553 * S, 280 * S, 5 * S);
-    DrawRect(Accent, 40 * S, 553 * S, 280 * S * (Duration > 0 ? Frame.TimeSeconds / Duration : Demo->Progress), 5 * S);
+    DrawRect(Accent, 40 * S, 553 * S, 280 * S * (LiveActive ? 1.f : FMath::Clamp(Duration > 0 ? Frame.TimeSeconds / Duration : Demo->Progress, 0.f, 1.f)), 5 * S);
     DrawText(FString::Printf(TEXT("jawOpen    %.3f"), Demo->Expression->GetARKitCurveValue(TEXT("jawOpen"))), Ink,
              40 * S, 585 * S, nullptr, S);
     DrawText(TEXT("Face: hinzka / VRoid"), Ink, 40 * S, 638 * S, nullptr, .75f * S);
     DrawText(TEXT("Voice: JVNV / litagin"), Ink, 40 * S, 661 * S, nullptr, .75f * S);
     DrawText(TEXT("Demo audiovisual content: CC BY-SA 4.0"), Ink, 40 * S, 683 * S, nullptr, .60f * S);
+    const float X = 360*S;
+    DrawRect(Panel, X, 20*S, 305*S, 300*S);
+    DrawText(TEXT("PLAYBACK CONTROLS"), Accent, X+16*S, 38*S, nullptr, S);
+    DrawText(FString::Printf(TEXT("V: mute [%s]  -/+: volume %.1f"), Demo->Expression->PlaybackSettings.bMuted ? TEXT("ON") : TEXT("OFF"), Demo->Expression->PlaybackSettings.Volume), Ink, X+16*S, 70*S, nullptr, .8f*S);
+    DrawText(TEXT("F: fade out    O: output submix"), Ink, X+16*S, 97*S, nullptr, .8f*S);
+    const FString Output = Demo->OutputSubmixes.IsValidIndex(Demo->OutputIndex) ? Demo->OutputSubmixes[Demo->OutputIndex]->GetFName().GetPlainNameString() : TEXT("Inherited");
+    DrawText(Output, Accent, X+16*S, 124*S, nullptr, .8f*S);
+    const auto Metrics=Demo->Expression->GetLiveMetrics();
+    DrawText(TEXT("M: microphone    I: live interval"), Ink, X+16*S, 168*S, nullptr, .8f*S);
+    DrawText(FString::Printf(TEXT("Interval %.0f ms | Delay %.0f ms"), Demo->Expression->GetLiveInferenceInterval(), Metrics.EffectivePresentationDelayMilliseconds), Ink, X+16*S, 195*S, nullptr, .8f*S);
+    DrawText(FString::Printf(TEXT("Inference P95 %.1f ms | %s"), Metrics.InferenceP95Milliseconds, *Metrics.Backend), Ink, X+16*S, 222*S, nullptr, .8f*S);
+    DrawText(StaticEnum<ELAMLiveState>()->GetNameStringByValue(int64(Metrics.State)), Accent, X+16*S, 250*S, nullptr, .8f*S);
+    DrawText(TEXT("Mic speaker monitoring is off"), Ink, X+16*S, 285*S, nullptr, .7f*S);
     DrawText(Demo->Status, FLinearColor::White, 24 * S, Canvas->SizeY - 28 * S, nullptr, .8f * S);
 }
 void ALAMDemoPreviewHUD::NotifyHitBoxClick(FName Name)

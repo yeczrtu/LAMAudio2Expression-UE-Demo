@@ -1,0 +1,38 @@
+[
+  {
+    "Sample": 0,
+    "ExitCode": 0,
+    "WallSeconds": 10.235,
+    "Result": "PASS sample=0 frames=326 jaw_peak=0.2770 curve_error=0.000000 backend=DirectML"
+  },
+  {
+    "Sample": 1,
+    "ExitCode": 0,
+    "WallSeconds": 10.161,
+    "Result": "PASS sample=1 frames=417 jaw_peak=0.2841 curve_error=0.000000 backend=DirectML"
+  },
+  {
+    "Sample": 2,
+    "ExitCode": 0,
+    "WallSeconds": 10.148,
+    "Result": "PASS sample=2 frames=312 jaw_peak=0.3306 curve_error=0.000000 backend=DirectML"
+  },
+  {
+    "Sample": 3,
+    "ExitCode": 0,
+    "WallSeconds": 10.428,
+    "Result": "PASS sample=3 frames=362 jaw_peak=0.2972 curve_error=0.000000 backend=DirectML"
+  },
+  {
+    "Sample": 4,
+    "ExitCode": 0,
+    "WallSeconds": 10.264,
+    "Result": "PASS sample=4 frames=504 jaw_peak=0.1811 curve_error=0.000000 backend=DirectML"
+  },
+  {
+    "Sample": 5,
+    "ExitCode": 0,
+    "WallSeconds": 10.201,
+    "Result": "PASS sample=5 frames=324 jaw_peak=0.3324 curve_error=0.000000 backend=DirectML"
+  }
+]

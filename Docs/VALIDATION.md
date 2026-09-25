@@ -97,3 +97,34 @@ UE 5.8.2 Editorビルド、Standalone表示、Win64 ShippingのBuild/Cook/Stage�
 `Tools/test.ps1` はUE Automation、`Tools/package.ps1` はCook・ビルド、`Tools/smoke.ps1` は各パッケージの10ケースとメモリ測定を行います。原ログは `Artifacts/Automation.log`、`Artifacts/Tests`、`Artifacts/*-smoke.json`。要約用の数値記録を [Validation](Validation) に保存しています。
 
 表示確認のスクリーンショットは [demo.png](demo.png) です。
+
+
+## 0.2 再生制御・ライブ間隔（2026-09-25）
+
+UE 5.8.2、Win64 Development / ShippingをBuild・Cookし、Editor Standaloneとパッケージ内で実行しました。プラグインのモデル形状、SoundWave解析の1秒刻み、解析キャッシュキーは変更していません。
+
+| 検証 | 結果 |
+|---|---|
+| UE Automation | 5件成功。デコーダー、境界/カーブ、PIE破棄とキャンセル、ライブ時刻計算、CPU/DirectML数値一致 |
+| 追加テスト：Editor / Development / Shipping | 各5件成功。再生制御1件とライブ4条件 |
+| 既存パッケージ回帰：Development / Shipping | 各10件成功。BP/AnimGraph、再生、ライブPCM、短音声〜5分音声 |
+| Shipping顔デモ | JVNV 6音声すべて成功。表示、jawOpen、AnimBPと供給カーブの照合 |
+
+再生テストは同じクリップを2コンポーネントから別々の主出力へ再生し、第三のサブミックスへ追加送信しています。バッファで観測したピークは約0.145137 / 0.072568 / 0.036284で、指定した1 / 0.5 / 0.25に対応します。主出力変更、追加送信解除、継承への復帰、共有SoundWaveを変更しないことも確認しました。音声スレッドの停止処理をバッファで確認してから測定します。
+
+ミュート中の表情進行、PauseとSeek、Pause中のフェード保持、フェード停止、音声終端からのCompleted、Replaced、StopOldestによるInterrupted、PreventNewによるFailedを確認しました。Endedの重複検出、イベント内での次回再生、State Changed内でのPause、SoundWave内のConcurrency Overrides共有も含みます。3DのRootへの接続と減衰設定、ゲーム停止時の保持/UI再生、UI用SoundClassよりPlay When Game Pausedを優先する処理も確認しています。PIEテストではActor破棄時のBP終了通知が抑止されることを確認しました。
+
+ライブは333→100→1000→33.3→500→333 msの順に実行中変更し、48kHz mono / 44.1kHz stereoのDirectML、16kHz monoのCPU、同じワーカーへ長音声解析を投入するCPU競合を試しました。フレーム計算の単体試験では1/3/10/15/30フレームの連続入力、間隔変更、48時間相当の整数サンプル位置を確認しています。描画時刻の非減少、遅延の2秒上限、Lagging通知、区間破棄後の有効な出力を確認しました。
+
+0.2のP95はモデル/インスタンス初期化を分離し、結果到着遅延にはワーカー待ちを含めます。上記の初版のP95とは定義が異なります。追加テストは負荷時の機能確認で、通常描画時の性能保証ではありません。特にShippingのNullRHI試験では起動引数のフレーム制限が効かず、多数のTickが走ります。CPUのP95が指定間隔を超えた場合も全出力を停止せず、利用可能な表情を提示できることを確認しています。数値の詳細は以下のJSONに保存しました。
+
+- [Automation](Validation/automation-0.2.json)
+- [Editor追加テスト](Validation/Editor-playback-controls-0.2.json)
+- [Development追加テスト](Validation/Development-playback-controls-0.2.json)
+- [Shipping追加テスト](Validation/Shipping-playback-controls-0.2.json)
+- [Development回帰](Validation/Development-smoke-0.2.json)、[Shipping回帰](Validation/Shipping-smoke-0.2.json)
+- [顔デモ6音声](Validation/face-demo-0.2.json)
+
+再実行はTools/test_playback_controls.ps1（Configuration: Editor / Development / Shipping）。追加の合成音声フィクスチャはsetupから生成します。Shippingで起動引数によるマップ指定が無視される場合も、デモのGameModeがテストフラグを検出してテストマップへ移動します。通常のデモ起動には影響しません。
+
+実マイクの取得/切断、長時間運転、実ソケットへの追従、距離ごとの減衰量・定位の聴感、出力デバイスを含む外部計測での1フレーム以内の同期保証は未検証です。従来の「確認を残している範囲」も引き続き適用します。

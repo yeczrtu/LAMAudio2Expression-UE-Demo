@@ -17,7 +17,7 @@ $Results=@()
 foreach ($Case in $Cases) {
     $Report=Join-Path $Root "Artifacts/$Configuration-$($Case.Name).txt"
     if (Test-Path $Report) { Remove-Item -LiteralPath $Report }
-    $Args=@('/Game/LAMDemo','-nullrhi','-unattended','-LAMTest',"-LAMReport=`"$Report`"")+$Case.Flags
+    $Args=@('/Game/LAMDemo','-nullrhi','-unattended','-ExecCmds="t.MaxFPS 60"','-LAMTest',"-LAMReport=`"$Report`"")+$Case.Flags
     $Watch=[Diagnostics.Stopwatch]::StartNew()
     $Process=Start-Process -FilePath $Exe -ArgumentList $Args -WindowStyle Hidden -PassThru
     $Peak=0L
