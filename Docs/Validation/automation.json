@@ -1,0 +1,22 @@
+[
+  {
+    "test": "LAM.Audio.CookedDecoder",
+    "state": "Success",
+    "duration": 0.12185540050268173
+  },
+  {
+    "test": "LAM.Core.BoundariesAndCurves",
+    "state": "Success",
+    "duration": 0.0409850999712944
+  },
+  {
+    "test": "LAM.Editor.PIEPlayback",
+    "state": "Success",
+    "duration": 4.672421932220459
+  },
+  {
+    "test": "LAM.Model.Parity",
+    "state": "Success",
+    "duration": 2.13940691947937
+  }
+]

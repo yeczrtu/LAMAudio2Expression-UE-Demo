@@ -1,0 +1,6 @@
+CPU noise max_error=0.000007212 elapsed_ms=476.93
+CPU silence max_error=0.000000170 elapsed_ms=57.13
+CPU style11 max_error=0.000004232 elapsed_ms=50.31
+DirectML noise max_error=0.000001714 elapsed_ms=877.79
+DirectML silence max_error=0.000000063 elapsed_ms=6.71
+DirectML style11 max_error=0.000001088 elapsed_ms=6.73

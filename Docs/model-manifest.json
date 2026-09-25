@@ -1,0 +1,34 @@
+{
+  "upstream_revision": "02a703c3ea7d8e360eb43098eca85ee98a083529",
+  "sha256": "1be8dace5785aeb3583338c2f444a22da9840bc25aca9a192bf17317a6cd5c4f",
+  "inputs": {
+    "audio": [
+      1,
+      34133
+    ],
+    "identity": [
+      1,
+      12
+    ]
+  },
+  "output": [
+    1,
+    64,
+    52
+  ],
+  "opset": 17,
+  "validation": [
+    {
+      "case": "noise",
+      "max_abs_error": 7.212162017822266e-06
+    },
+    {
+      "case": "silence",
+      "max_abs_error": 1.7508864402770996e-07
+    },
+    {
+      "case": "style11",
+      "max_abs_error": 4.26173210144043e-06
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+.work/
+Binaries/
+Intermediate/
+Saved/
+DerivedDataCache/
+.vs/
+*.sln
+*.VC.db
+__pycache__/
+*.onnx
+*.pth
+*.tar
+Artifacts/
+Build/Windows/FileOpenOrder/
+# Models and locally generated/imported Unreal assets stay outside source control.
+/Content/
+/Plugins/LAMAudio2Expression/Content/Models/
+*.pt
+*.safetensors
+*.ckpt
+*.zip
+# Local editor preview and input preferences, not required by the generated demo.
+/Config/DefaultEditor.ini
+/Config/DefaultInput.ini

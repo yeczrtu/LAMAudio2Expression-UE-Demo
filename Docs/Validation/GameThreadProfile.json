@@ -1,0 +1,38 @@
+{
+  "FrameTime": {
+    "samples": 460,
+    "mean_ms": 16.67301108695652,
+    "p95_ms": 16.8229,
+    "max_ms": 19.646
+  },
+  "GameThreadTime": {
+    "samples": 460,
+    "mean_ms": 0.0,
+    "p95_ms": 0.0,
+    "max_ms": 0.0
+  },
+  "GameThreadTime_CriticalPath": {
+    "samples": 460,
+    "mean_ms": 0.0,
+    "p95_ms": 0.0,
+    "max_ms": 0.0
+  },
+  "Exclusive/GameThread/TickActors": {
+    "samples": 460,
+    "mean_ms": 0.058631521739130436,
+    "p95_ms": 0.0785,
+    "max_ms": 0.1267
+  },
+  "Exclusive/GameThread/AsyncLoading": {
+    "samples": 460,
+    "mean_ms": 0.007702826086956522,
+    "p95_ms": 0.0113,
+    "max_ms": 0.026
+  },
+  "Exclusive/GameThread/EventWait": {
+    "samples": 460,
+    "mean_ms": 0.0,
+    "p95_ms": 0.0,
+    "max_ms": 0.0
+  }
+}
