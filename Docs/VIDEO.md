@@ -1,6 +1,6 @@
 # デモ動画の出典と利用条件
 
-[LAM_A2E_Demo.mp4](LAM_A2E_Demo.mp4) は、デモプロジェクトの日本語音声6件を順に再生した実行画面の録画です。提供された録画を編集・再エンコードせずに掲載しています。READMEのプレビュー画像は、この動画の5秒時点から切り出したものです。
+[LAM_A2E_Demo.mp4](https://raw.githubusercontent.com/yeczrtu/LAMAudio2Expression-UE-Demo/master/Docs/LAM_A2E_Demo.mp4) は、デモプロジェクトの日本語音声6件を順に再生した実行画面の録画です。提供された録画を編集・再エンコードせずに掲載しています。READMEのプレビュー画像は、この動画の5秒時点から切り出したものです。
 
 - 長さ：約1分24秒
 - 形式：MP4 / H.264・AAC / 1280 × 720 / 30 fps
