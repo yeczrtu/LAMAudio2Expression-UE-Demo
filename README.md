@@ -4,11 +4,13 @@ Windows x64 用のランタイムプラグインです。SoundWave を非同期�
 
 ## 新規cloneからの準備
 
-GitHubにはモデルと生成アセットを含めていません。UE 5.8.2、Visual Studio 2022 C++、Python 3.10、Gitを用意し、**新規clone先で** `./Tools/setup.ps1 -Engine D:\Unreal\UE_5.8` を実行してください。モデルの取得・SHA-256照合・ONNX変換・数値比較・モデル/デモ生成を行います。setupは既存のデモアセットを再生成するため、作業中のプロジェクトへ実行する場合は変更を保存してください。
+GitHubにはニューラルモデルを含めていません。顔デモ用のメッシュ・音声・マップはプラグインのContent/Demoに同梱しています。UE 5.8.2、Visual Studio 2022 C++、Python 3.10、Gitを用意し、**新規clone先で** `./Tools/setup.ps1 -Engine D:\Unreal\UE_5.8` を実行してください。モデルの取得・SHA-256照合・ONNX変換・数値比較・モデルとテスト用アセットの生成を行います。setupは `/Game/LAMDemo` と `/Game/Audio` のテストデータを再生成するため、これらを編集した場合は先にバックアップしてください。同梱の顔デモは再生成しません。
 
 ## 起動
 
-`LAMDemo.uproject` を UE 5.8.2 で開き、`/Game/LAMDemo` を Play すると解析・再生と52カーブの表示が始まります。Space で一時停止／再開、R で先頭から再生、M でマイク入力へ切り替えます。デモ音声は権利上の依存を持たない合成テスト信号です。
+`LAMDemo.uproject` を UE 5.8.2 で開き、`/LAMAudio2Expression/Demo/Maps/LAM_FaceDemo` をPlayします。hinzka / VRoidの顔と、JVNV / litaginの6音声を同梱しています。クリックまたは1～6で音声を選択、Spaceで一時停止／再開、Rで先頭から再生できます。[顔デモの詳細とライセンス](Docs/PLUGIN_DEMO.md)を参照してください。
+
+従来の52値表示・合成音声テストは `/Game/LAMDemo` に残っています。こちらではMキーでマイク入力へ切り替えられます。
 
 ## 別プロジェクトへの導入
 
@@ -86,8 +88,12 @@ setup は専用の `.work/venv` を使用し、固定リビジョンの上流コ
 
 ローカルでビルドしたデモは `Artifacts/Shipping/Windows/LAMDemo.exe` です。配布する場合は `Windows` フォルダー全体を使用してください。setup後のプラグインには約384 MiBのモデルアセットが生成されます。Gitには含めず、固定リビジョンから再生成します。
 
-![52カーブの確認用デモ](Docs/demo.png)
+![プラグイン内の顔デモ](Docs/face-demo.png)
+
+画像の音声・同期映像表現はCC BY-SA 4.0。出典：hinzka / VRoid、JVNV / litagin。[詳細](Plugins/LAMAudio2Expression/Resources/Demo/README.md)。
 
 ## ライセンス
 
 独自部分は [MIT](LICENSE) です。上流由来の3ファイルと学習済みモデルには Apache-2.0 が適用されます。[第三者表記](Plugins/LAMAudio2Expression/THIRD_PARTY_NOTICES.md) と [モデル運用方針](Docs/MODEL_MANAGEMENT.md) を参照してください。Unreal Engine本体と利用者が追加したキャラクターは本ライセンスの対象外です。
+
+顔デモの音声と同期映像表現はCC BY-SA 4.0です。モデルの作者許諾と併せて [デモの出典](Plugins/LAMAudio2Expression/Resources/Demo/README.md) を配布時に保持してください。

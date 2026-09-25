@@ -1,0 +1,41 @@
+{
+  "checked_on": "2026-09-25",
+  "character_source_revision": "756f5abab7d2295ad5b5dbc2cd86972c388c48d2",
+  "texture_source": "VRoid_V110_Female_v1.1.3.vrm",
+  "vrm_sha256": "36d6d242999d580bd0d3bcd8656bb2d4d5d4839f187d8198226bda905e1d9114",
+  "source_mesh_uasset_sha256": "b579ab2d336f572b1a10a069999021096146a6b70e31b4469b5692cca7650e4f",
+  "corpus_revision": "0ca4908ee5b9610bc3b739e1e67dff6120df0675",
+  "audio_license": "CC-BY-SA-4.0",
+  "audio": [
+    {
+      "file": "Audio/F1_anger_regular_31.wav",
+      "sha256": "6f51390c2b6d7c5d715f0350bc448903aa2c03c24010111b4d15fa2637ca8538",
+      "source": "https://huggingface.co/datasets/litagin/jvnv_corpus_v1_no_nv/resolve/0ca4908ee5b9610bc3b739e1e67dff6120df0675/F1/F1_anger_regular_31.wav"
+    },
+    {
+      "file": "Audio/F1_disgust_regular_38.wav",
+      "sha256": "7dae44222516ace292a5189405aaf49c4e32d79500bd3e896b74a9f61adb95c0",
+      "source": "https://huggingface.co/datasets/litagin/jvnv_corpus_v1_no_nv/resolve/0ca4908ee5b9610bc3b739e1e67dff6120df0675/F1/F1_disgust_regular_38.wav"
+    },
+    {
+      "file": "Audio/F1_fear_regular_23.wav",
+      "sha256": "3b2c2d966d11b759466fa62b9bdec197fd23aa150b90e59c135299fe55c06668",
+      "source": "https://huggingface.co/datasets/litagin/jvnv_corpus_v1_no_nv/resolve/0ca4908ee5b9610bc3b739e1e67dff6120df0675/F1/F1_fear_regular_23.wav"
+    },
+    {
+      "file": "Audio/F1_happy_regular_38.wav",
+      "sha256": "5fb5e1ead96906d252bb7ddcf4773cf49ab0b155c3c5331fbb5ca10a2449a806",
+      "source": "https://huggingface.co/datasets/litagin/jvnv_corpus_v1_no_nv/resolve/0ca4908ee5b9610bc3b739e1e67dff6120df0675/F1/F1_happy_regular_38.wav"
+    },
+    {
+      "file": "Audio/F1_sad_regular_10.wav",
+      "sha256": "cd19bcab2a0000af6055e7caed991d6f01892bd41b99f7f26eb780c56d96055b",
+      "source": "https://huggingface.co/datasets/litagin/jvnv_corpus_v1_no_nv/resolve/0ca4908ee5b9610bc3b739e1e67dff6120df0675/F1/F1_sad_regular_10.wav"
+    },
+    {
+      "file": "Audio/F1_surprise_regular_11.wav",
+      "sha256": "e7bd05cba462d49517c9b99f9ac938ad270b66779bb72dd7f3549ccbe2536c2f",
+      "source": "https://huggingface.co/datasets/litagin/jvnv_corpus_v1_no_nv/resolve/0ca4908ee5b9610bc3b739e1e67dff6120df0675/F1/F1_surprise_regular_11.wav"
+    }
+  ]
+}

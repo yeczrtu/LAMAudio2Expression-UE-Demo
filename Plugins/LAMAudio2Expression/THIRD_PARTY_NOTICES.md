@@ -14,6 +14,6 @@ The model uses the upstream Wav2Vec2 implementation based on Hugging Face Transf
 
 Runtime inference uses Unreal Engine's NNERuntimeORT plugin and its bundled ONNX Runtime / DirectML dependencies. Unreal Engine is supplied separately under Epic's license; this repository does not redistribute engine source or an independent inference DLL.
 
-No FLAME meshes, Gaussian avatar renderer, or third-party avatar assets are included. Sample audio is synthesized by Tools/make_fixtures.py.
+No FLAME meshes or Gaussian avatar renderer are included. The optional Content/Demo includes the hinzka / VRoid character and JVNV / litagin audio. See Resources/Demo/README.md and Licenses/CC-BY-SA-4.0.txt for their distinct licenses, attribution and changes. The old automated test fixtures are synthesized by Tools/make_fixtures.py.
 
 License scope: original integration code and tools are MIT (see LICENSE). The adapted LAMCore.cpp, LAMTypes.cpp and LAMLive.cpp retain Apache-2.0. They port the coefficient order and processing to UE C++, replace chunk-state handling with integer timelines, add selectable postprocessing and deterministic blinking, and integrate CPU/DirectML inference. Upstream weights retain Apache-2.0 and are not relicensed under MIT. No weights or generated model assets are tracked in Git.

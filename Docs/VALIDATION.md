@@ -1,4 +1,4 @@
-# 検証結果 — 2026-09-24
+# 検証結果 — 2026-09-24 / 顔デモ追記 2026-09-25
 
 環境：Windows x64、UE 5.8.2 (`D:\Unreal\UE_5.8`)、Visual Studio 2022 / MSVC 14.44、Core i7-12700、RTX 3070、メモリ64 GB。以下はこの環境での実行結果です。
 
@@ -63,10 +63,31 @@ Shippingプロセス全体のピークWorking Setは約1,748～1,775MiBでした
 
 ゲームスレッドはDevelopmentのCSV Profilerで480フレーム、60fps制限、NullRHI、6秒音声の解析・再生を記録しました。先頭20フレームを除いた460フレームの `Exclusive/GameThread/TickActors` は平均0.059ms、p95 0.079ms、最大0.127ms。これはサンプル内のActor/Component全体の値で、プラグイン単体の差分ではありません。NullRHIの `GameThreadTime` は0を返したため評価に使っていません。
 
+## プラグイン内の顔デモ（2026-09-25）
+
+Face52、設定済みAnimBP、JVNV F1音声6件をプラグインに移植しました。40アセットのハード／ソフト参照を調べ、`/Game` と `/Script/LAMDemo` への依存がないことを確認しました。メッシュには標準名のARKit 52 Morph Targetがすべて存在し、14マテリアルは保存・再起動後も参照を保持しています。
+
+UE 5.8.2 Editorビルド、Standalone表示、Win64 ShippingのBuild/Cook/Stageに成功しました。ShippingではBink Audio / LoadOnDemandの各音声を別プロセスで解析し、冒頭約3.1秒の再生中に実際のAnimBPのjawOpenを観測しました。
+
+| 音声 | 解析フレーム数 | 観測したjawOpen最大値 | 照合時のカーブ差 |
+|---|---:|---:|---:|
+| F1_anger_regular_31 | 326 | 0.2770 | 0.000000 |
+| F1_disgust_regular_38 | 417 | 0.2845 | 0.000000 |
+| F1_fear_regular_23 | 312 | 0.3318 | 0.000000 |
+| F1_happy_regular_38 | 362 | 0.2975 | 0.000000 |
+| F1_sad_regular_10 | 504 | 0.1745 | 0.000000 |
+| F1_surprise_regular_11 | 324 | 0.3309 | 0.000000 |
+
+すべてDirectML、終了コード0。原音声の整数サンプル数から求めたフレーム数とも一致します。カーブ差は終了前の1時点でAnimBPとコンポーネントを比較した値で、音声出力デバイスとの実測同期誤差ではありません。テクスチャと口形状の表示をShippingのスクリーンショットで確認しました。発話全体のリップシンク品質の主観評価は別途必要です。
+
+Apache-2.0、CC BY-SA 4.0の全文、プラグインLICENSE、第三者表記、デモ出典、変更説明、原音声6件がNonUFSでステージされることを確認しました。パッケージにはCook済みニューラルモデルを含み、外部Pythonを呼び出しません。
+
+記録：[Shipping結果](Validation/face-demo-shipping.json)、[アセット依存関係](Validation/face-demo-dependencies.json)、[表示](face-demo.png)。再実行は `Tools/test_plugin_demo.ps1`。今回のローカル配布物は `Artifacts/PluginDemo/Windows` です。
+
 ## 確認を残している範囲
 
 - 実マイクの取得、デバイス切断／オーバーフロー、長時間のライブ運転。
-- 実キャラクターでの見た目、発話音声のリップシンク品質。今回の音声は合成信号で、デモは52値の表示です。
+- 発話全体のリップシンク品質の主観評価、他のキャラクターへの適用。Face52とJVNV音声での表示・カーブ接続は上記で確認しました。
 - 音声出力デバイスを含む実測同期誤差。コールバックと補間、pause/seekの動作は確認済みですが、外部計測による「1フレーム以内」の保証は未確定です。
 - 実際のGPUデバイス喪失・ドライバーエラー。テストした代替経路はGPUモデルを利用できない場合です。
 - 破損したCookチャンク、大量の同時キャラクター、長時間のキャッシュ圧迫／メモリリーク試験。
