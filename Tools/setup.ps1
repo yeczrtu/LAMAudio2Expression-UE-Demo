@@ -3,6 +3,10 @@ $ErrorActionPreference='Stop'
 $Root=Split-Path -Parent $PSScriptRoot
 Push-Location $Root
 try {
+    if (!(Test-Path 'Plugins/LAMAudio2Expression/LAMAudio2Expression.uplugin')) {
+        git submodule update --init --recursive
+        if ($LASTEXITCODE) { throw 'Plugin submodule initialization failed' }
+    }
     if (!(Test-Path '.work/venv/Scripts/python.exe')) { python -m venv .work/venv; if ($LASTEXITCODE) { throw 'venv failed' } }
     $Python=Join-Path $Root '.work/venv/Scripts/python.exe'
     & $Python -m pip install -r Tools/requirements.txt

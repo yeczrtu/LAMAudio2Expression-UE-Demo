@@ -2,13 +2,25 @@
 
 Windows x64 用のランタイムプラグインです。SoundWave を非同期で解析し、音声再生に同期した ARKit 52 カーブを AnimGraph に適用します。推論は UE NNE の DirectML を優先し、利用できない場合は CPU に切り替えます。
 
+このリポジトリはデモ・検証用UEプロジェクトです。[プラグイン本体](https://github.com/yeczrtu/LAMAudio2Expression-UE) は独立したリポジトリで、`Plugins/LAMAudio2Expression` からサブモジュールとして参照します。顔・音声・操作UIとそのライセンス表記はデモ側で管理します。
+
 ## 新規cloneからの準備
 
-GitHubにはニューラルモデルを含めていません。顔デモ用のメッシュ・音声・マップはプラグインのContent/Demoに同梱しています。UE 5.8.2、Visual Studio 2022 C++、Python 3.10、Gitを用意し、**新規clone先で** `./Tools/setup.ps1 -Engine D:\Unreal\UE_5.8` を実行してください。モデルの取得・SHA-256照合・ONNX変換・数値比較・モデルとテスト用アセットの生成を行います。setupは `/Game/LAMDemo` と `/Game/Audio` のテストデータを再生成するため、これらを編集した場合は先にバックアップしてください。同梱の顔デモは再生成しません。
+GitHubにはニューラルモデルを含めていません。顔デモ用のメッシュ・音声・マップはこのプロジェクトの `Content/LAMFaceDemo` に同梱しています。UE 5.8.2、Visual Studio 2022 C++、Python 3.10、Gitを用意して次を実行してください。
+
+```powershell
+git clone --recurse-submodules https://github.com/yeczrtu/LAM-A2EUE.git
+cd LAM-A2EUE
+./Tools/setup.ps1 -Engine D:\Unreal\UE_5.8
+```
+
+既存cloneでは `git submodule update --init --recursive` でプラグインを取得します。setupはモデルの取得・SHA-256照合・ONNX変換・数値比較・モデルとテスト用アセットの生成を行います。`/Game/LAMDemo` と `/Game/Audio` のテストデータを再生成するため、これらを編集した場合は先にバックアップしてください。顔デモは再生成しません。
+
+旧版の通常フォルダーが残り、サブモジュールの初期化で「空ではない」と表示される場合は、新規cloneへ移行し、生成済みの `Plugins/LAMAudio2Expression/Content/Models` をコピーしてください。
 
 ## 起動
 
-`LAMDemo.uproject` を UE 5.8.2 で開き、`/LAMAudio2Expression/Demo/Maps/LAM_FaceDemo` をPlayします。hinzka / VRoidの顔と、JVNV / litaginの6音声を同梱しています。クリックまたは1～6で音声を選択、Spaceで一時停止／再開、Rで先頭から再生できます。[顔デモの詳細とライセンス](Docs/PLUGIN_DEMO.md)を参照してください。
+`LAMDemo.uproject` を UE 5.8.2 で開き、`/Game/LAMFaceDemo/Maps/LAM_FaceDemo` をPlayします。hinzka / VRoidの顔と、JVNV / litaginの6音声を同梱しています。クリックまたは1～6で音声を選択、Spaceで一時停止／再開、Rで先頭から再生できます。[顔デモの詳細とライセンス](Docs/FACE_DEMO.md)を参照してください。
 
 従来の52値表示・合成音声テストは `/Game/LAMDemo` に残っています。こちらではMキーでマイク入力へ切り替えられます。
 
@@ -19,6 +31,8 @@ GitHubにはニューラルモデルを含めていません。顔デモ用の�
 3. Project Settings → LAM Audio2Expression の Model を `/LAMAudio2Expression/Models/LAM_A2E` に設定します。
 4. パッケージ設定の Additional Asset Directories to Cook に `/LAMAudio2Expression/Models` を追加します。設定の Soft Reference だけにモデルの Cook を依存させないでください。
 5. 音声を鳴らす Actor に `LAMAudio2ExpressionComponent` を追加します。
+
+プラグインのコピーには、このデモプロジェクトのキャラクター・音声・CC BY-SA文書は含まれません。プラグインだけを直接取得する方法は [プラグイン本体の導入説明](https://github.com/yeczrtu/LAMAudio2Expression-UE#導入) を参照してください。
 
 初版は通常の mono/stereo SoundWave、8～192 kHz、最大300秒に対応します。解析入力は16 kHzに変換しますが、再生は元の SoundWave を使用します。SoundCue／MetaSound／Procedural SoundWave／外部ファイルは対象外です。
 
@@ -88,12 +102,12 @@ setup は専用の `.work/venv` を使用し、固定リビジョンの上流コ
 
 ローカルでビルドしたデモは `Artifacts/Shipping/Windows/LAMDemo.exe` です。配布する場合は `Windows` フォルダー全体を使用してください。setup後のプラグインには約384 MiBのモデルアセットが生成されます。Gitには含めず、固定リビジョンから再生成します。
 
-![プラグイン内の顔デモ](Docs/face-demo.png)
+![顔デモ](Docs/face-demo.png)
 
-画像の音声・同期映像表現はCC BY-SA 4.0。出典：hinzka / VRoid、JVNV / litagin。[詳細](Plugins/LAMAudio2Expression/Resources/Demo/README.md)。
+画像の音声・同期映像表現はCC BY-SA 4.0。出典：hinzka / VRoid、JVNV / litagin。[詳細](Resources/Demo/README.md)。
 
 ## ライセンス
 
-独自部分は [MIT](LICENSE) です。上流由来の3ファイルと学習済みモデルには Apache-2.0 が適用されます。[第三者表記](Plugins/LAMAudio2Expression/THIRD_PARTY_NOTICES.md) と [モデル運用方針](Docs/MODEL_MANAGEMENT.md) を参照してください。Unreal Engine本体と利用者が追加したキャラクターは本ライセンスの対象外です。
+独自部分は [MIT](LICENSE) です。プラグインの上流由来3ファイルと学習済みモデルには Apache-2.0 が適用されます。[第三者表記](THIRD_PARTY_NOTICES.md) と [モデル運用方針](Docs/MODEL_MANAGEMENT.md) を参照してください。Unreal Engine本体と利用者が追加したキャラクターは本ライセンスの対象外です。
 
-顔デモの音声と同期映像表現はCC BY-SA 4.0です。モデルの作者許諾と併せて [デモの出典](Plugins/LAMAudio2Expression/Resources/Demo/README.md) を配布時に保持してください。
+顔デモの音声と同期映像表現はCC BY-SA 4.0です。モデルの作者許諾と併せて [デモの出典](Resources/Demo/README.md) をデモ配布時に保持してください。

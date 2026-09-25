@@ -1,7 +1,0 @@
-{
- "FileVersion":3, "Version":1, "VersionName":"0.1.0", "FriendlyName":"LAM Audio2Expression",
- "Description":"Offline runtime audio to ARKit curves using NNE.", "Category":"Animation", "CanContainContent":true,
- "SupportedTargetPlatforms":["Win64"],
- "Modules":[{"Name":"LAMAudio2Expression","Type":"Runtime","LoadingPhase":"Default"},{"Name":"LAMAudio2ExpressionEditor","Type":"UncookedOnly","LoadingPhase":"Default"}],
- "Plugins":[{"Name":"NNERuntimeORT","Enabled":true},{"Name":"AudioCapture","Enabled":true}]
-}

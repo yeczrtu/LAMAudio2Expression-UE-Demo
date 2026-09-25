@@ -16,7 +16,7 @@ def main():
     parser.add_argument('output', type=Path)
     args = parser.parse_args()
     manifest = json.loads((Path(__file__).resolve().parents[1] /
-        'Plugins/LAMAudio2Expression/Resources/Demo/sources.json').read_text(encoding='utf-8'))
+        'Resources/Demo/sources.json').read_text(encoding='utf-8'))
     data = args.vrm.read_bytes()
     if hashlib.sha256(data).hexdigest() != manifest['vrm_sha256']:
         raise ValueError('VRM does not match the pinned female v1.1.3 source')

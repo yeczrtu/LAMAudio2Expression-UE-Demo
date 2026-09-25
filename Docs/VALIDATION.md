@@ -63,9 +63,9 @@ Shippingプロセス全体のピークWorking Setは約1,748～1,775MiBでした
 
 ゲームスレッドはDevelopmentのCSV Profilerで480フレーム、60fps制限、NullRHI、6秒音声の解析・再生を記録しました。先頭20フレームを除いた460フレームの `Exclusive/GameThread/TickActors` は平均0.059ms、p95 0.079ms、最大0.127ms。これはサンプル内のActor/Component全体の値で、プラグイン単体の差分ではありません。NullRHIの `GameThreadTime` は0を返したため評価に使っていません。
 
-## プラグイン内の顔デモ（2026-09-25）
+## 顔デモ（2026-09-25、デモプロジェクトへの分離後）
 
-Face52、設定済みAnimBP、JVNV F1音声6件をプラグインに移植しました。40アセットのハード／ソフト参照を調べ、`/Game` と `/Script/LAMDemo` への依存がないことを確認しました。メッシュには標準名のARKit 52 Morph Targetがすべて存在し、14マテリアルは保存・再起動後も参照を保持しています。
+Face52、設定済みAnimBP、JVNV F1音声6件はデモプロジェクトの `/Game/LAMFaceDemo` に配置しています。操作Actor/HUD/GameModeは `/Script/LAMDemo` に移し、以前のクラス参照をCoreRedirectsで読み替えてアセットを保存しました。40アセットのハード／ソフト参照を調べ、旧 `/LAMAudio2Expression/Demo` やDeveloper内の素材への依存がないことを確認しました。標準名のARKit 52 Morph Targetと14マテリアルの参照も確認しています。
 
 UE 5.8.2 Editorビルド、Standalone表示、Win64 ShippingのBuild/Cook/Stageに成功しました。ShippingではBink Audio / LoadOnDemandの各音声を別プロセスで解析し、冒頭約3.1秒の再生中に実際のAnimBPのjawOpenを観測しました。
 
@@ -75,14 +75,14 @@ UE 5.8.2 Editorビルド、Standalone表示、Win64 ShippingのBuild/Cook/Stage�
 | F1_disgust_regular_38 | 417 | 0.2845 | 0.000000 |
 | F1_fear_regular_23 | 312 | 0.3318 | 0.000000 |
 | F1_happy_regular_38 | 362 | 0.2975 | 0.000000 |
-| F1_sad_regular_10 | 504 | 0.1745 | 0.000000 |
+| F1_sad_regular_10 | 504 | 0.1744 | 0.000000 |
 | F1_surprise_regular_11 | 324 | 0.3309 | 0.000000 |
 
 すべてDirectML、終了コード0。原音声の整数サンプル数から求めたフレーム数とも一致します。カーブ差は終了前の1時点でAnimBPとコンポーネントを比較した値で、音声出力デバイスとの実測同期誤差ではありません。テクスチャと口形状の表示をShippingのスクリーンショットで確認しました。発話全体のリップシンク品質の主観評価は別途必要です。
 
-Apache-2.0、CC BY-SA 4.0の全文、プラグインLICENSE、第三者表記、デモ出典、変更説明、原音声6件がNonUFSでステージされることを確認しました。パッケージにはCook済みニューラルモデルを含み、外部Pythonを呼び出しません。
+デモプロジェクト側のCC BY-SA 4.0全文、出典、変更説明、原音声6件がNonUFSでステージされることを確認しました。プラグイン側にはMIT/Apache文書のみをステージします。パッケージにはCook済みニューラルモデルを含み、外部Pythonを呼び出しません。
 
-記録：[Shipping結果](Validation/face-demo-shipping.json)、[アセット依存関係](Validation/face-demo-dependencies.json)、[表示](face-demo.png)。再実行は `Tools/test_plugin_demo.ps1`。今回のローカル配布物は `Artifacts/PluginDemo/Windows` です。
+記録：[Shipping結果](Validation/face-demo-shipping.json)、[アセット依存関係](Validation/face-demo-dependencies.json)、[表示](face-demo.png)。再実行は `Tools/test_face_demo.ps1`。今回のローカル配布物は `Artifacts/Shipping/Windows` です。
 
 ## 確認を残している範囲
 

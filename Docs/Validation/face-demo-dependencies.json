@@ -1,265 +1,266 @@
 [
   {
-    "asset": "/LAMAudio2Expression/Demo/Audio/F1_anger_regular_31",
+    "asset": "/Game/LAMFaceDemo/Audio/F1_anger_regular_31",
     "dependencies": []
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Audio/F1_disgust_regular_38",
+    "asset": "/Game/LAMFaceDemo/Audio/F1_disgust_regular_38",
     "dependencies": []
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Audio/F1_fear_regular_23",
+    "asset": "/Game/LAMFaceDemo/Audio/F1_fear_regular_23",
     "dependencies": []
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Audio/F1_happy_regular_38",
+    "asset": "/Game/LAMFaceDemo/Audio/F1_happy_regular_38",
     "dependencies": []
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Audio/F1_sad_regular_10",
+    "asset": "/Game/LAMFaceDemo/Audio/F1_sad_regular_10",
     "dependencies": []
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Audio/F1_surprise_regular_11",
+    "asset": "/Game/LAMFaceDemo/Audio/F1_surprise_regular_11",
     "dependencies": []
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Blueprints/ABP_Face52",
+    "asset": "/Game/LAMFaceDemo/Blueprints/ABP_Face52",
     "dependencies": [
       "/Script/AnimGraph",
       "/Script/AnimGraphRuntime",
       "/Script/LAMAudio2Expression",
       "/Script/LAMAudio2ExpressionEditor",
-      "/LAMAudio2Expression/Demo/Character/Face52",
-      "/LAMAudio2Expression/Demo/Character/Face52_Skeleton"
+      "/Game/LAMFaceDemo/Character/Face52",
+      "/Game/LAMFaceDemo/Character/Face52_Skeleton"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Blueprints/BP_AudioToFace",
+    "asset": "/Game/LAMFaceDemo/Blueprints/BP_AudioToFace",
     "dependencies": [
       "/Script/LAMAudio2Expression",
-      "/LAMAudio2Expression/Demo/Audio/F1_surprise_regular_11",
-      "/LAMAudio2Expression/Demo/Blueprints/ABP_Face52",
-      "/LAMAudio2Expression/Demo/Character/Face52"
+      "/Game/LAMFaceDemo/Audio/F1_surprise_regular_11",
+      "/Game/LAMFaceDemo/Character/Face52",
+      "/Game/LAMFaceDemo/Blueprints/ABP_Face52"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Blueprints/BP_FaceDemo",
+    "asset": "/Game/LAMFaceDemo/Blueprints/BP_FaceDemo",
     "dependencies": [
       "/Script/LAMAudio2Expression",
-      "/LAMAudio2Expression/Demo/Audio/F1_anger_regular_31",
-      "/LAMAudio2Expression/Demo/Audio/F1_disgust_regular_38",
-      "/LAMAudio2Expression/Demo/Audio/F1_fear_regular_23",
-      "/LAMAudio2Expression/Demo/Audio/F1_happy_regular_38",
-      "/LAMAudio2Expression/Demo/Audio/F1_sad_regular_10",
-      "/LAMAudio2Expression/Demo/Audio/F1_surprise_regular_11",
-      "/LAMAudio2Expression/Demo/Blueprints/ABP_Face52",
-      "/LAMAudio2Expression/Demo/Character/Face52"
+      "/Game/LAMFaceDemo/Audio/F1_anger_regular_31",
+      "/Game/LAMFaceDemo/Audio/F1_disgust_regular_38",
+      "/Game/LAMFaceDemo/Audio/F1_fear_regular_23",
+      "/Game/LAMFaceDemo/Audio/F1_happy_regular_38",
+      "/Game/LAMFaceDemo/Audio/F1_sad_regular_10",
+      "/Game/LAMFaceDemo/Audio/F1_surprise_regular_11",
+      "/Game/LAMFaceDemo/Character/Face52",
+      "/Game/LAMFaceDemo/Blueprints/ABP_Face52"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Face52",
+    "asset": "/Game/LAMFaceDemo/Character/Face52",
     "dependencies": [
       "/Script/InterchangeEngine",
-      "/LAMAudio2Expression/Demo/Character/Face52_Skeleton",
-      "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_00_Body_00_SKIN",
-      "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_00_EyeHighlight_00_EYE",
-      "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_00_EyeIris_00_EYE",
-      "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_00_EyeWhite_00_EYE",
-      "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_00_FaceBrow_00_FACE",
-      "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_00_FaceEyelash_00_FACE",
-      "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_00_FaceEyeline_00_FACE",
-      "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_00_FaceMouth_00_FACE",
-      "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_00_Face_00_SKIN",
-      "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_00_HairBack_00_HAIR",
-      "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_Hair_00_HAIR",
-      "/LAMAudio2Expression/Demo/Character/Materials/M_N00_001_01_Bottoms_01_CLOTH",
-      "/LAMAudio2Expression/Demo/Character/Materials/M_N00_004_01_Shoes_01_CLOTH",
-      "/LAMAudio2Expression/Demo/Character/Materials/M_N00_004_01_Tops_01_CLOTH"
+      "/Game/LAMFaceDemo/Character/Face52_Skeleton",
+      "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_Body_00_SKIN",
+      "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_EyeHighlight_00_EYE",
+      "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_EyeIris_00_EYE",
+      "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_EyeWhite_00_EYE",
+      "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_FaceBrow_00_FACE",
+      "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_FaceEyelash_00_FACE",
+      "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_FaceEyeline_00_FACE",
+      "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_FaceMouth_00_FACE",
+      "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_Face_00_SKIN",
+      "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_HairBack_00_HAIR",
+      "/Game/LAMFaceDemo/Character/Materials/M_N00_000_Hair_00_HAIR",
+      "/Game/LAMFaceDemo/Character/Materials/M_N00_001_01_Bottoms_01_CLOTH",
+      "/Game/LAMFaceDemo/Character/Materials/M_N00_004_01_Shoes_01_CLOTH",
+      "/Game/LAMFaceDemo/Character/Materials/M_N00_004_01_Tops_01_CLOTH"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Face52_Skeleton",
+    "asset": "/Game/LAMFaceDemo/Character/Face52_Skeleton",
     "dependencies": [
-      "/LAMAudio2Expression/Demo/Character/Face52"
+      "/Game/LAMFaceDemo/Character/Face52"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_00_Body_00_SKIN",
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_Body_00_SKIN",
     "dependencies": [
-      "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_10"
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_10"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_00_EyeHighlight_00_EYE",
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_EyeHighlight_00_EYE",
     "dependencies": [
-      "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_03"
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_03"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_00_EyeIris_00_EYE",
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_EyeIris_00_EYE",
     "dependencies": [
-      "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_02"
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_02"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_00_EyeWhite_00_EYE",
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_EyeWhite_00_EYE",
     "dependencies": [
-      "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_06"
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_06"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_00_FaceBrow_00_FACE",
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_FaceBrow_00_FACE",
     "dependencies": [
-      "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_07"
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_07"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_00_FaceEyelash_00_FACE",
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_FaceEyelash_00_FACE",
     "dependencies": [
-      "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_08"
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_08"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_00_FaceEyeline_00_FACE",
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_FaceEyeline_00_FACE",
     "dependencies": [
-      "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_09"
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_09"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_00_FaceMouth_00_FACE",
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_FaceMouth_00_FACE",
     "dependencies": [
-      "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_00"
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_00"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_00_Face_00_SKIN",
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_Face_00_SKIN",
     "dependencies": [
-      "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_04"
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_04"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_00_HairBack_00_HAIR",
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_00_HairBack_00_HAIR",
     "dependencies": [
-      "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_12"
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_12"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Materials/M_N00_000_Hair_00_HAIR",
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_000_Hair_00_HAIR",
     "dependencies": [
-      "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_17"
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_17"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Materials/M_N00_001_01_Bottoms_01_CLOTH",
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_001_01_Bottoms_01_CLOTH",
     "dependencies": [
-      "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_14"
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_14"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Materials/M_N00_004_01_Shoes_01_CLOTH",
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_004_01_Shoes_01_CLOTH",
     "dependencies": [
-      "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_16"
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_16"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Materials/M_N00_004_01_Tops_01_CLOTH",
+    "asset": "/Game/LAMFaceDemo/Character/Materials/M_N00_004_01_Tops_01_CLOTH",
     "dependencies": [
-      "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_15"
+      "/Game/LAMFaceDemo/Character/Textures/T_VRoid_15"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_00",
-    "dependencies": [
-      "/Script/InterchangeEngine"
-    ]
-  },
-  {
-    "asset": "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_02",
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_00",
     "dependencies": [
       "/Script/InterchangeEngine"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_03",
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_02",
     "dependencies": [
       "/Script/InterchangeEngine"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_04",
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_03",
     "dependencies": [
       "/Script/InterchangeEngine"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_06",
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_04",
     "dependencies": [
       "/Script/InterchangeEngine"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_07",
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_06",
     "dependencies": [
       "/Script/InterchangeEngine"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_08",
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_07",
     "dependencies": [
       "/Script/InterchangeEngine"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_09",
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_08",
     "dependencies": [
       "/Script/InterchangeEngine"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_10",
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_09",
     "dependencies": [
       "/Script/InterchangeEngine"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_12",
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_10",
     "dependencies": [
       "/Script/InterchangeEngine"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_14",
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_12",
     "dependencies": [
       "/Script/InterchangeEngine"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_15",
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_14",
     "dependencies": [
       "/Script/InterchangeEngine"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_16",
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_15",
     "dependencies": [
       "/Script/InterchangeEngine"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Character/Textures/T_VRoid_17",
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_16",
     "dependencies": [
       "/Script/InterchangeEngine"
     ]
   },
   {
-    "asset": "/LAMAudio2Expression/Demo/Maps/LAM_FaceDemo",
+    "asset": "/Game/LAMFaceDemo/Character/Textures/T_VRoid_17",
+    "dependencies": [
+      "/Script/InterchangeEngine"
+    ]
+  },
+  {
+    "asset": "/Game/LAMFaceDemo/Maps/LAM_FaceDemo",
     "dependencies": [
       "/Script/NavigationSystem",
+      "/Script/LAMDemo",
       "/Script/LAMAudio2Expression",
       "/Engine/EngineMaterials/WorldGridMaterial",
       "/Engine/EditorResources/LightIcons/S_LightError",
-      "/LAMAudio2Expression/Demo/Blueprints/BP_FaceDemo"
+      "/Game/LAMFaceDemo/Blueprints/BP_FaceDemo"
     ]
   }
 ]

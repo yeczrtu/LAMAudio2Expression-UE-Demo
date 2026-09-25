@@ -11,7 +11,7 @@ root = pathlib.Path(unreal.Paths.project_dir()).resolve()
 if not (root / '.lam-demo-staging').exists():
     raise RuntimeError('Run this only in the isolated project prepared for demo migration.')
 inputs = pathlib.Path((root / '.lam-demo-staging').read_text(encoding='utf-8').strip())
-target = '/LAMAudio2Expression/Demo'
+target = '/Game/LAMFaceDemo'
 assets = unreal.AssetToolsHelpers.get_asset_tools()
 registry = unreal.AssetRegistryHelpers.get_asset_registry()
 registry.search_all_assets(True)
@@ -144,9 +144,9 @@ options = unreal.AssetRegistryDependencyOptions(include_soft_package_references=
 report = []
 for asset in registry.get_assets_by_path(target, recursive=True):
     dependencies = [str(x) for x in (registry.get_dependencies(asset.package_name, options) or [])]
-    forbidden = [x for x in dependencies if x.startswith('/Game/') or x == '/Script/LAMDemo']
+    forbidden = [x for x in dependencies if (x.startswith('/Game/') and not x.startswith(target + '/')) or x.startswith('/LAMAudio2Expression/Demo')]
     if forbidden:
         raise RuntimeError(f'Nonportable demo dependency: {asset.package_name}: {forbidden}')
     report.append({'asset': str(asset.package_name), 'dependencies': dependencies})
 (inputs / 'demo-dependencies.json').write_text(json.dumps(report, indent=2), encoding='utf-8')
-unreal.log('LAM plugin demo built; no /Game or /Script/LAMDemo dependencies.')
+unreal.log('LAM face demo built in /Game/LAMFaceDemo.')

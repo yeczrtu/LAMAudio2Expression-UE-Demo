@@ -2,37 +2,37 @@
   {
     "Sample": 0,
     "ExitCode": 0,
-    "WallSeconds": 15.678,
+    "WallSeconds": 15.796,
     "Result": "PASS sample=0 frames=326 jaw_peak=0.2770 curve_error=0.000000 backend=DirectML"
   },
   {
     "Sample": 1,
     "ExitCode": 0,
-    "WallSeconds": 8.63,
+    "WallSeconds": 9.366,
     "Result": "PASS sample=1 frames=417 jaw_peak=0.2845 curve_error=0.000000 backend=DirectML"
   },
   {
     "Sample": 2,
     "ExitCode": 0,
-    "WallSeconds": 7.862,
+    "WallSeconds": 8.073,
     "Result": "PASS sample=2 frames=312 jaw_peak=0.3318 curve_error=0.000000 backend=DirectML"
   },
   {
     "Sample": 3,
     "ExitCode": 0,
-    "WallSeconds": 7.701,
+    "WallSeconds": 8.959,
     "Result": "PASS sample=3 frames=362 jaw_peak=0.2975 curve_error=0.000000 backend=DirectML"
   },
   {
     "Sample": 4,
     "ExitCode": 0,
-    "WallSeconds": 7.59,
-    "Result": "PASS sample=4 frames=504 jaw_peak=0.1745 curve_error=0.000000 backend=DirectML"
+    "WallSeconds": 8.733,
+    "Result": "PASS sample=4 frames=504 jaw_peak=0.1744 curve_error=0.000000 backend=DirectML"
   },
   {
     "Sample": 5,
     "ExitCode": 0,
-    "WallSeconds": 7.682,
+    "WallSeconds": 9.926,
     "Result": "PASS sample=5 frames=324 jaw_peak=0.3309 curve_error=0.000000 backend=DirectML"
   }
 ]

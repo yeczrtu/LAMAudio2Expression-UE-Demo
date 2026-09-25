@@ -1,0 +1,3 @@
+[submodule "Plugins/LAMAudio2Expression"]
+	path = Plugins/LAMAudio2Expression
+	url = https://github.com/yeczrtu/LAMAudio2Expression-UE.git

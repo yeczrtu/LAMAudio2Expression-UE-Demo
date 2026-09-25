@@ -13,8 +13,8 @@ __pycache__/
 Artifacts/
 Build/Windows/FileOpenOrder/
 # Models and locally generated/imported Unreal assets stay outside source control.
-/Content/
-/Plugins/LAMAudio2Expression/Content/Models/
+/Content/*
+!/Content/LAMFaceDemo/
 *.pt
 *.safetensors
 *.ckpt
