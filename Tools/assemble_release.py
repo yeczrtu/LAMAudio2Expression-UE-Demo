@@ -58,10 +58,12 @@ def main():
     parser.add_argument('--shipping', type=Path, required=True)
     parser.add_argument('--output', type=Path, required=True)
     parser.add_argument('--engine', type=Path, default=Path('D:/Unreal/UE_5.8'))
+    parser.add_argument('--project', type=Path, help='Disposable release project with regenerated examples; defaults to repository')
     parser.add_argument('--version', default='0.2.0')
     args = parser.parse_args()
     root = Path(__file__).resolve().parent.parent
     plugin = root / 'Plugins/LAMAudio2Expression'
+    project = args.project.resolve() if args.project else root
     args.output.mkdir(parents=True, exist_ok=False)
     descriptor = json.loads((args.plugin / 'LAMAudio2Expression.uplugin').read_text(encoding='utf-8-sig'))
     assert descriptor['Installed'] and descriptor['VersionName'] == args.version
@@ -92,10 +94,10 @@ def main():
             project_entries.append((p, 'LAMAudio2Expression-Demo/'+name))
     # Include generated examples and audio fixtures needed to run without setup.py.
     for folder in ['Content/Audio', 'Content/Examples']:
-        project_entries.extend((p, 'LAMAudio2Expression-Demo/'+folder+'/'+n) for p,n in files(root/folder))
-    project_entries.append((root/'Content/LAMDemo.umap', 'LAMAudio2Expression-Demo/Content/LAMDemo.umap'))
+        project_entries.extend((p, 'LAMAudio2Expression-Demo/'+folder+'/'+n) for p,n in files(project/folder))
+    project_entries.append((project/'Content/LAMDemo.umap', 'LAMAudio2Expression-Demo/Content/LAMDemo.umap'))
     for name in ['UnrealEditor-LAMDemo.dll', 'UnrealEditor.modules']:
-        project_entries.append((root/'Binaries/Win64'/name, 'LAMAudio2Expression-Demo/Binaries/Win64/'+name))
+        project_entries.append((project/'Binaries/Win64'/name, 'LAMAudio2Expression-Demo/Binaries/Win64/'+name))
     project_entries.extend((p,'LAMAudio2Expression-Demo/Plugins/LAMAudio2Expression/'+n) for n,p in plugin_entries.items())
     project_zip = args.output/f'LAMAudio2Expression-{version}-UE5.8.2-Project-Model.zip'
     write_archive(project_zip, project_entries, {})

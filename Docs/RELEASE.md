@@ -7,13 +7,14 @@ Releaseは2つのリポジトリの同じバージョンタグへ公開します
 1. 固定版モデルをsetupで生成するか、以前の検証済みモデルを使用します。`Docs/model-manifest.json` のONNX・uassetハッシュを照合します。
 2. `RunUAT.bat BuildPlugin -Plugin=<plugin>/LAMAudio2Expression.uplugin -Package=<new-short-output-path> -TargetPlatforms=Win64` を実行します。Windowsの260文字制約を避け、出力先は短いパスにします。このコマンドは指定した出力フォルダーを空にするので、新規フォルダーを指定してください。
 3. UEの `Build.bat LAMDemoEditor Win64 Development <project>/LAMDemo.uproject -NoSNDBS` でEditorモジュールを更新します。
-4. `Tools/package.ps1 -Configuration Shipping` を実行します。VC++ランタイムのインストーラーもステージします。
-5. 既存の自動テスト・顔デモを確認し、検証結果を記録します。コードをコミットし、デモのサブモジュール参照を更新します。
+4. `.work` 内にデモプロジェクトの配布用コピーを作ります。個人用Content、キャッシュ、Git情報は除外し、検証用音声と顔デモを保持します。`Content/Examples` と `Content/LAMDemo.umap` はコピーせず、元リポジトリの `Tools/prepare_release_examples.py` をUE Python commandletで実行して生成します。既存の編集済み接続例を上書きしないため、このスクリプトは新規の配布用コピーだけを受け付けます。生成後はモデルuassetを検証済みBuildPlugin出力からコピーし、ハッシュを維持します。
+5. 配布用コピーを `BuildCookRun -build -cook -stage -pak -archive -prereqs` でShippingビルドします（引数例は `Tools/package.ps1`）。VC++ランタイムのインストーラーもステージします。
+6. 既存の自動テスト・顔デモを確認し、検証結果を記録します。コードをコミットし、デモのサブモジュール参照を更新します。
 
 ## ZIP作成
 
 ```powershell
-python Tools/assemble_release.py --plugin <BuildPlugin-output> --shipping Artifacts/Shipping/Windows --output <new-output-directory>
+python Tools/assemble_release.py --plugin <BuildPlugin-output> --project <disposable-project-directory> --shipping <Shipping-archive>/Windows --output <new-output-directory>
 ```
 
 出力先は新規ディレクトリに限ります。作成物は以下です。
