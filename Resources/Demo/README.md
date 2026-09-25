@@ -1,6 +1,6 @@
 # LAM Face Demo — attribution and usage
 
-Open `/Game/LAMFaceDemo/Maps/LAM_FaceDemo` in the LAM-A2EUE demo project and press Play.
+Open `/Game/LAMFaceDemo/Maps/LAM_FaceDemo` in the LAMAudio2Expression-UE-Demo demo project and press Play.
 Click a voice sample or press 1–6. Space pauses/resumes; R replays.
 The neural model `/LAMAudio2Expression/Models/LAM_A2E` is required.
 

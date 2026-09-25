@@ -1,6 +1,6 @@
-# LAM Audio2Expression for Unreal Engine 5.8
+# LAM Audio2Expression UE Demo
 
-Windows x64 用のランタイムプラグインです。SoundWave を非同期で解析し、音声再生に同期した ARKit 52 カーブを AnimGraph に適用します。推論は UE NNE の DirectML を優先し、利用できない場合は CPU に切り替えます。
+Windows x64 用の音声表情プラグインを試すデモです。SoundWave を非同期で解析し、音声再生に同期した ARKit 52 カーブを AnimGraph に適用します。推論は UE NNE の DirectML を優先し、利用できない場合は CPU に切り替えます。
 
 このリポジトリはデモ・検証用UEプロジェクトです。[プラグイン本体](https://github.com/yeczrtu/LAMAudio2Expression-UE) は独立したリポジトリで、`Plugins/LAMAudio2Expression` からサブモジュールとして参照します。顔・音声・操作UIとそのライセンス表記はデモ側で管理します。
 
@@ -9,8 +9,8 @@ Windows x64 用のランタイムプラグインです。SoundWave を非同期�
 GitHubにはニューラルモデルを含めていません。顔デモ用のメッシュ・音声・マップはこのプロジェクトの `Content/LAMFaceDemo` に同梱しています。UE 5.8.2、Visual Studio 2022 C++、Python 3.10、Gitを用意して次を実行してください。
 
 ```powershell
-git clone --recurse-submodules https://github.com/yeczrtu/LAM-A2EUE.git
-cd LAM-A2EUE
+git clone --recurse-submodules https://github.com/yeczrtu/LAMAudio2Expression-UE-Demo.git
+cd LAMAudio2Expression-UE-Demo
 ./Tools/setup.ps1 -Engine D:\Unreal\UE_5.8
 ```
 
