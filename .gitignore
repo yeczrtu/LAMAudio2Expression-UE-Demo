@@ -1,4 +1,9 @@
 .work/
+# Demo recordings are hosted as GitHub attachments, not in Git.
+*.mp4
+*.webm
+*.mov
+*.avi
 Binaries/
 Intermediate/
 Saved/
