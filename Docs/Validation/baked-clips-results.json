@@ -1,0 +1,165 @@
+{
+  "date": "2026-09-28",
+  "engine": "5.8.2",
+  "platform": "Win64",
+  "automation": [
+    {
+      "test": "LAM.Audio.CookedDecoder",
+      "state": "Success"
+    },
+    {
+      "test": "LAM.Bake.DataValidation",
+      "state": "Success"
+    },
+    {
+      "test": "LAM.Bake.GenerateAndRegenerate",
+      "state": "Success"
+    },
+    {
+      "test": "LAM.Core.BoundariesAndCurves",
+      "state": "Success"
+    },
+    {
+      "test": "LAM.Editor.PIEPlayback",
+      "state": "Success"
+    },
+    {
+      "test": "LAM.Editor.VisemeMeshRecipes",
+      "state": "Success"
+    },
+    {
+      "test": "LAM.Live.IntervalAndDelay",
+      "state": "Success"
+    },
+    {
+      "test": "LAM.Model.Parity",
+      "state": "Success"
+    },
+    {
+      "test": "LAM.Viseme.AnimNodeIntegration",
+      "state": "Success"
+    },
+    {
+      "test": "LAM.Viseme.BoundsContinuityAndInvalidInput",
+      "state": "Success"
+    },
+    {
+      "test": "LAM.Viseme.RulesAndPresets",
+      "state": "Success"
+    },
+    {
+      "test": "LAM.Viseme.TemplateFit",
+      "state": "Success"
+    }
+  ],
+  "playback": [
+    {
+      "configuration": "Editor",
+      "test": "PlaybackControls",
+      "result": "PASS routing, mute, pause, seek, fades, completion, replacement/reentrancy, 3D, explicit/inline concurrency, world pause; started=11 ended=12\ninitial submix peaks: 0.145137 0.072568 0.036284"
+    },
+    {
+      "configuration": "Editor",
+      "test": "LiveIntervals48k",
+      "result": "PASS live interval changes rate=48000 channels=1 valid_ticks=571\nhop_ms=333.333 inference_p95=0.000 latency_p95=0.000 delay=750.000 dropped=0 backend=\nhop_ms=100.000 inference_p95=0.000 latency_p95=0.000 delay=750.000 dropped=47 backend=\nhop_ms=1000.000 inference_p95=167.603 latency_p95=167.733 delay=1201.067 dropped=48 backend=DirectML\nhop_ms=33.333 inference_p95=115.975 latency_p95=116.070 delay=1201.067 dropped=131 backend=DirectML\nhop_ms=500.000 inference_p95=115.975 latency_p95=116.070 delay=1201.067 dropped=131 backend=DirectML\nhop_ms=333.333 inference_p95=118.024 latency_p95=118.139 delay=1201.067 dropped=131 backend=DirectML"
+    },
+    {
+      "configuration": "Editor",
+      "test": "LiveIntervals44kStereo",
+      "result": "PASS live interval changes rate=44100 channels=2 valid_ticks=549\nhop_ms=333.333 inference_p95=0.000 latency_p95=0.000 delay=750.000 dropped=0 backend=\nhop_ms=100.000 inference_p95=152.412 latency_p95=152.527 delay=750.000 dropped=61 backend=DirectML\nhop_ms=1000.000 inference_p95=152.412 latency_p95=152.527 delay=1185.860 dropped=61 backend=DirectML\nhop_ms=33.333 inference_p95=103.929 latency_p95=104.075 delay=1185.860 dropped=146 backend=DirectML\nhop_ms=500.000 inference_p95=123.997 latency_p95=124.105 delay=1185.860 dropped=146 backend=DirectML\nhop_ms=333.333 inference_p95=129.603 latency_p95=129.931 delay=1185.860 dropped=146 backend=DirectML"
+    },
+    {
+      "configuration": "Editor",
+      "test": "LiveIntervals16kCPU",
+      "result": "PASS live interval changes rate=16000 channels=1 valid_ticks=656\nhop_ms=333.333 inference_p95=0.000 latency_p95=0.000 delay=750.000 dropped=9 backend=\nhop_ms=100.000 inference_p95=115.487 latency_p95=115.721 delay=750.000 dropped=22 backend=CPU\nhop_ms=1000.000 inference_p95=115.487 latency_p95=115.721 delay=1149.055 dropped=22 backend=CPU\nhop_ms=33.333 inference_p95=112.176 latency_p95=112.289 delay=1149.055 dropped=107 backend=CPU\nhop_ms=500.000 inference_p95=109.424 latency_p95=109.585 delay=1149.055 dropped=107 backend=CPU\nhop_ms=333.333 inference_p95=112.176 latency_p95=112.289 delay=1149.055 dropped=107 backend=CPU"
+    },
+    {
+      "configuration": "Editor",
+      "test": "LiveQueueContentionCPU",
+      "result": "PASS live interval changes rate=16000 channels=1 valid_ticks=424\nhop_ms=333.333 inference_p95=0.000 latency_p95=0.000 delay=750.000 dropped=8 backend=\nhop_ms=100.000 inference_p95=104.221 latency_p95=104.378 delay=750.000 dropped=19 backend=CPU\nhop_ms=1000.000 inference_p95=156.224 latency_p95=156.314 delay=1189.647 dropped=24 backend=CPU\nhop_ms=33.333 inference_p95=163.065 latency_p95=164.481 delay=1189.647 dropped=106 backend=CPU\nhop_ms=500.000 inference_p95=163.065 latency_p95=164.481 delay=1189.647 dropped=106 backend=CPU\nhop_ms=333.333 inference_p95=162.976 latency_p95=163.432 delay=1189.647 dropped=106 backend=CPU"
+    },
+    {
+      "configuration": "Editor",
+      "test": "BakedPlaybackControls",
+      "result": "PASS routing, mute, pause, seek, fades, completion, replacement/reentrancy, 3D, explicit/inline concurrency, world pause; started=11 ended=12\ninitial submix peaks: 0.145137 0.072568 0.036284 baked_model_unloaded=1 sample_checksum=6.501 sample_checksum=250.000 sample_short_p95_us=0.201 sample_300s_p95_us=0.399 dynamic_viseme_p95_us=78.700"
+    },
+    {
+      "configuration": "Development",
+      "test": "PlaybackControls",
+      "result": "PASS routing, mute, pause, seek, fades, completion, replacement/reentrancy, 3D, explicit/inline concurrency, world pause; started=11 ended=12\ninitial submix peaks: 0.145137 0.072568 0.036284"
+    },
+    {
+      "configuration": "Development",
+      "test": "LiveIntervals48k",
+      "result": "PASS live interval changes rate=48000 channels=1 valid_ticks=966\nhop_ms=333.333 inference_p95=26.838 latency_p95=1115.411 delay=1482.078 dropped=5 backend=DirectML\nhop_ms=100.000 inference_p95=32.964 latency_p95=33.556 delay=1482.078 dropped=5 backend=DirectML\nhop_ms=1000.000 inference_p95=39.957 latency_p95=75.006 delay=1482.078 dropped=5 backend=DirectML\nhop_ms=33.333 inference_p95=12.962 latency_p95=13.026 delay=1482.078 dropped=26 backend=DirectML\nhop_ms=500.000 inference_p95=21.432 latency_p95=21.507 delay=1482.078 dropped=26 backend=DirectML\nhop_ms=333.333 inference_p95=61.000 latency_p95=61.065 delay=1482.078 dropped=26 backend=DirectML"
+    },
+    {
+      "configuration": "Development",
+      "test": "LiveIntervals44kStereo",
+      "result": "PASS live interval changes rate=44100 channels=2 valid_ticks=829\nhop_ms=333.333 inference_p95=11.256 latency_p95=1366.212 delay=1732.879 dropped=6 backend=DirectML\nhop_ms=100.000 inference_p95=34.385 latency_p95=34.716 delay=1732.879 dropped=6 backend=DirectML\nhop_ms=1000.000 inference_p95=39.444 latency_p95=99.117 delay=1732.879 dropped=6 backend=DirectML\nhop_ms=33.333 inference_p95=19.365 latency_p95=27.156 delay=1732.879 dropped=25 backend=DirectML\nhop_ms=500.000 inference_p95=25.751 latency_p95=35.050 delay=1732.879 dropped=25 backend=DirectML\nhop_ms=333.333 inference_p95=80.364 latency_p95=80.932 delay=1732.879 dropped=25 backend=DirectML"
+    },
+    {
+      "configuration": "Development",
+      "test": "LiveIntervals16kCPU",
+      "result": "PASS live interval changes rate=16000 channels=1 valid_ticks=530\nhop_ms=333.333 inference_p95=0.000 latency_p95=0.000 delay=750.000 dropped=0 backend=\nhop_ms=100.000 inference_p95=310.074 latency_p95=310.232 delay=750.000 dropped=62 backend=CPU\nhop_ms=1000.000 inference_p95=310.074 latency_p95=310.232 delay=1343.566 dropped=62 backend=CPU\nhop_ms=33.333 inference_p95=309.149 latency_p95=309.232 delay=1343.566 dropped=166 backend=CPU\nhop_ms=500.000 inference_p95=309.149 latency_p95=309.232 delay=1343.566 dropped=166 backend=CPU\nhop_ms=333.333 inference_p95=309.149 latency_p95=309.232 delay=1343.566 dropped=166 backend=CPU"
+    },
+    {
+      "configuration": "Development",
+      "test": "LiveQueueContentionCPU",
+      "result": "PASS live interval changes rate=16000 channels=1 valid_ticks=547\nhop_ms=333.333 inference_p95=0.000 latency_p95=0.000 delay=750.000 dropped=8 backend=\nhop_ms=100.000 inference_p95=234.749 latency_p95=234.819 delay=750.000 dropped=15 backend=CPU\nhop_ms=1000.000 inference_p95=257.527 latency_p95=257.605 delay=1290.938 dropped=18 backend=CPU\nhop_ms=33.333 inference_p95=257.527 latency_p95=257.605 delay=1290.938 dropped=126 backend=CPU\nhop_ms=500.000 inference_p95=257.527 latency_p95=257.605 delay=1290.938 dropped=126 backend=CPU\nhop_ms=333.333 inference_p95=257.527 latency_p95=257.605 delay=1290.938 dropped=126 backend=CPU"
+    },
+    {
+      "configuration": "Development",
+      "test": "BakedPlaybackControls",
+      "result": "PASS routing, mute, pause, seek, fades, completion, replacement/reentrancy, 3D, explicit/inline concurrency, world pause; started=11 ended=12\ninitial submix peaks: 0.145137 0.072568 0.036284 baked_model_unloaded=1 sample_checksum=6.501 sample_checksum=250.000 sample_short_p95_us=0.200 sample_300s_p95_us=0.200 dynamic_viseme_p95_us=53.800"
+    },
+    {
+      "configuration": "Shipping",
+      "test": "PlaybackControls",
+      "result": "PASS routing, mute, pause, seek, fades, completion, replacement/reentrancy, 3D, explicit/inline concurrency, world pause; started=11 ended=12\ninitial submix peaks: 0.145137 0.072568 0.036284"
+    },
+    {
+      "configuration": "Shipping",
+      "test": "LiveIntervals48k",
+      "result": "PASS live interval changes rate=48000 channels=1 valid_ticks=126894\nhop_ms=333.333 inference_p95=9.928 latency_p95=992.285 delay=1358.952 dropped=4 backend=DirectML\nhop_ms=100.000 inference_p95=33.458 latency_p95=33.655 delay=1358.952 dropped=4 backend=DirectML\nhop_ms=1000.000 inference_p95=41.869 latency_p95=76.088 delay=1358.952 dropped=4 backend=DirectML\nhop_ms=33.333 inference_p95=13.246 latency_p95=13.287 delay=1358.952 dropped=22 backend=DirectML\nhop_ms=500.000 inference_p95=23.005 latency_p95=23.063 delay=1358.952 dropped=22 backend=DirectML\nhop_ms=333.333 inference_p95=80.033 latency_p95=80.070 delay=1358.952 dropped=22 backend=DirectML"
+    },
+    {
+      "configuration": "Shipping",
+      "test": "LiveIntervals44kStereo",
+      "result": "PASS live interval changes rate=44100 channels=2 valid_ticks=103801\nhop_ms=333.333 inference_p95=10.064 latency_p95=990.438 delay=1357.104 dropped=4 backend=DirectML\nhop_ms=100.000 inference_p95=39.399 latency_p95=41.480 delay=1357.104 dropped=4 backend=DirectML\nhop_ms=1000.000 inference_p95=45.320 latency_p95=73.216 delay=1357.104 dropped=4 backend=DirectML\nhop_ms=33.333 inference_p95=13.564 latency_p95=13.608 delay=1357.104 dropped=24 backend=DirectML\nhop_ms=500.000 inference_p95=17.880 latency_p95=17.917 delay=1357.104 dropped=24 backend=DirectML\nhop_ms=333.333 inference_p95=83.310 latency_p95=83.347 delay=1357.104 dropped=24 backend=DirectML"
+    },
+    {
+      "configuration": "Shipping",
+      "test": "LiveIntervals16kCPU",
+      "result": "PASS live interval changes rate=16000 channels=1 valid_ticks=61569\nhop_ms=333.333 inference_p95=0.000 latency_p95=0.000 delay=750.000 dropped=0 backend=\nhop_ms=100.000 inference_p95=296.789 latency_p95=296.828 delay=750.000 dropped=55 backend=CPU\nhop_ms=1000.000 inference_p95=296.789 latency_p95=296.828 delay=1330.162 dropped=55 backend=CPU\nhop_ms=33.333 inference_p95=296.789 latency_p95=296.828 delay=1330.162 dropped=160 backend=CPU\nhop_ms=500.000 inference_p95=296.789 latency_p95=296.828 delay=1330.162 dropped=160 backend=CPU\nhop_ms=333.333 inference_p95=295.056 latency_p95=295.098 delay=1330.162 dropped=160 backend=CPU"
+    },
+    {
+      "configuration": "Shipping",
+      "test": "LiveQueueContentionCPU",
+      "result": "PASS live interval changes rate=16000 channels=1 valid_ticks=57378\nhop_ms=333.333 inference_p95=0.000 latency_p95=0.000 delay=750.000 dropped=0 backend=\nhop_ms=100.000 inference_p95=0.000 latency_p95=0.000 delay=750.000 dropped=33 backend=\nhop_ms=1000.000 inference_p95=295.128 latency_p95=295.173 delay=1328.507 dropped=37 backend=CPU\nhop_ms=33.333 inference_p95=295.128 latency_p95=295.173 delay=1328.507 dropped=152 backend=CPU\nhop_ms=500.000 inference_p95=285.666 latency_p95=285.709 delay=1328.507 dropped=152 backend=CPU\nhop_ms=333.333 inference_p95=285.666 latency_p95=285.709 delay=1328.507 dropped=152 backend=CPU"
+    },
+    {
+      "configuration": "Shipping",
+      "test": "BakedPlaybackControls",
+      "result": "PASS routing, mute, pause, seek, fades, completion, replacement/reentrancy, 3D, explicit/inline concurrency, world pause; started=11 ended=12\ninitial submix peaks: 0.145137 0.072568 0.036284 baked_model_unloaded=1 sample_checksum=6.501 sample_checksum=250.000 sample_short_p95_us=0.200 sample_300s_p95_us=0.300 dynamic_viseme_p95_us=65.400"
+    }
+  ],
+  "builds": {
+    "Development": "BuildCookRun succeeded with baked test map included",
+    "Shipping": "BuildCookRun succeeded with baked test map included"
+  },
+  "numeric_comparison": {
+    "backend": "CPU",
+    "maximum_absolute_curve_error": 0,
+    "tolerance": 0.00001
+  },
+  "notes": [
+    "Viseme conversion remains dynamic; profiling measures it separately from clip sampling.",
+    "Zero latency means no analysis wait after preloading, not zero audio device or rendering latency.",
+    "Sampling measurements are local microbenchmarks, not end-to-end frame or audio latency.",
+    "Automation reported 10 successes without warnings and 2 successes with warnings; no failures.",
+    "Editor also built successfully with unity compilation disabled.",
+    "Runtime reports include only completed PASS runs; earlier failed harness/cook attempts were superseded.",
+    "Physical microphone capture and visual inspection of the Slate dialog were not performed."
+  ]
+}

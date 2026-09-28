@@ -19,6 +19,10 @@ BeginPlay または任意のイベント
 
 `Get Current Expression Frame` には時刻、52値、Validity、適用 Weight が入ります。`Get ARKit Curve Value` は指定した名前の推定値を返します。停止フェードの強度は別の Weight です。解析結果を他の Actor で使う場合は Clip を BP の変数で保持してください。
 
+## SoundWaveの事前解析
+
+コンテンツブラウザでSoundWaveを右クリック → **Generate LAM Expression Clip** から解析済みClipを生成・保存できます。ロード済みのClipを **Play Expression Clip** に直接渡すことで、再生時の解析待ちをなくせます。Visemeは従来どおり動的に変換します。[生成・先読み・再生成の手順](../Plugins/LAMAudio2Expression/Docs/BAKED_CLIPS.md)
+
 ## Animation Blueprint
 
 ```text

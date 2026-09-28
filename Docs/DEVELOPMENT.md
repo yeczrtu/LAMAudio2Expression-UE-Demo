@@ -39,6 +39,12 @@ setup は専用の `.work/venv` を使用し、固定リビジョンの上流コ
 
 ローカルでビルドしたデモは `Artifacts/Shipping/Windows/LAMDemo.exe` です。配布する場合は `Windows` フォルダー全体を使用してください。setup後のプラグインには約384 MiBのモデルアセットが生成されます。Gitには含めず、固定リビジョンから再生成します。
 
+## 事前解析Clipの検証
+
+Editorをビルドした後、`./Tools/test_baked_clips.ps1` で生成・再生成・従来解析との数値比較・保存・別プロセスでの再生を検証できます。`/Game/Audio/*_LAMClip` と `/Game/Examples/BP_LAMBakedPlayback` を生成します。既存の動的解析例は維持します。
+
+生成後に `./Tools/package.ps1 -Configuration Development -IncludeBaked`（またはShipping）で検証用マップも含めてパッケージ化し、`./Tools/test_playback_controls.ps1 -Configuration Development -IncludeBaked`（またはShipping）でCook済みClipも検証してください。Editorがビルド済みならパッケージ化に `-SkipEditorBuild` を指定できます。[使い方と制限](../Plugins/LAMAudio2Expression/Docs/BAKED_CLIPS.md)
+
 ## 配布物を作る
 
 モデル入りZIPの作成手順は [リリース手順](RELEASE.md)、モデルの版管理とライセンスは [モデル運用方針](MODEL_MANAGEMENT.md) を参照してください。

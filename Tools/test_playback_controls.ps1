@@ -1,5 +1,5 @@
 param([ValidateSet('Editor','Development','Shipping')][string]$Configuration='Development',
-      [string]$Engine='D:\Unreal\UE_5.8')
+      [string]$Engine='D:\Unreal\UE_5.8', [switch]$IncludeBaked, [switch]$BakedOnly)
 $ErrorActionPreference='Stop'
 $Root=Split-Path -Parent $PSScriptRoot
 $Prefix=@()
@@ -18,18 +18,25 @@ $Cases=@(
     @{Name='LiveIntervals16kCPU'; Flags=@('-LAMLiveIntervalTest','-LAMRate=16000','-LAMCPU')},
     @{Name='LiveQueueContentionCPU'; Flags=@('-LAMLiveIntervalTest','-LAMRate=16000','-LAMCPU','-LAMLateAnalysisTest')}
 )
+if ($IncludeBaked -or $BakedOnly) {
+    $Cases += @{Name='BakedPlaybackControls'; Map='/Game/Examples/LAM_BakedTest'; Flags=@('-LAMPlaybackTest','-LAMBakedClip=/Game/Audio/speech_stream_LAMClip.speech_stream_LAMClip')}
+}
+if ($BakedOnly) { $Cases=@($Cases | Where-Object Name -eq 'BakedPlaybackControls') }
+$SummaryName=if ($BakedOnly) {'baked-playback'} else {'playback-controls'}
 $Results=@()
 foreach ($Case in $Cases) {
     $Report="$Root/Artifacts/$Configuration-$($Case.Name).txt"
     $Log="$Root/Artifacts/$Configuration-$($Case.Name).log"
     if (Test-Path -LiteralPath $Report) { Remove-Item -LiteralPath $Report }
-    $Arguments=$Prefix+@('-nullrhi','-unattended','-ExecCmds="t.MaxFPS 60"',"-LAMReport=`"$Report`"","-abslog=`"$Log`"")+$Case.Flags
+    $CasePrefix=$Prefix.Clone()
+    if ($Case.Map) { $MapIndex=if ($Configuration -eq 'Editor') {1} else {0}; $CasePrefix[$MapIndex]=$Case.Map }
+    $Arguments=$CasePrefix+@('-nullrhi','-unattended','-ExecCmds="t.MaxFPS 60"',"-LAMReport=`"$Report`"","-abslog=`"$Log`"")+$Case.Flags
     $Watch=[Diagnostics.Stopwatch]::StartNew()
     $Process=Start-Process -FilePath $Exe -ArgumentList $Arguments -WindowStyle Hidden -PassThru
     if (!$Process.WaitForExit(120000)) { $Process.Kill(); throw "Timeout: $($Case.Name)" }
     $Text=if (Test-Path -LiteralPath $Report) {Get-Content -LiteralPath $Report -Raw} else {'FAIL report missing'}
     $Results+=[pscustomobject]@{Case=$Case.Name; ExitCode=$Process.ExitCode; WallSeconds=[Math]::Round($Watch.Elapsed.TotalSeconds,3); Result=$Text.Trim()}
-    $Results | ConvertTo-Json | Set-Content "$Root/Artifacts/$Configuration-playback-controls.json" -Encoding utf8
+    $Results | ConvertTo-Json | Set-Content "$Root/Artifacts/$Configuration-$SummaryName.json" -Encoding utf8
     Write-Output "$Configuration $($Case.Name): $Text"
     if (!$Text.StartsWith('PASS ')) { throw "Extended test failed: $($Case.Name)" }
 }

@@ -2,6 +2,8 @@
 #include "LAMAudio2ExpressionComponent.h"
 #include "LAMSettings.h"
 #include "LAMAnalyzeAsync.h"
+#include "LAMBakedExpressionClip.h"
+#include "LAMViseme.h"
 #include "Components/SceneComponent.h"
 #include "Components/AudioComponent.h"
 #include "Sound/SoundWave.h"
@@ -63,10 +65,21 @@ void ALAMPlaybackTestActor::BeginPlay()
     }
     FString Asset = TEXT("/Game/Audio/speech_stream.speech_stream");
     FParse::Value(FCommandLine::Get(), TEXT("LAMSound="), Asset);
-    auto* Wave = LoadObject<USoundWave>(nullptr, *Asset);
-    if (!Check(Wave != nullptr, TEXT("load cooked test sound"))) return;
-    Clip = NewObject<ULAMExpressionClip>(this); Clip->SoundWave = Wave; Clip->Duration = Wave->Duration;
-    Clip->Curves.Init(.5f, FMath::CeilToInt(Clip->Duration * 30) * 52);
+    FString BakedPath;
+    if (FParse::Value(FCommandLine::Get(), TEXT("LAMBakedClip="), BakedPath))
+    {
+        auto* Baked = LoadObject<ULAMBakedExpressionClip>(nullptr, *BakedPath);
+        if (!Check(Baked && Baked->GetPlaybackValidationError().IsEmpty(), TEXT("load valid baked clip"))) return;
+        Clip = Baked;
+        if (!Check(!GetDefault<ULAMSettings>()->Model.Get(), TEXT("baked load does not load model"))) return;
+    }
+    else
+    {
+        auto* Wave = LoadObject<USoundWave>(nullptr, *Asset);
+        if (!Check(Wave != nullptr, TEXT("load cooked test sound"))) return;
+        Clip = NewObject<ULAMExpressionClip>(this); Clip->SoundWave = Wave; Clip->Duration = Wave->Duration;
+        Clip->Curves.Init(.5f, FMath::CeilToInt(Clip->Duration * 30) * 52);
+    }
     A->OnPlaybackEnded.AddDynamic(this, &ALAMPlaybackTestActor::Ended);
     A->OnPlaybackFinished.AddDynamic(this, &ALAMPlaybackTestActor::Finished);
     A->OnPlaybackStarted.AddDynamic(this, &ALAMPlaybackTestActor::Started);
@@ -87,6 +100,7 @@ void ALAMPlaybackTestActor::BeginPlay()
     if (!Check(A->PlayExpressionClipWithSettings(Clip, Settings), TEXT("play A"))) return;
     auto Other = Settings; Other.OutputSubmix = Submixes[1]; Other.AdditionalSubmixSends.Reset(); Other.Volume = .5f;
     Check(B->PlayExpressionClipWithSettings(Clip, Other), TEXT("play B"));
+    if (!BakedPath.IsEmpty()) Check(A->CurrentClip == Clip && B->CurrentClip == Clip, TEXT("baked payload shared between players"));
 }
 void ALAMPlaybackTestActor::ResetMeters() { for (auto M : Meters) M->Reset(); }
 void ALAMPlaybackTestActor::Advance() { ++Stage; At = FPlatformTime::Seconds(); UE_LOG(LogTemp, Display, TEXT("LAM_PLAYBACK_STAGE %d"), Stage); }
@@ -110,6 +124,41 @@ bool ALAMPlaybackTestActor::Check(bool OK, const FString& What)
 void ALAMPlaybackTestActor::Finish(bool OK, const FString& What)
 {
     if (Done) return; Done = true;
+    if (OK && Cast<ULAMBakedExpressionClip>(Clip))
+    {
+        OK = !GetDefault<ULAMSettings>()->Model.Get();
+        Details += OK ? TEXT(" baked_model_unloaded=1") : TEXT(" baked_model_unloaded=0");
+        auto Measure = [&](ULAMExpressionClip* SampleClip)
+        {
+            TArray<double> Times;
+            float Sum = 0;
+            for (int32 I = 0; I < 1000; ++I)
+            {
+                const double Begin = FPlatformTime::Seconds();
+                Sum += SampleClip->Sample(float(I % 100) * SampleClip->Duration / 100.f).Values[24];
+                Times.Add((FPlatformTime::Seconds() - Begin) * 1.e6);
+            }
+            Times.Sort();
+            Details += FString::Printf(TEXT(" sample_checksum=%.3f"), Sum);
+            return Times[950];
+        };
+        auto* LongClip = NewObject<ULAMExpressionClip>(this);
+        LongClip->Duration = 300; LongClip->Curves.Init(.25f, 300 * 30 * 52);
+        const double ShortP95 = Measure(Clip), LongP95 = Measure(LongClip);
+        FLAMVisemeSettings Visemes; Visemes.ConversionMode = ELAMVisemeConversionMode::TemplateFit;
+        const auto Prepared = LAM::PrepareVisemeSettings(Visemes);
+        TArray<double> Times;
+        for (int32 I = 0; I < 100; ++I)
+        {
+            const auto Frame = Clip->Sample(float(I) * Clip->Duration / 100.f);
+            const double Begin = FPlatformTime::Seconds();
+            const auto Converted = LAM::ConvertARKitToVisemes(Frame, Prepared);
+            Times.Add((FPlatformTime::Seconds() - Begin) * 1.e6);
+            OK &= Converted.bValid;
+        }
+        Times.Sort();
+        Details += FString::Printf(TEXT(" sample_short_p95_us=%.3f sample_300s_p95_us=%.3f dynamic_viseme_p95_us=%.3f"), ShortP95, LongP95, Times[95]);
+    }
     FString Path = FPaths::ProjectSavedDir() / TEXT("LAMPlaybackTest.txt");
     FParse::Value(FCommandLine::Get(), TEXT("LAMReport="), Path);
     const FString Text = (OK ? TEXT("PASS ") : TEXT("FAIL ")) + What + Details;

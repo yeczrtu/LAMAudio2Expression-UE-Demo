@@ -12,6 +12,7 @@
 #include "GameFramework/HUD.h"
 #include "GameFramework/PlayerController.h"
 #include "Kismet/GameplayStatics.h"
+#include "GameMapsSettings.h"
 #include "Misc/CommandLine.h"
 #include "Misc/FileHelper.h"
 #include "Misc/Parse.h"
@@ -324,6 +325,13 @@ struct FDemoCheck
 FTSTicker::FDelegateHandle StartLAMBlueprintDemoTests()
 {
     const TCHAR *Cmd = FCommandLine::Get();
+    FString BakedClip;
+    if (FParse::Param(Cmd, TEXT("LAMPlaybackTest")) && FParse::Value(Cmd, TEXT("LAMBakedClip="), BakedClip))
+    {
+        // Shipping ignores command-line map overrides. Select the isolated test map before loading any demo assets.
+        UGameMapsSettings::SetGameDefaultMap(TEXT("/Game/Examples/LAM_BakedTest"));
+        return {};
+    }
     const bool Legacy = FParse::Param(Cmd, TEXT("LAMTest")) || FParse::Param(Cmd, TEXT("LAMPlaybackTest")) ||
                         FParse::Param(Cmd, TEXT("LAMLiveIntervalTest"));
     if (!Legacy && !FParse::Param(Cmd, TEXT("LAMPluginDemoTest")))

@@ -4,6 +4,7 @@ public class LAMDemo : ModuleRules {
  public LAMDemo(ReadOnlyTargetRules Target) : base(Target) {
   PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
   PublicDependencyModuleNames.AddRange(new[]{"Core","CoreUObject","Engine","LAMAudio2Expression","NNE","InputCore"});
+  PrivateDependencyModuleNames.Add("EngineSettings");
   string ProjectRoot=Path.GetFullPath(Path.Combine(ModuleDirectory,"../.."));
   foreach (string Name in new[]{"LICENSE","THIRD_PARTY_NOTICES.md"})
    RuntimeDependencies.Add(Path.Combine(ProjectRoot,Name),StagedFileType.NonUFS);
