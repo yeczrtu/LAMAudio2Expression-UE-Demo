@@ -45,6 +45,10 @@ Editorをビルドした後、`./Tools/test_baked_clips.ps1` で生成・再生�
 
 生成後に `./Tools/package.ps1 -Configuration Development -IncludeBaked`（またはShipping）で検証用マップも含めてパッケージ化し、`./Tools/test_playback_controls.ps1 -Configuration Development -IncludeBaked`（またはShipping）でCook済みClipも検証してください。Editorがビルド済みならパッケージ化に `-SkipEditorBuild` を指定できます。[使い方と制限](../Plugins/LAMAudio2Expression/Docs/BAKED_CLIPS.md)
 
+## Wav2ARKit CPUを追加する
+
+既存セットアップとEditorビルドの後、`./.work/venv/Scripts/python.exe Tools/setup_wav2arkit.py` で固定版を取得します。UEへの取り込み、既存Model設定での切り替え、Editor／Shipping検証は [Wav2ARKit導入手順](../Plugins/LAMAudio2Expression/Docs/WAV2ARKIT.md) を参照してください。既定のLAMモデルやデモアセットは変更しません。
+
 ## 配布物を作る
 
 モデル入りZIPの作成手順は [リリース手順](RELEASE.md)、モデルの版管理とライセンスは [モデル運用方針](MODEL_MANAGEMENT.md) を参照してください。

@@ -1,0 +1,421 @@
+{
+  "date": "2026-09-28",
+  "environment": {
+    "engine": "5.8.2",
+    "platform": "Win64",
+    "cpu": "Intel Core i7-12700",
+    "runtime": "NNERuntimeORTCpu"
+  },
+  "branch": "codex/wav2arkit-cpu",
+  "source_model": {
+    "repository": "myned-ai/wav2arkit_cpu",
+    "revision": "48b7d27a147d4dfcce4c8225b11209ce4cd76e05",
+    "license": "Apache-2.0",
+    "files": {
+      "wav2arkit_cpu.onnx": {
+        "size": 1862753,
+        "sha256": "cdecbfad3915dd20b2f0718942d0b8894b2ee11edcc5a9a9da45d29a46af2ed9"
+      },
+      "wav2arkit_cpu.onnx.data": {
+        "size": 402063360,
+        "sha256": "c0f0364673c6e50be126b193e2b56809c16ac6bee4805aea9b8251ce53429bf8"
+      }
+    },
+    "input": {
+      "audio_waveform": [
+        1,
+        34133
+      ]
+    },
+    "output": {
+      "blendshapes": [
+        1,
+        64,
+        52
+      ]
+    },
+    "opset": 18,
+    "identity": 11,
+    "unreal_asset": "/LAMAudio2Expression/Models/Wav2ARKit_CPU",
+    "runtimes": [
+      "NNERuntimeORTCpu"
+    ],
+    "changes": "None. Original ONNX and external weights are imported together; the runtime uses fixed 34133-sample windows."
+  },
+  "model_asset_sha256": "a51cc17beb46c1f4511ba25a86a7727ac66954f68cd41140374c635be34af051",
+  "builds": {
+    "editor": "passed",
+    "shipping_build_cook_stage_archive": "passed"
+  },
+  "verification": {
+    "source_hashes_match": true,
+    "missing_and_corrupt_files_rejected": true,
+    "source_files_restored_after_shipping": true
+  },
+  "automation": {
+    "passed": 14,
+    "failed": 0,
+    "tests_with_warnings": 3,
+    "tests": [
+      {
+        "name": "LAM.Audio.CookedDecoder",
+        "state": "Success",
+        "warnings": 0,
+        "errors": 0
+      },
+      {
+        "name": "LAM.Bake.DataValidation",
+        "state": "Success",
+        "warnings": 0,
+        "errors": 0
+      },
+      {
+        "name": "LAM.Bake.GenerateAndRegenerate",
+        "state": "Success",
+        "warnings": 3,
+        "errors": 0
+      },
+      {
+        "name": "LAM.Core.BoundariesAndCurves",
+        "state": "Success",
+        "warnings": 0,
+        "errors": 0
+      },
+      {
+        "name": "LAM.Editor.PIEPlayback",
+        "state": "Success",
+        "warnings": 1,
+        "errors": 0
+      },
+      {
+        "name": "LAM.Editor.VisemeMeshRecipes",
+        "state": "Success",
+        "warnings": 0,
+        "errors": 0
+      },
+      {
+        "name": "LAM.Live.IntervalAndDelay",
+        "state": "Success",
+        "warnings": 0,
+        "errors": 0
+      },
+      {
+        "name": "LAM.Model.Parity",
+        "state": "Success",
+        "warnings": 0,
+        "errors": 0
+      },
+      {
+        "name": "LAM.Viseme.AnimNodeIntegration",
+        "state": "Success",
+        "warnings": 0,
+        "errors": 0
+      },
+      {
+        "name": "LAM.Viseme.BoundsContinuityAndInvalidInput",
+        "state": "Success",
+        "warnings": 0,
+        "errors": 0
+      },
+      {
+        "name": "LAM.Viseme.RulesAndPresets",
+        "state": "Success",
+        "warnings": 0,
+        "errors": 0
+      },
+      {
+        "name": "LAM.Viseme.TemplateFit",
+        "state": "Success",
+        "warnings": 0,
+        "errors": 0
+      },
+      {
+        "name": "LAM.Wav2ARKit.Bake",
+        "state": "Success",
+        "warnings": 2,
+        "errors": 0
+      },
+      {
+        "name": "LAM.Wav2ARKit.CPU",
+        "state": "Success",
+        "warnings": 0,
+        "errors": 0
+      }
+    ]
+  },
+  "python_reference": {
+    "onnxruntime": "1.20.1",
+    "initialization_ms": 392.5327999750152,
+    "speech_source": "Resources\\Demo\\Audio\\F1_happy_regular_38.wav",
+    "speech_sha256": "5fb5e1ead96906d252bb7ddcf4773cf49ab0b155c3c5331fbb5ca10a2449a806",
+    "cases": [
+      {
+        "name": "silence",
+        "inference_ms": 79.09379992634058
+      },
+      {
+        "name": "noise",
+        "inference_ms": 80.8734999736771
+      },
+      {
+        "name": "speech",
+        "inference_ms": 74.48750000912696
+      }
+    ]
+  },
+  "ue_parity": [
+    {
+      "case": "silence",
+      "style": 0,
+      "max_abs_error": 1.49e-07,
+      "initialization_ms": 952.46,
+      "inference_ms": 84.85
+    },
+    {
+      "case": "silence",
+      "style": 11,
+      "max_abs_error": 1.49e-07,
+      "initialization_ms": 0.0,
+      "inference_ms": 104.01
+    },
+    {
+      "case": "noise",
+      "style": 0,
+      "max_abs_error": 1.79e-07,
+      "initialization_ms": 1051.67,
+      "inference_ms": 87.76
+    },
+    {
+      "case": "noise",
+      "style": 11,
+      "max_abs_error": 1.79e-07,
+      "initialization_ms": 0.0,
+      "inference_ms": 84.13
+    },
+    {
+      "case": "speech",
+      "style": 0,
+      "max_abs_error": 2.09e-07,
+      "initialization_ms": 939.97,
+      "inference_ms": 85.43
+    },
+    {
+      "case": "speech",
+      "style": 11,
+      "max_abs_error": 2.09e-07,
+      "initialization_ms": 0.0,
+      "inference_ms": 79.1
+    }
+  ],
+  "editor_cases": [
+    {
+      "Case": "Playback",
+      "ExitCode": 0,
+      "WallSeconds": 13.168,
+      "SourceModelsHidden": false,
+      "Result": "PASS Analyze, playback, pause, seek, stop completed"
+    },
+    {
+      "Case": "Blueprint",
+      "ExitCode": 0,
+      "WallSeconds": 12.442,
+      "SourceModelsHidden": false,
+      "Result": "PASS Blueprint async + AnimGraph source, remap, scale, offset, mask, alpha, stop fade"
+    },
+    {
+      "Case": "LiveIntervals",
+      "ExitCode": 0,
+      "WallSeconds": 28.99,
+      "SourceModelsHidden": false,
+      "Result": "PASS live interval changes rate=16000 channels=1 valid_ticks=727\nhop_ms=333.333 inference_p95=91.561 latency_p95=91.650 delay=750.000 dropped=3 backend=CPU\nhop_ms=100.000 inference_p95=91.561 latency_p95=91.650 delay=750.000 dropped=26 backend=CPU\nhop_ms=1000.000 inference_p95=91.561 latency_p95=91.650 delay=1124.984 dropped=26 backend=CPU\nhop_ms=33.333 inference_p95=83.860 latency_p95=83.979 delay=1124.984 dropped=102 backend=CPU\nhop_ms=500.000 inference_p95=96.279 latency_p95=96.522 delay=1124.984 dropped=104 backend=CPU\nhop_ms=333.333 inference_p95=103.006 latency_p95=103.140 delay=1124.984 dropped=104 backend=CPU"
+    },
+    {
+      "Case": "LiveIntervals44kStereo",
+      "ExitCode": 0,
+      "WallSeconds": 28.692,
+      "SourceModelsHidden": false,
+      "Result": "PASS live interval changes rate=44100 channels=2 valid_ticks=723\nhop_ms=333.333 inference_p95=90.539 latency_p95=90.606 delay=750.000 dropped=4 backend=CPU\nhop_ms=100.000 inference_p95=90.539 latency_p95=90.606 delay=750.000 dropped=25 backend=CPU\nhop_ms=1000.000 inference_p95=90.539 latency_p95=90.606 delay=1123.939 dropped=25 backend=CPU\nhop_ms=33.333 inference_p95=121.856 latency_p95=121.979 delay=1123.939 dropped=111 backend=CPU\nhop_ms=500.000 inference_p95=121.856 latency_p95=121.979 delay=1123.939 dropped=111 backend=CPU\nhop_ms=333.333 inference_p95=121.856 latency_p95=121.979 delay=1123.939 dropped=111 backend=CPU"
+    },
+    {
+      "Case": "BakedPlayback",
+      "ExitCode": 0,
+      "WallSeconds": 14.551,
+      "SourceModelsHidden": false,
+      "Result": "PASS routing, mute, pause, seek, fades, completion, replacement/reentrancy, 3D, explicit/inline concurrency, world pause; started=11 ended=12\ninitial submix peaks: 0.145137 0.072568 0.036284 baked_model_unloaded=1 sample_checksum=37.328 sample_checksum=250.000 sample_short_p95_us=0.201 sample_300s_p95_us=0.201 dynamic_viseme_p95_us=65.602"
+    },
+    {
+      "Case": "short_inline",
+      "ExitCode": 0,
+      "WallSeconds": 10.524,
+      "SourceModelsHidden": false,
+      "Result": "PASS CPU samples=1280 frames=3 inference_seconds=1.073 total_seconds=4.387"
+    },
+    {
+      "Case": "one_inline",
+      "ExitCode": 0,
+      "WallSeconds": 12.163,
+      "SourceModelsHidden": false,
+      "Result": "PASS CPU samples=16000 frames=30 inference_seconds=0.998 total_seconds=4.637"
+    },
+    {
+      "Case": "one_plus_inline",
+      "ExitCode": 0,
+      "WallSeconds": 10.669,
+      "SourceModelsHidden": false,
+      "Result": "PASS CPU samples=16001 frames=31 inference_seconds=1.080 total_seconds=4.323"
+    },
+    {
+      "Case": "fraction_stream",
+      "ExitCode": 0,
+      "WallSeconds": 12.041,
+      "SourceModelsHidden": false,
+      "Result": "PASS CPU samples=34193 frames=65 inference_seconds=1.120 total_seconds=4.779"
+    },
+    {
+      "Case": "speech_stream",
+      "ExitCode": 0,
+      "WallSeconds": 12.117,
+      "SourceModelsHidden": false,
+      "Result": "PASS CPU samples=96000 frames=180 inference_seconds=1.399 total_seconds=4.800"
+    },
+    {
+      "Case": "silence_inline",
+      "ExitCode": 0,
+      "WallSeconds": 10.899,
+      "SourceModelsHidden": false,
+      "Result": "PASS CPU samples=16000 frames=30 inference_seconds=0.923 total_seconds=4.304"
+    },
+    {
+      "Case": "LivePCM48k",
+      "ExitCode": 0,
+      "WallSeconds": 29.197,
+      "SourceModelsHidden": false,
+      "Result": "PASS live interval changes rate=48000 channels=1 valid_ticks=722\nhop_ms=333.333 inference_p95=83.181 latency_p95=83.364 delay=750.000 dropped=4 backend=CPU\nhop_ms=100.000 inference_p95=86.532 latency_p95=86.660 delay=750.000 dropped=25 backend=CPU\nhop_ms=1000.000 inference_p95=86.532 latency_p95=86.660 delay=1119.993 dropped=25 backend=CPU\nhop_ms=33.333 inference_p95=131.562 latency_p95=132.958 delay=1119.993 dropped=114 backend=CPU\nhop_ms=500.000 inference_p95=153.769 latency_p95=153.894 delay=1119.993 dropped=116 backend=CPU\nhop_ms=333.333 inference_p95=153.769 latency_p95=153.894 delay=1119.993 dropped=116 backend=CPU"
+    }
+  ],
+  "shipping_cases": [
+    {
+      "Case": "Playback",
+      "ExitCode": 0,
+      "WallSeconds": 5.883,
+      "SourceModelsHidden": true,
+      "Result": "PASS Analyze, playback, pause, seek, stop completed"
+    },
+    {
+      "Case": "Blueprint",
+      "ExitCode": 0,
+      "WallSeconds": 7.91,
+      "SourceModelsHidden": true,
+      "Result": "PASS Blueprint async + AnimGraph source, remap, scale, offset, mask, alpha, stop fade"
+    },
+    {
+      "Case": "LivePCM48k",
+      "ExitCode": 0,
+      "WallSeconds": 22.912,
+      "SourceModelsHidden": true,
+      "Result": "PASS live interval changes rate=48000 channels=1 valid_ticks=56739\nhop_ms=333.333 inference_p95=280.229 latency_p95=327.473 delay=750.000 dropped=2 backend=CPU\nhop_ms=100.000 inference_p95=317.642 latency_p95=327.473 delay=750.000 dropped=55 backend=CPU\nhop_ms=1000.000 inference_p95=318.581 latency_p95=327.473 delay=1360.806 dropped=55 backend=CPU\nhop_ms=33.333 inference_p95=317.642 latency_p95=318.619 delay=1360.806 dropped=159 backend=CPU\nhop_ms=500.000 inference_p95=317.642 latency_p95=318.619 delay=1360.806 dropped=159 backend=CPU\nhop_ms=333.333 inference_p95=317.642 latency_p95=318.619 delay=1360.806 dropped=159 backend=CPU"
+    },
+    {
+      "Case": "LiveIntervals",
+      "ExitCode": 0,
+      "WallSeconds": 22.871,
+      "SourceModelsHidden": true,
+      "Result": "PASS live interval changes rate=16000 channels=1 valid_ticks=56718\nhop_ms=333.333 inference_p95=299.165 latency_p95=299.255 delay=750.000 dropped=3 backend=CPU\nhop_ms=100.000 inference_p95=315.608 latency_p95=315.650 delay=750.000 dropped=53 backend=CPU\nhop_ms=1000.000 inference_p95=315.608 latency_p95=315.650 delay=1348.983 dropped=53 backend=CPU\nhop_ms=33.333 inference_p95=320.012 latency_p95=320.052 delay=1348.983 dropped=157 backend=CPU\nhop_ms=500.000 inference_p95=315.608 latency_p95=315.650 delay=1348.983 dropped=157 backend=CPU\nhop_ms=333.333 inference_p95=315.608 latency_p95=315.650 delay=1348.983 dropped=157 backend=CPU"
+    },
+    {
+      "Case": "LiveIntervals44kStereo",
+      "ExitCode": 0,
+      "WallSeconds": 22.862,
+      "SourceModelsHidden": true,
+      "Result": "PASS live interval changes rate=44100 channels=2 valid_ticks=55205\nhop_ms=333.333 inference_p95=0.000 latency_p95=0.000 delay=750.000 dropped=0 backend=\nhop_ms=100.000 inference_p95=308.463 latency_p95=308.500 delay=750.000 dropped=61 backend=CPU\nhop_ms=1000.000 inference_p95=310.410 latency_p95=310.451 delay=1343.784 dropped=61 backend=CPU\nhop_ms=33.333 inference_p95=308.463 latency_p95=308.500 delay=1343.784 dropped=171 backend=CPU\nhop_ms=500.000 inference_p95=311.199 latency_p95=311.241 delay=1343.784 dropped=171 backend=CPU\nhop_ms=333.333 inference_p95=315.241 latency_p95=315.288 delay=1343.784 dropped=171 backend=CPU"
+    },
+    {
+      "Case": "BakedPlayback",
+      "ExitCode": 0,
+      "WallSeconds": 8.891,
+      "SourceModelsHidden": true,
+      "Result": "PASS routing, mute, pause, seek, fades, completion, replacement/reentrancy, 3D, explicit/inline concurrency, world pause; started=11 ended=12\ninitial submix peaks: 0.145137 0.072568 0.036284 baked_model_unloaded=1 sample_checksum=37.328 sample_checksum=250.000 sample_short_p95_us=0.100 sample_300s_p95_us=0.200 dynamic_viseme_p95_us=57.800"
+    },
+    {
+      "Case": "short_inline",
+      "ExitCode": 0,
+      "WallSeconds": 3.836,
+      "SourceModelsHidden": true,
+      "Result": "PASS CPU samples=1280 frames=3 inference_seconds=1.276 total_seconds=2.029"
+    },
+    {
+      "Case": "one_inline",
+      "ExitCode": 0,
+      "WallSeconds": 3.834,
+      "SourceModelsHidden": true,
+      "Result": "PASS CPU samples=16000 frames=30 inference_seconds=1.331 total_seconds=2.289"
+    },
+    {
+      "Case": "one_plus_inline",
+      "ExitCode": 0,
+      "WallSeconds": 3.838,
+      "SourceModelsHidden": true,
+      "Result": "PASS CPU samples=16001 frames=31 inference_seconds=1.524 total_seconds=2.293"
+    },
+    {
+      "Case": "fraction_stream",
+      "ExitCode": 0,
+      "WallSeconds": 4.847,
+      "SourceModelsHidden": true,
+      "Result": "PASS CPU samples=34193 frames=65 inference_seconds=1.941 total_seconds=2.770"
+    },
+    {
+      "Case": "speech_stream",
+      "ExitCode": 0,
+      "WallSeconds": 5.843,
+      "SourceModelsHidden": true,
+      "Result": "PASS CPU samples=96000 frames=180 inference_seconds=2.864 total_seconds=3.745"
+    },
+    {
+      "Case": "silence_inline",
+      "ExitCode": 0,
+      "WallSeconds": 3.958,
+      "SourceModelsHidden": true,
+      "Result": "PASS CPU samples=16000 frames=30 inference_seconds=1.453 total_seconds=2.281"
+    }
+  ],
+  "additional_legacy_editor_live_smoke": [
+    {
+      "Case": "LivePCM",
+      "ExitCode": 0,
+      "WallSeconds": 24.31,
+      "SourceModelsHidden": false,
+      "Result": "PASS PCM live input p95=91.69 ms valid=1"
+    }
+  ],
+  "initial_shipping_attempt": [
+    {
+      "Case": "Playback",
+      "ExitCode": 0,
+      "WallSeconds": 7.434,
+      "SourceModelsHidden": true,
+      "Result": "PASS Analyze, playback, pause, seek, stop completed"
+    },
+    {
+      "Case": "Blueprint",
+      "ExitCode": 0,
+      "WallSeconds": 7.847,
+      "SourceModelsHidden": true,
+      "Result": "PASS Blueprint async + AnimGraph source, remap, scale, offset, mask, alpha, stop fade"
+    },
+    {
+      "Case": "LivePCM",
+      "ExitCode": 0,
+      "WallSeconds": 17.854,
+      "SourceModelsHidden": true,
+      "Result": "FAIL PCM live input p95=336.44 ms valid=1"
+    }
+  ],
+  "notes": [
+    "The initial legacy live test reported valid output but failed its P95 < 333.333ms speed requirement (336.44ms). Performance is not an acceptance criterion for this change.",
+    "The final Wav2ARKit runner uses the existing live-interval functional harness for 48k mono, 16k mono and 44.1k stereo. It checks non-failed state, valid output, monotonic time and delay <= 2000ms while changing intervals; no legacy test threshold was modified.",
+    "Shipping uses NullRHI and its game loop is not capped by the supplied ExecCmds flag. Many more ticks are observed than in Editor. Timing results are diagnostic, not representative guarantees for normal rendering.",
+    "Automation warnings come from deliberate invalid bake inputs, a duplicated-audio DDC warning and the existing PIE audio-device raw-mode warning.",
+    "GPU support for Wav2ARKit, Android, prolonged physical microphone operation and perceptual lip-sync quality evaluation are outside this validation."
+  ]
+}

@@ -51,6 +51,9 @@ ALAMPlaybackTestActor::ALAMPlaybackTestActor()
 void ALAMPlaybackTestActor::BeginPlay()
 {
     Super::BeginPlay(); Began = At = FPlatformTime::Seconds();
+    FString TestModel;
+    if (FParse::Value(FCommandLine::Get(), TEXT("LAMModel="), TestModel))
+        GetMutableDefault<ULAMSettings>()->Model = TSoftObjectPtr<UNNEModelData>(FSoftObjectPath(TestModel));
     FApp::SetUnfocusedVolumeMultiplier(1);
     FApp::SetVolumeMultiplier(1);
     LiveTest = FParse::Param(FCommandLine::Get(), TEXT("LAMLiveIntervalTest"));

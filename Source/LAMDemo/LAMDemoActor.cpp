@@ -59,6 +59,9 @@ void ALAMDemoActor::BeginPlay()
     TestMode = FParse::Param(FCommandLine::Get(), TEXT("LAMTest"));
     if (Model)
         GetMutableDefault<ULAMSettings>()->Model = Model;
+    FString TestModel;
+    if (FParse::Value(FCommandLine::Get(), TEXT("LAMModel="), TestModel))
+        GetMutableDefault<ULAMSettings>()->Model = TSoftObjectPtr<UNNEModelData>(FSoftObjectPath(TestModel));
     if (FParse::Param(FCommandLine::Get(), TEXT("LAMCPU")))
         GetMutableDefault<ULAMSettings>()->bPreferGPU = false;
     FString Asset;
