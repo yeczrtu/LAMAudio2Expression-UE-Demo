@@ -2,7 +2,10 @@ param(
     [string]$Executable,
     [string]$OutputDirectory,
     [ValidateSet('Editor','Development','Shipping')][string]$Configuration='Shipping',
-    [string]$Engine='D:\Unreal\UE_5.8'
+    [string]$Engine='D:\Unreal\UE_5.8',
+    [switch]$Visemes,
+    [switch]$RepresentativePoses,
+    [ValidateSet('OpenFaceFX','TalkingHead')][string]$VisemeTemplate
 )
 $ErrorActionPreference='Stop'
 $Root=Split-Path -Parent $PSScriptRoot
@@ -18,12 +21,20 @@ if (!(Test-Path -LiteralPath $Executable)) { throw "Package missing: $Executable
 New-Item -ItemType Directory -Force -Path $OutputDirectory | Out-Null
 $OutputDirectory=(Resolve-Path -LiteralPath $OutputDirectory).Path
 $Results=@()
-for ($Index=0; $Index -lt 6; $Index++) {
+$Count=if ($RepresentativePoses -and $VisemeTemplate) { 15 } else { 6 }
+for ($Index=0; $Index -lt $Count; $Index++) {
     $Report=Join-Path $OutputDirectory "sample-$Index.txt"
     $Capture=Join-Path $OutputDirectory "sample-$Index.png"
     if (Test-Path -LiteralPath $Report) { Remove-Item -LiteralPath $Report }
     $Arguments=@('/Game/LAMFaceDemo/Maps/LAM_FaceDemo','-RenderOffscreen','-windowed','-ResX=1366','-ResY=800',
         '-unattended','-LAMPluginDemoTest',"-LAMDemoSample=$Index","-LAMReport=`"$Report`"","-LAMCapture=`"$Capture`"")
+    $Arguments += "-abslog=`"$(Join-Path $OutputDirectory "sample-$Index.log")`""
+    if ($Visemes -or $RepresentativePoses -or $VisemeTemplate) { $Arguments += '-LAMVisemeDemoTest' }
+    if ($VisemeTemplate) { $Arguments += "-LAMVisemeTemplate=$VisemeTemplate" }
+    if ($RepresentativePoses) {
+        $Arguments = $Arguments | Where-Object { $_ -notlike '-LAMDemoSample=*' }
+        $Arguments += @('-LAMDemoSample=0',"-LAMVisemePose=$Index")
+    }
     if ($Configuration -eq 'Editor') { $Arguments=@("`"$Root/LAMDemo.uproject`"",'-game')+$Arguments }
     $Watch=[Diagnostics.Stopwatch]::StartNew()
     $Process=Start-Process -FilePath $Executable -ArgumentList $Arguments -WindowStyle Hidden -PassThru

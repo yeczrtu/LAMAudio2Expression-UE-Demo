@@ -35,6 +35,8 @@ Data Asset の `LAMCurveProfile` で名前変換、無効化、倍率、オフ�
 
 ## モデルと表情設定
 
+あいうえおの5モーフやOculus形式の口形状を使う場合は **Apply LAM Viseme Curves** を使用できます。[設定・変換式・Blueprint API](../Plugins/LAMAudio2Expression/Docs/VISEMES.md)。同梱の `/Game/LAMVisemeExamples/ABP_LAMVisemes` はFace52の母音モーフに接続済みです。
+
 - Style: 0～11、既定0。上流学習モデルの話者スタイル番号です。
 - Smooth: 5フレームの Savitzky–Golay 平滑化と境界の補間。既定有効。
 - Suppress Silent Mouth: RMS 0.001未満が7フレーム続く区間で口の動きを抑制。既定有効。
@@ -54,3 +56,5 @@ Data Asset の `LAMCurveProfile` で名前変換、無効化、倍率、オフ�
 更新間隔は約33.3〜1000 ms（既定333.3 ms）で、実行中も `Set Live Inference Interval` から変更できます。提示遅延は既定750 msを下限に最大2秒まで自動調整します。`Get Live Metrics` と `On Live State Changed` で実行性能を確認できます。ライブ入力は初回モデルのロード時間を要するため、必要なら先に SoundWave を解析してアセットをロードしてください。音声解析ジョブとライブ推論は同じワーカーを使用するので、ライブ入力中の大量の解析は避けてください。
 
 再生設定・イベントの詳細は [再生制御とライブAPI](https://github.com/yeczrtu/LAMAudio2Expression-UE/blob/main/Docs/PLAYBACK_AND_LIVE.md) を参照してください。
+
+Oculus15モーフ用には`DA_OculusOpenFaceFX`を使用できます。TalkingHead配合で生成したモーフには`DA_OculusTalkingHead`を使用してください。詳細・入力欠落の設定・制限は[Visemeガイド](../Plugins/LAMAudio2Expression/Docs/VISEMES.md#oculus15のテンプレート逆算)を参照してください。

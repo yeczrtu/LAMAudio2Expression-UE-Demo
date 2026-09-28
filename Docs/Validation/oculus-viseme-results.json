@@ -1,0 +1,662 @@
+{
+  "Date": "2026-09-28",
+  "Engine": "UE 5.8.2",
+  "Platform": "Win64",
+  "CPU": "Intel Core i7-12700",
+  "GPU": "NVIDIA GeForce RTX 3070",
+  "Templates": {
+    "OpenFaceFX": {
+      "revision": "f898db3c825bf89cfec63391bb16d91fc42192e8",
+      "source": "https://raw.githubusercontent.com/OpenFaceFX/OpenFaceFX/f898db3c825bf89cfec63391bb16d91fc42192e8/src/openfacefx/retarget.py",
+      "data_sha256": "2c8d2493981641f2ee1247c2e2093a655e4b6758ea6a3f511e122af211c36bea",
+      "rank": 11
+    },
+    "TalkingHead": {
+      "revision": "5b1f12057a0edad83d1fc75714217dbbc9496aa7",
+      "source": "https://raw.githubusercontent.com/met4citizen/TalkingHead/5b1f12057a0edad83d1fc75714217dbbc9496aa7/blender/build-visemes-from-arkit.py",
+      "data_sha256": "d48a087fc52ab0a8901b645307b9b6840c52da70abb2aa269349bad8dac045a5",
+      "rank": 11
+    }
+  },
+  "Automation": {
+    "runtime_and_regression": {
+      "succeeded": 8,
+      "succeededWithWarnings": 1,
+      "failed": 0,
+      "notRun": 0
+    },
+    "saved_mesh_recipes": {
+      "succeeded": 1,
+      "succeededWithWarnings": 0,
+      "failed": 0,
+      "notRun": 0
+    },
+    "reports": [
+      "Artifacts/OculusTestsFinal",
+      "Artifacts/OculusMeshTest"
+    ]
+  },
+  "Numerical": {
+    "independent_solver": "SciPy SLSQP",
+    "cases": 174,
+    "max_objective_gap": 7.36287828e-08,
+    "acceptance_tolerance": 1e-05,
+    "generator": "Tools/generate_viseme_reference.py"
+  },
+  "PreparedConversionPerformance": {
+    "measurement": "Editor Development, 256 random frames; conversion only, excluding preparation/inference/rendering",
+    "units": "microseconds",
+    "templates": {
+      "OpenFaceFX": {
+        "median": 23.8,
+        "p95": 61.7
+      },
+      "TalkingHead": {
+        "median": 57.3,
+        "p95": 109.0
+      }
+    }
+  },
+  "Playback": {
+    "OpenFaceFX/Editor": [
+      {
+        "Sample": 0,
+        "ExitCode": 0,
+        "WallSeconds": 17.116,
+        "Result": "PASS sample=0 BP HUD and async playback, pause/resume, mute, volume, submix, intervals, fade, replay, completion event; mouth_peak=0.8992; DirectionalLights=1"
+      },
+      {
+        "Sample": 1,
+        "ExitCode": 0,
+        "WallSeconds": 46.962,
+        "Result": "PASS sample=1 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.9902, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 2,
+        "ExitCode": 0,
+        "WallSeconds": 15.498,
+        "Result": "PASS sample=2 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.9231, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 3,
+        "ExitCode": 0,
+        "WallSeconds": 14.683,
+        "Result": "PASS sample=3 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.9096, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 4,
+        "ExitCode": 0,
+        "WallSeconds": 14.651,
+        "Result": "PASS sample=4 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.5933, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 5,
+        "ExitCode": 0,
+        "WallSeconds": 14.615,
+        "Result": "PASS sample=5 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.8478, DirectionalLights=1, backend=DirectML"
+      }
+    ],
+    "OpenFaceFX/Shipping": [
+      {
+        "Sample": 0,
+        "ExitCode": 0,
+        "WallSeconds": 16.861,
+        "Result": "PASS sample=0 BP HUD and async playback, pause/resume, mute, volume, submix, intervals, fade, replay, completion event; mouth_peak=0.9005; DirectionalLights=1"
+      },
+      {
+        "Sample": 1,
+        "ExitCode": 0,
+        "WallSeconds": 15.238,
+        "Result": "PASS sample=1 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.9901, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 2,
+        "ExitCode": 0,
+        "WallSeconds": 30.79,
+        "Result": "PASS sample=2 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.9230, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 3,
+        "ExitCode": 0,
+        "WallSeconds": 11.122,
+        "Result": "PASS sample=3 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.9092, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 4,
+        "ExitCode": 0,
+        "WallSeconds": 16.419,
+        "Result": "PASS sample=4 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.5957, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 5,
+        "ExitCode": 0,
+        "WallSeconds": 12.093,
+        "Result": "PASS sample=5 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.8468, DirectionalLights=1, backend=DirectML"
+      }
+    ],
+    "TalkingHead/Editor": [
+      {
+        "Sample": 0,
+        "ExitCode": 0,
+        "WallSeconds": 16.924,
+        "Result": "PASS sample=0 BP HUD and async playback, pause/resume, mute, volume, submix, intervals, fade, replay, completion event; mouth_peak=0.6367; DirectionalLights=1"
+      },
+      {
+        "Sample": 1,
+        "ExitCode": 0,
+        "WallSeconds": 14.875,
+        "Result": "PASS sample=1 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.5828, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 2,
+        "ExitCode": 0,
+        "WallSeconds": 15.256,
+        "Result": "PASS sample=2 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.6578, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 3,
+        "ExitCode": 0,
+        "WallSeconds": 20.137,
+        "Result": "PASS sample=3 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.6921, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 4,
+        "ExitCode": 0,
+        "WallSeconds": 15.49,
+        "Result": "PASS sample=4 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.6025, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 5,
+        "ExitCode": 0,
+        "WallSeconds": 16.407,
+        "Result": "PASS sample=5 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.6938, DirectionalLights=1, backend=DirectML"
+      }
+    ],
+    "TalkingHead/Shipping": [
+      {
+        "Sample": 0,
+        "ExitCode": 0,
+        "WallSeconds": 16.193,
+        "Result": "PASS sample=0 BP HUD and async playback, pause/resume, mute, volume, submix, intervals, fade, replay, completion event; mouth_peak=0.6437; DirectionalLights=1"
+      },
+      {
+        "Sample": 1,
+        "ExitCode": 0,
+        "WallSeconds": 14.975,
+        "Result": "PASS sample=1 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.5905, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 2,
+        "ExitCode": 0,
+        "WallSeconds": 22.755,
+        "Result": "PASS sample=2 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.6578, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 3,
+        "ExitCode": 0,
+        "WallSeconds": 13.503,
+        "Result": "PASS sample=3 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.6930, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 4,
+        "ExitCode": 0,
+        "WallSeconds": 12.527,
+        "Result": "PASS sample=4 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.6021, DirectionalLights=1, backend=DirectML"
+      },
+      {
+        "Sample": 5,
+        "ExitCode": 0,
+        "WallSeconds": 13.694,
+        "Result": "PASS sample=5 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.6946, DirectionalLights=1, backend=DirectML"
+      }
+    ]
+  },
+  "RepresentativePoses": {
+    "OpenFaceFX/Editor": [
+      {
+        "Sample": 0,
+        "ExitCode": 0,
+        "WallSeconds": 17.971,
+        "Result": "PASS viseme_pose=0 mouth_peak=0.0000"
+      },
+      {
+        "Sample": 1,
+        "ExitCode": 0,
+        "WallSeconds": 19.56,
+        "Result": "PASS viseme_pose=1 mouth_peak=0.9998"
+      },
+      {
+        "Sample": 2,
+        "ExitCode": 0,
+        "WallSeconds": 21.312,
+        "Result": "PASS viseme_pose=2 mouth_peak=0.9998"
+      },
+      {
+        "Sample": 3,
+        "ExitCode": 0,
+        "WallSeconds": 26.586,
+        "Result": "PASS viseme_pose=3 mouth_peak=0.9998"
+      },
+      {
+        "Sample": 4,
+        "ExitCode": 0,
+        "WallSeconds": 33.957,
+        "Result": "PASS viseme_pose=4 mouth_peak=0.9945"
+      },
+      {
+        "Sample": 5,
+        "ExitCode": 0,
+        "WallSeconds": 28.166,
+        "Result": "PASS viseme_pose=5 mouth_peak=0.9821"
+      },
+      {
+        "Sample": 6,
+        "ExitCode": 0,
+        "WallSeconds": 22.137,
+        "Result": "PASS viseme_pose=6 mouth_peak=0.9951"
+      },
+      {
+        "Sample": 7,
+        "ExitCode": 0,
+        "WallSeconds": 22.413,
+        "Result": "PASS viseme_pose=7 mouth_peak=0.9995"
+      },
+      {
+        "Sample": 8,
+        "ExitCode": 0,
+        "WallSeconds": 27.422,
+        "Result": "PASS viseme_pose=8 mouth_peak=0.9608"
+      },
+      {
+        "Sample": 9,
+        "ExitCode": 0,
+        "WallSeconds": 28.151,
+        "Result": "PASS viseme_pose=9 mouth_peak=0.8001"
+      },
+      {
+        "Sample": 10,
+        "ExitCode": 0,
+        "WallSeconds": 25.842,
+        "Result": "PASS viseme_pose=10 mouth_peak=0.9987"
+      },
+      {
+        "Sample": 11,
+        "ExitCode": 0,
+        "WallSeconds": 26.473,
+        "Result": "PASS viseme_pose=11 mouth_peak=0.9994"
+      },
+      {
+        "Sample": 12,
+        "ExitCode": 0,
+        "WallSeconds": 26.617,
+        "Result": "PASS viseme_pose=12 mouth_peak=0.9997"
+      },
+      {
+        "Sample": 13,
+        "ExitCode": 0,
+        "WallSeconds": 28.467,
+        "Result": "PASS viseme_pose=13 mouth_peak=0.9987"
+      },
+      {
+        "Sample": 14,
+        "ExitCode": 0,
+        "WallSeconds": 26.475,
+        "Result": "PASS viseme_pose=14 mouth_peak=0.9995"
+      }
+    ],
+    "OpenFaceFX/Shipping": [
+      {
+        "Sample": 0,
+        "ExitCode": 0,
+        "WallSeconds": 15.721,
+        "Result": "PASS viseme_pose=0 mouth_peak=0.0000"
+      },
+      {
+        "Sample": 1,
+        "ExitCode": 0,
+        "WallSeconds": 11.8,
+        "Result": "PASS viseme_pose=1 mouth_peak=0.9998"
+      },
+      {
+        "Sample": 2,
+        "ExitCode": 0,
+        "WallSeconds": 14.829,
+        "Result": "PASS viseme_pose=2 mouth_peak=0.9998"
+      },
+      {
+        "Sample": 3,
+        "ExitCode": 0,
+        "WallSeconds": 11.657,
+        "Result": "PASS viseme_pose=3 mouth_peak=0.9998"
+      },
+      {
+        "Sample": 4,
+        "ExitCode": 0,
+        "WallSeconds": 17.081,
+        "Result": "PASS viseme_pose=4 mouth_peak=0.9945"
+      },
+      {
+        "Sample": 5,
+        "ExitCode": 0,
+        "WallSeconds": 11.309,
+        "Result": "PASS viseme_pose=5 mouth_peak=0.9821"
+      },
+      {
+        "Sample": 6,
+        "ExitCode": 0,
+        "WallSeconds": 15.265,
+        "Result": "PASS viseme_pose=6 mouth_peak=0.9951"
+      },
+      {
+        "Sample": 7,
+        "ExitCode": 0,
+        "WallSeconds": 11.177,
+        "Result": "PASS viseme_pose=7 mouth_peak=0.9995"
+      },
+      {
+        "Sample": 8,
+        "ExitCode": 0,
+        "WallSeconds": 16.436,
+        "Result": "PASS viseme_pose=8 mouth_peak=0.9608"
+      },
+      {
+        "Sample": 9,
+        "ExitCode": 0,
+        "WallSeconds": 11.299,
+        "Result": "PASS viseme_pose=9 mouth_peak=0.8001"
+      },
+      {
+        "Sample": 10,
+        "ExitCode": 0,
+        "WallSeconds": 13.645,
+        "Result": "PASS viseme_pose=10 mouth_peak=0.9987"
+      },
+      {
+        "Sample": 11,
+        "ExitCode": 0,
+        "WallSeconds": 11.324,
+        "Result": "PASS viseme_pose=11 mouth_peak=0.9994"
+      },
+      {
+        "Sample": 12,
+        "ExitCode": 0,
+        "WallSeconds": 15.657,
+        "Result": "PASS viseme_pose=12 mouth_peak=0.9997"
+      },
+      {
+        "Sample": 13,
+        "ExitCode": 0,
+        "WallSeconds": 11.048,
+        "Result": "PASS viseme_pose=13 mouth_peak=0.9987"
+      },
+      {
+        "Sample": 14,
+        "ExitCode": 0,
+        "WallSeconds": 15.943,
+        "Result": "PASS viseme_pose=14 mouth_peak=0.9995"
+      }
+    ],
+    "TalkingHead/Editor": [
+      {
+        "Sample": 0,
+        "ExitCode": 0,
+        "WallSeconds": 20.179,
+        "Result": "PASS viseme_pose=0 mouth_peak=0.0000"
+      },
+      {
+        "Sample": 1,
+        "ExitCode": 0,
+        "WallSeconds": 21.693,
+        "Result": "PASS viseme_pose=1 mouth_peak=0.9999"
+      },
+      {
+        "Sample": 2,
+        "ExitCode": 0,
+        "WallSeconds": 24.925,
+        "Result": "PASS viseme_pose=2 mouth_peak=1.0000"
+      },
+      {
+        "Sample": 3,
+        "ExitCode": 0,
+        "WallSeconds": 35.242,
+        "Result": "PASS viseme_pose=3 mouth_peak=0.9997"
+      },
+      {
+        "Sample": 4,
+        "ExitCode": 0,
+        "WallSeconds": 27.131,
+        "Result": "PASS viseme_pose=4 mouth_peak=0.9997"
+      },
+      {
+        "Sample": 5,
+        "ExitCode": 0,
+        "WallSeconds": 20.246,
+        "Result": "PASS viseme_pose=5 mouth_peak=0.9972"
+      },
+      {
+        "Sample": 6,
+        "ExitCode": 0,
+        "WallSeconds": 24.985,
+        "Result": "PASS viseme_pose=6 mouth_peak=0.4996"
+      },
+      {
+        "Sample": 7,
+        "ExitCode": 0,
+        "WallSeconds": 24.357,
+        "Result": "PASS viseme_pose=7 mouth_peak=0.9998"
+      },
+      {
+        "Sample": 8,
+        "ExitCode": 0,
+        "WallSeconds": 24.903,
+        "Result": "PASS viseme_pose=8 mouth_peak=0.9971"
+      },
+      {
+        "Sample": 9,
+        "ExitCode": 0,
+        "WallSeconds": 25.367,
+        "Result": "PASS viseme_pose=9 mouth_peak=0.4996"
+      },
+      {
+        "Sample": 10,
+        "ExitCode": 0,
+        "WallSeconds": 26.462,
+        "Result": "PASS viseme_pose=10 mouth_peak=0.9996"
+      },
+      {
+        "Sample": 11,
+        "ExitCode": 0,
+        "WallSeconds": 26.627,
+        "Result": "PASS viseme_pose=11 mouth_peak=0.9998"
+      },
+      {
+        "Sample": 12,
+        "ExitCode": 0,
+        "WallSeconds": 27.264,
+        "Result": "PASS viseme_pose=12 mouth_peak=0.9644"
+      },
+      {
+        "Sample": 13,
+        "ExitCode": 0,
+        "WallSeconds": 27.172,
+        "Result": "PASS viseme_pose=13 mouth_peak=0.9998"
+      },
+      {
+        "Sample": 14,
+        "ExitCode": 0,
+        "WallSeconds": 14.868,
+        "Result": "PASS viseme_pose=14 mouth_peak=0.9999"
+      }
+    ],
+    "TalkingHead/Shipping": [
+      {
+        "Sample": 0,
+        "ExitCode": 0,
+        "WallSeconds": 15.474,
+        "Result": "PASS viseme_pose=0 mouth_peak=0.0000"
+      },
+      {
+        "Sample": 1,
+        "ExitCode": 0,
+        "WallSeconds": 12.116,
+        "Result": "PASS viseme_pose=1 mouth_peak=0.9999"
+      },
+      {
+        "Sample": 2,
+        "ExitCode": 0,
+        "WallSeconds": 14.3,
+        "Result": "PASS viseme_pose=2 mouth_peak=1.0000"
+      },
+      {
+        "Sample": 3,
+        "ExitCode": 0,
+        "WallSeconds": 11.665,
+        "Result": "PASS viseme_pose=3 mouth_peak=0.9997"
+      },
+      {
+        "Sample": 4,
+        "ExitCode": 0,
+        "WallSeconds": 17.225,
+        "Result": "PASS viseme_pose=4 mouth_peak=0.9997"
+      },
+      {
+        "Sample": 5,
+        "ExitCode": 0,
+        "WallSeconds": 11.397,
+        "Result": "PASS viseme_pose=5 mouth_peak=0.9972"
+      },
+      {
+        "Sample": 6,
+        "ExitCode": 0,
+        "WallSeconds": 14.622,
+        "Result": "PASS viseme_pose=6 mouth_peak=0.4996"
+      },
+      {
+        "Sample": 7,
+        "ExitCode": 0,
+        "WallSeconds": 11.229,
+        "Result": "PASS viseme_pose=7 mouth_peak=0.9998"
+      },
+      {
+        "Sample": 8,
+        "ExitCode": 0,
+        "WallSeconds": 15.583,
+        "Result": "PASS viseme_pose=8 mouth_peak=0.9971"
+      },
+      {
+        "Sample": 9,
+        "ExitCode": 0,
+        "WallSeconds": 12.279,
+        "Result": "PASS viseme_pose=9 mouth_peak=0.4996"
+      },
+      {
+        "Sample": 10,
+        "ExitCode": 0,
+        "WallSeconds": 13.918,
+        "Result": "PASS viseme_pose=10 mouth_peak=0.9996"
+      },
+      {
+        "Sample": 11,
+        "ExitCode": 0,
+        "WallSeconds": 11.214,
+        "Result": "PASS viseme_pose=11 mouth_peak=0.9998"
+      },
+      {
+        "Sample": 12,
+        "ExitCode": 0,
+        "WallSeconds": 15.203,
+        "Result": "PASS viseme_pose=12 mouth_peak=0.9644"
+      },
+      {
+        "Sample": 13,
+        "ExitCode": 0,
+        "WallSeconds": 11.203,
+        "Result": "PASS viseme_pose=13 mouth_peak=0.9998"
+      },
+      {
+        "Sample": 14,
+        "ExitCode": 0,
+        "WallSeconds": 16.505,
+        "Result": "PASS viseme_pose=14 mouth_peak=0.9999"
+      }
+    ]
+  },
+  "LegacyShippingRegression": {
+    "LegacyVowels": "PASS sample=0 BP HUD and async playback, pause/resume, mute, volume, submix, intervals, fade, replay, completion event; mouth_peak=1.0000; DirectionalLights=1",
+    "LegacyARKit": "PASS sample=0 BP HUD and async playback, pause/resume, mute, volume, submix, intervals, fade, replay, completion event; mouth_peak=0.2770; DirectionalLights=1"
+  },
+  "ShippingPackage": {
+    "build_cook_stage_archive": "PASS",
+    "output": "Artifacts/Shipping/Windows",
+    "log": "Artifacts/OculusPackage.log",
+    "staged_license_and_recipe_files": [
+      "Artifacts/Shipping/Windows/LAMDemo/Plugins/LAMAudio2Expression/ThirdParty/VisemeTemplates/OpenFaceFX.LICENSE",
+      "Artifacts/Shipping/Windows/LAMDemo/Plugins/LAMAudio2Expression/ThirdParty/VisemeTemplates/TalkingHead.LICENSE",
+      "Artifacts/Shipping/Windows/LAMDemo/Plugins/LAMAudio2Expression/ThirdParty/VisemeTemplates/OpenFaceFX.json",
+      "Artifacts/Shipping/Windows/LAMDemo/Plugins/LAMAudio2Expression/ThirdParty/VisemeTemplates/TalkingHead.json"
+    ]
+  },
+  "GeneratedMorphGeometry": {
+    "meshes": 2,
+    "morphs": 28,
+    "maximum_position_delta_error_cm": 0.0,
+    "checks": "Saved/reloaded CPU vertex ordering and all generated positional morph deltas equal weighted source ARKit deltas."
+  },
+  "VisualReview": {
+    "status": "Representative and six-audio still-frame contact sheets inspected for both templates in Editor and Shipping.",
+    "limitations": [
+      "Face52 neutral and PP retain a small mouth gap.",
+      "Face52 open-vowel reference shapes show weak visible opening; TH tongue and rounded-mouth shapes can look excessive.",
+      "Pinned recipes are preserved for compatibility; these generated meshes are reference fixtures, not production-calibrated viseme art.",
+      "Still images do not establish perceptual quality for every transition or arbitrary model; numerical continuity and playback controls are tested separately."
+    ],
+    "comparisons": {
+      "OpenFaceFX": {
+        "static_pose_face_roi_mean_absolute_pixel_difference_0_to_255": [
+          0.21722728626750074,
+          0.2531736669645517,
+          0.2135382782246053,
+          0.30307536490914505,
+          0.31745487042001785,
+          0.25256598153112897,
+          0.3027822460530235,
+          0.2929758713136729,
+          0.21147214775096812,
+          0.2396496872207328,
+          0.25960321715817697,
+          0.3030944295501936,
+          0.24992552874590407,
+          0.2847780756627942,
+          0.2927828418230563
+        ]
+      },
+      "TalkingHead": {
+        "static_pose_face_roi_mean_absolute_pixel_difference_0_to_255": [
+          0.29571641346440275,
+          0.29861900506404526,
+          0.3067929699136133,
+          0.3258504617217754,
+          0.3310789395293417,
+          0.2689615728328865,
+          0.2625963658028001,
+          0.29117426273458447,
+          0.26734346142389037,
+          0.21345487042001787,
+          0.3176502829907656,
+          0.27957819481680074,
+          0.23676377718200775,
+          0.2715567470956211,
+          0.30444563598450997
+        ]
+      }
+    },
+    "contact_sheets": [
+      "Artifacts/OculusOpenFaceFX-mouths.png",
+      "Artifacts/OculusOpenFaceFX-shipping-mouths.png",
+      "Artifacts/OculusOpenFaceFX-audio.png",
+      "Artifacts/OculusTalkingHead-mouths.png",
+      "Artifacts/OculusTalkingHead-shipping-mouths.png",
+      "Artifacts/OculusTalkingHead-audio.png"
+    ]
+  }
+}

@@ -1,6 +1,18 @@
-# 検証結果 — 2026-09-24 / 顔デモ追記 2026-09-25
+# 検証結果 — 2026-09-24 / 顔デモ追記 2026-09-25 / 母音変換追記 2026-09-28
 
 環境：Windows x64、UE 5.8.2 (`D:\Unreal\UE_5.8`)、Visual Studio 2022 / MSVC 14.44、Core i7-12700、RTX 3070、メモリ64 GB。以下はこの環境での実行結果です。
+
+## 母音・Oculus互換Viseme（2026-09-28）
+
+新規 `LAM.Viseme` 3テストが成功しました。代表口形状、閉口、補正、2048件のランダム入力、閾値を横断する連続性、無効入力・設定、Oculus順序・名前プリセット、実AnimNodeのAlpha/Weight・復帰・設定スナップショットを検証しています。最終コードでも3テストを再実行して成功しました。
+
+既存5テストを含む `LAM.` 全8テストも成功（PIEPlaybackのみWASAPI raw mode非対応の環境警告1件）。EditorビルドとShippingのBuild/Cook/Stage/Archiveが成功しました。
+
+Face52の既存 `Fcl_MTH_A/I/U/E/O` と専用AnimBPで、Editor・Shippingそれぞれ6音声が成功しました。先頭音声では一時停止中のBlueprint変換値とAnimGraph出力の一致、フェード停止後の母音0、再開・リプレイ・シーク・自然終了を確認。全音声で母音合計の上限とARKit口カーブの二重適用がないことを確認しました。従来のARKit出力もShippingの先頭音声で回帰確認しています。
+
+中立と5母音の代表入力を描画し、6枚の画像を目視確認しました。小開口の「い／う」は重み0.5、大開口の「あ／え／お」は1.0です。各モデルでの発音推定精度や、実マイクでの新規検証を意味しません。
+
+[実行結果](Validation/viseme-results.json)・[使用方法と変換仕様](../Plugins/LAMAudio2Expression/Docs/VISEMES.md)。ローカルの画像は `Artifacts/VisemePoses`、音声再生結果は `Artifacts/VisemeDemo` と `Artifacts/VisemeShipping` に保存しています。
 
 ## Blueprint版の顔デモ（2026-09-25）
 
@@ -147,3 +159,25 @@ UE 5.8.2、Win64 Development / ShippingをBuild・Cookし、Editor Standaloneと
 再実行はTools/test_playback_controls.ps1（Configuration: Editor / Development / Shipping）。追加の合成音声フィクスチャはsetupから生成します。Shippingで起動引数によるマップ指定が無視される場合も、デモのGameModeがテストフラグを検出してテストマップへ移動します。通常のデモ起動には影響しません。
 
 実マイクの取得/切断、長時間運転、実ソケットへの追従、距離ごとの減衰量・定位の聴感、出力デバイスを含む外部計測での1フレーム以内の同期保証は未検証です。従来の「確認を残している範囲」も引き続き適用します。
+
+## Oculus15テンプレート逆算（2026-09-28）
+
+UE 5.8.2 / Win64 / Core i7-12700 / RTX 3070で、OpenFaceFXとTalkingHeadの逆算を検証しました。既存5母音方式は維持しています。
+
+| 検証 | 結果 |
+|---|---|
+| Runtime・既存回帰Automation 9件＋保存済みメッシュ検証1件 | すべて成功（既存PIE音声デバイス警告1件） |
+| 独立したSciPy SLSQPとの174ケース比較 | 最大目的関数差 `7.36287828e-8`、基準`1e-5`以下 |
+| 6音声 × 2方式 × Editor/Shipping | 24ケース成功 |
+| 中立＋14形状 × 2方式 × Editor/Shipping | 60ケース成功 |
+| 既存5母音・ARKit Shipping再生操作 | 各1ケース成功 |
+| 保存後の生成モーフ28個とARKit配合の頂点差分 | 最大位置差分誤差0 cm、頂点順序も一致 |
+| Shipping Build/Cook/Stage/Archive | 成功。両参照データ・MITライセンスの同梱を照合 |
+
+Blueprint/AnimGraphの一致、Alpha/Weightの一度だけの適用、設定コピー、Pause/Seek、停止・入力消失、無効入力、観測マスク、倍率、範囲と連続性を検証しています。用意した数値ケースは単独ポーズ・混合・範囲外入力・一部観測欠落を含みます。両行列ともランク11で、係数そのものの一意な復元は受け入れ条件にしていません。
+
+計算用行列を準備済みの変換関数を256ランダムフレームで測定した結果、Editor DevelopmentでOpenFaceFXの中央値23.8 µs / P95 61.7 µs、TalkingHeadの中央値57.3 µs / P95 109.0 µsでした。推論、設定準備、描画は含まず、他の環境の性能保証ではありません。
+
+代表ポーズと6音声の静止画像を両ビルドで確認しました。Face52ではPPにも小さな口の隙間が残り、開口系の見た目が弱い一方、THの舌や丸め形状が強く見える場合があります。保存モーフの頂点差分は参照配合と一致しているため、これらは本モデルでの調整事項として扱います。参照用メッシュは完成したViseme素材ではありません。5母音のみのモデルには既存方式を使い、任意モデルでの発話の見た目は別途調整してください。静止画像による確認は、全遷移の知覚品質を保証するものではありません。
+
+[詳細結果](Validation/oculus-viseme-results.json)に各ケース、性能、固定リビジョン、画像比較の情報を記録しています。再現方法は[Visemeガイド](../Plugins/LAMAudio2Expression/Docs/VISEMES.md)を参照してください。

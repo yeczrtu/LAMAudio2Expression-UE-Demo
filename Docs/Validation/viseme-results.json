@@ -1,0 +1,149 @@
+{
+  "Date": "2026-09-28",
+  "Engine": "5.8.2",
+  "Platform": "Windows x64",
+  "Build": "Editor and Shipping; Shipping Build/Cook/Stage/Archive successful",
+  "Regression": {
+    "Succeeded": 7,
+    "SucceededWithWarnings": 1,
+    "Failed": 0,
+    "Warning": "LAM.Editor.PIEPlayback: WASAPI raw mode unsupported; playback test passed"
+  },
+  "FinalVisemeTests": [
+    {
+      "fullTestPath": "LAM.Viseme.AnimNodeIntegration",
+      "state": "Success",
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "LAM.Viseme.BoundsContinuityAndInvalidInput",
+      "state": "Success",
+      "warnings": 0,
+      "errors": 0
+    },
+    {
+      "fullTestPath": "LAM.Viseme.RulesAndPresets",
+      "state": "Success",
+      "warnings": 0,
+      "errors": 0
+    }
+  ],
+  "EditorSamples": [
+    {
+      "Sample": 0,
+      "ExitCode": 0,
+      "WallSeconds": 19.594,
+      "Result": "PASS sample=0 BP HUD and async playback, pause/resume, mute, volume, submix, intervals, fade, replay, completion event; mouth_peak=1.0000; DirectionalLights=1"
+    },
+    {
+      "Sample": 1,
+      "ExitCode": 0,
+      "WallSeconds": 15.831,
+      "Result": "PASS sample=1 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=1.0000, DirectionalLights=1, backend=DirectML"
+    },
+    {
+      "Sample": 2,
+      "ExitCode": 0,
+      "WallSeconds": 44.188,
+      "Result": "PASS sample=2 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=1.0000, DirectionalLights=1, backend=DirectML"
+    },
+    {
+      "Sample": 3,
+      "ExitCode": 0,
+      "WallSeconds": 20.917,
+      "Result": "PASS sample=3 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=1.0000, DirectionalLights=1, backend=DirectML"
+    },
+    {
+      "Sample": 4,
+      "ExitCode": 0,
+      "WallSeconds": 22.613,
+      "Result": "PASS sample=4 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.7338, DirectionalLights=1, backend=DirectML"
+    },
+    {
+      "Sample": 5,
+      "ExitCode": 0,
+      "WallSeconds": 20.133,
+      "Result": "PASS sample=5 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=1.0000, DirectionalLights=1, backend=DirectML"
+    }
+  ],
+  "ShippingSamples": [
+    {
+      "Sample": 0,
+      "ExitCode": 0,
+      "WallSeconds": 25.114,
+      "Result": "PASS sample=0 BP HUD and async playback, pause/resume, mute, volume, submix, intervals, fade, replay, completion event; mouth_peak=1.0000; DirectionalLights=1"
+    },
+    {
+      "Sample": 1,
+      "ExitCode": 0,
+      "WallSeconds": 8.923,
+      "Result": "PASS sample=1 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=1.0000, DirectionalLights=1, backend=DirectML"
+    },
+    {
+      "Sample": 2,
+      "ExitCode": 0,
+      "WallSeconds": 7.517,
+      "Result": "PASS sample=2 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=1.0000, DirectionalLights=1, backend=DirectML"
+    },
+    {
+      "Sample": 3,
+      "ExitCode": 0,
+      "WallSeconds": 7.569,
+      "Result": "PASS sample=3 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=1.0000, DirectionalLights=1, backend=DirectML"
+    },
+    {
+      "Sample": 4,
+      "ExitCode": 0,
+      "WallSeconds": 7.545,
+      "Result": "PASS sample=4 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=0.7336, DirectionalLights=1, backend=DirectML"
+    },
+    {
+      "Sample": 5,
+      "ExitCode": 0,
+      "WallSeconds": 7.58,
+      "Result": "PASS sample=5 Blueprint HUD click -> async -> playback -> AnimGraph, mouth_peak=1.0000, DirectionalLights=1, backend=DirectML"
+    }
+  ],
+  "RepresentativePoses": [
+    {
+      "Sample": 0,
+      "ExitCode": 0,
+      "WallSeconds": 18.364,
+      "Result": "PASS viseme_pose=0 mouth_peak=0.0000"
+    },
+    {
+      "Sample": 1,
+      "ExitCode": 0,
+      "WallSeconds": 18.332,
+      "Result": "PASS viseme_pose=1 mouth_peak=1.0000"
+    },
+    {
+      "Sample": 2,
+      "ExitCode": 0,
+      "WallSeconds": 20.937,
+      "Result": "PASS viseme_pose=2 mouth_peak=0.5000"
+    },
+    {
+      "Sample": 3,
+      "ExitCode": 0,
+      "WallSeconds": 21.06,
+      "Result": "PASS viseme_pose=3 mouth_peak=0.5000"
+    },
+    {
+      "Sample": 4,
+      "ExitCode": 0,
+      "WallSeconds": 16.389,
+      "Result": "PASS viseme_pose=4 mouth_peak=1.0000"
+    },
+    {
+      "Sample": 5,
+      "ExitCode": 0,
+      "WallSeconds": 20.798,
+      "Result": "PASS viseme_pose=5 mouth_peak=1.0000"
+    }
+  ],
+  "RawARKitRegression": "PASS sample=0 BP HUD and async playback, pause/resume, mute, volume, submix, intervals, fade, replay, completion event; mouth_peak=0.2766; DirectionalLights=1",
+  "VisualReview": "Neutral and A/I/U/E/O screenshots inspected on existing Face52 vowel morphs. Small I/U poses use weight 0.5; large A/E/O use 1.0.",
+  "Limitations": "Shape approximation only. Consonant slots remain zero; sil is a neutral-shape residual, not acoustic silence. Live microphone input was not newly exercised."
+}
